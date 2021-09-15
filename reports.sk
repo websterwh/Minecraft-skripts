@@ -1,0 +1,130 @@
+# Reports System - Made By Obey#0001
+# BE CAREFUL EDITING ANYTHING BELOW THE WARNING!
+#
+# Discord Server: https://discord.gg/e4vb3tr
+#
+# Version: 1.0
+#
+# Changelog (1.0):
+#  • Initial release, base commands added.
+
+options:
+
+	# The message you want to appear when the user doesn't have permission.
+	# Example: "&c&lREPORTS &7» &7You do not have permission to use &c/command"
+	noPerm: "&7You do not have permission to use &c"
+
+	# The prefix for the report commands
+	# Example: "&c&lREPORTS &7»..."
+	prefix: &c&lREPORTS &7»
+	
+	# The name of this file (the name of the .sk file)
+	# Default: reports
+	fileName: reports
+	
+	# The permission for reporting a user
+	# Default: reports.use
+	reportPerm: reports.use
+	
+	# The permission for getting report alerts
+	# Default: reports.alert
+	reportAlertPerm: reports.alert
+	
+	# The permission for checking the reports list
+	# Default: reports.list
+	reportListPerm: reports.list
+	
+	# The permission for clearing all reports
+	# Default: reports.clearall
+	reportClearPerm: reports.clearall
+	
+	# The permission for deleting a report
+	# Default: reports.delete
+	reportDeletePerm: reports.delete
+	
+	# The permission for reloading the plugin
+	# Default: reports.reload
+	reportReloadPerm: reports.reload
+	
+	# The report command you wish to use
+	# Default: /report
+	reportCommand: report
+	
+	# The command to check all reports
+	# Default: /reports
+	reportListCommand: reports
+	
+	# The command to clear all reports
+	# Default: /clearreports
+	reportClearCommand: clearreports
+	
+	# The command to delete a report
+	# Default: /deletereport
+	reportDeleteCommand: deletereport
+	
+	# The command to reload the reports plugin
+	# Default: /reloadreports
+	reportReloadCommand: reloadreports
+
+# WARNING!
+#
+# Editing anything below this block may result
+# in the plugin BREAKING and becoming unusable!
+# If you do not realise what you are doing too
+# much, please do not alter the below code!
+# Thank you!
+
+command /{@reportCommand} [<offline player>] [<text>]:
+	permission: {@reportPerm}
+	permission message: {@prefix} {@noPerm}/{@reportCommand}
+	trigger:
+		if arg 1 is set:
+			if arg 2 is set:
+				add 1 to {report.count}
+				set {reports::%{report.count}%} to  "%arg 1% -*- %arg 2% -*- %player%"
+				send "{@prefix} Reported &c%arg 1% &7for &c%arg 2%&7 successfully"
+				loop all players:
+					loop-player has permission "{@reportAlertPerm}"
+					send "{@prefix} &c%player% &7has just reported &c%arg 1% &7for &c%arg 2%" to loop-player
+			else:
+				send "{@prefix} Please specify a reason for the report"
+		else:
+			send "{@prefix} Please specify a player to report"
+
+command /{@reportListCommand}:
+	permission: {@reportListPerm}
+	permission message: {@prefix} {@noPerm}/{@reportListCommand}
+	trigger:
+		send "{@prefix} The following players have been reported:"
+		loop {reports::*}:
+			set {_r} to "%{reports::%loop-index%}%"
+			set {_r::*} to {_r} split at " -*- "
+			send "&7%loop-index%. &c%{_r::1}%&7: %{_r::2}% &c(&7&oreported by %{_r::3}%&c)"
+
+command /{@reportClearCommand}:
+	permission: {@reportClearPerm}
+	permission message: {@prefix} {@noPerm}/{@reportClearCommand}
+	trigger:
+		delete {reports::*}
+		set {report.count} to 0
+		send "{@prefix} All reports have been cleared"
+
+command /{@reportDeleteCommand} [<integer>]:
+	permission: {@reportDeletePerm}
+	permission message: {@prefix} {@noPerm}/{@reportDeleteCommand}
+	trigger:
+		if arg 1 is set:
+			if {reports::%arg 1%} is set:
+				delete {reports::%arg 1%}
+				send "{@prefix} Deleted report with id %arg 1%!"
+			else:
+				send "{@prefix} Report with id %arg 1% does not exist"
+		else:
+			send "{@prefix} Please specify a report id"
+
+command /{@reportReloadCommand}:
+	permission: {@reportReloadPerm}
+	permission message: {@prefix} {@noPerm}/{@reportReloadCommand}
+	trigger:
+		make console execute command "/sk reload {@fileName}"
+		send "{@prefix} Successfully reloaded the plugin"

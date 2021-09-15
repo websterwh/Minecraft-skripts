@@ -1,0 +1,447 @@
+options:
+	discordCode: set-in-config
+
+command /ban [<offlineplayer>] [<text>]:
+	trigger:
+		if player doesn't have permission "np.ban":
+			send "&8[&c&lNP&8] &7You don't have permission to use this command."
+		else if arg 1 is not set:
+			send "&8[&c&lNP&8] &7Please specify a player!"
+		else:
+			# Reasoning
+			if arg 2 is not set:
+				set {_r} to "Banned"
+			else:
+				# Check if silent punishment
+				if arg 2 is "-s":
+					set {_r} to "Banned"
+					set {_s} to true
+				else if last 2 characters of arg 2 is "-s":
+					set {_r} to subtext of arg 2 from characters 1 to (length of arg 2 - 2)
+					set {_s} to true
+				else:
+					set {_r} to arg 2
+			
+			add "%uuid of arg 1%" to {np.bannedplayers::*}
+			set {np.banduration::%uuid of arg 1%} to "perm"
+			set {np.bantime::%uuid of arg 1%} to now
+			set {np.banreason::%uuid of arg 1%} to {_r}
+			set {np.bannedby::%uuid of arg 1%} to "%uuid of player%"
+			add "&c%arg 1% &7was muted by &c%player% &7for ""&e%{_r}%&7""" to {np.history::%uuid of arg 1%::*}
+			add now to {np.history.times::%uuid of arg 1%::*}
+			if {_s} is not true:
+				broadcast "&8[&c&lNP&8] &c%arg 1%&7 was banned by &c%player%&7 for ""&e%{_r}%&7"""
+			else:
+				loop all players:
+					loop-player has permission "np.ban"
+					send "&7[SILENT] &8[&c&lNP&8] &c%arg 1%&7 was banned by &c%player%&7 for ""&e%{_r}%&7""" to loop-player
+			kick arg 1 due to "&c&lYou are banned!%nl%%nl%&7Banned by: %{np.bannedby::%uuid of player%} parsed as player%%nl%&7Reason: %{np.banreason::%uuid of player%}%%nl%&7Duration: %{np.banduration::%uuid of player%}%%nl%&7Ban time: %{np.bantime::%uuid of player%}%%nl%%nl%&7You can appeal at:%nl%&f&nhttps://discord.gg/{@discordCode}"
+
+command /tempban [<offlineplayer>] [<text>]:
+	trigger:
+		if player doesn't have permission "np.tempban":
+			send "&8[&c&lNP&8] &7You don't have permission to use this command."
+		else if arg 1 is not set:
+			send "&8[&c&lNP&8] &7Please specify a player!"
+		else:
+			# Timespan logic
+			set {_w::*} to arg 2 split at " "
+			if {_w::2} is not "minutes", "minute", "m", "hours", "hour", "h", "day", "days", "d", "week", "weeks", "w", "month", "months", "m", "year", "years", "y", "second", "seconds" or "s":
+				if {_w::1} does not contain "m", "h", "d", "w", "mo", "y" or "s":
+					send "&8[&c&lNP&8] &7Please specify a time duration (example: 1w, 1 week, 1 weeks, 1 w)"
+				else:
+					set {_duration} to {_w::1}
+			else:
+				set {_duration} to "%{_w::1}% %{_w::2}%"
+			
+			if {_duration} is not set:
+				send "&8[&c&lNP&8] &7Please specify a time duration (example: 1w, 1 week, 1 weeks, 1 w)"
+				stop
+			
+			# Reason
+			if {_w::2} is not set:
+				set {_r} to "Banned"
+			else:
+				if {_duration} contains " ":
+					set {_n} to 2
+				else:
+					set {_n} to 1
+				loop {_w::*}:
+					(loop-index parsed as integer) is greater than {_n}
+					if {_r} is not set:
+						set {_r} to loop-value
+					else:
+						set {_r} to "%{_r}% %loop-value%"
+				if {_r} is "":
+					set {_r} to "Banned"
+				else if {_r} is "-s" or " -s":
+					set {_r} to "Banned"
+					set {_s} to true
+				else if last 2 characters of {_r} is "-s":
+					set {_r} to subtext of {_r} from characters 1 to (length of {_r} - 3)
+					if {_r} is "":
+						set {_r} to "Banned"
+					set {_s} to true
+			
+			add "%uuid of arg 1%" to {np.bannedplayers::*}
+			if {_duration} doesn't contain " ":
+				if {_duration} doesn't contain "mo":
+					set {_t} to last character of {_duration}
+					set {_n} to subtext of {_duration} from characters 1 to (length of {_duration} - 1)
+				else:
+					set {_t} to last 2 characters of {_duration}
+					set {_n} to subtext of {_duration} from characters 1 to (length of {_duration} - 2)
+				set {_t} to singleToTimespan({_t})
+				if {_t} is "ERROR":
+					send "&8[&c&lNP&8] &7Error! Couldn't function timespan. Contact Obey##0001."
+					stop
+				set {_duration} to "%{_n}% %{_t}%" parsed as timespan
+			else:
+				set {_duration} to {_duration} parsed as timespan
+			set {np.banduration::%uuid of arg 1%} to {_duration}
+			set {np.bantime::%uuid of arg 1%} to now
+			set {np.banreason::%uuid of arg 1%} to {_r}
+			set {np.bannedby::%uuid of arg 1%} to "%uuid of player%"
+			add "&c%arg 1% &7was banned for &c%{_duration}% &7by &c%player% &7for ""&e%{_r}%&7""" to {np.history::%uuid of arg 1%::*}
+			add now to {np.history.times::%uuid of arg 1%::*}
+			if {_s} is not true:
+				broadcast "&8[&c&lNP&8] &c%arg 1% &7was banned for &c%{_duration}% &7by &c%player%&7 for ""&e%{_r}%&7"""
+			else:
+				loop all players:
+					loop-player has permission "np.tempban"
+					send "&7[SILENT] &8[&c&lNP&8] &c%arg 1% &7was banned for &c%{_duration}% &7by &c%player%&7 for ""&e%{_r}%&7""" to loop-player
+			kick arg 1 due to "&c&lYou are banned!%nl%%nl%&7Banned by: %{np.bannedby::%uuid of player%} parsed as player%%nl%&7Reason: %{np.banreason::%uuid of player%}%%nl%&7Duration: %{np.banduration::%uuid of player%}%%nl%&7Ban time: %{np.bantime::%uuid of player%}%%nl%%nl%&7You can appeal at:%nl%&f&nhttps://discord.gg/{@discordCode}"
+
+on connect:
+	{np.bannedplayers::*} contains "%uuid of player%"
+	if {np.banduration::%uuid of player%} is "perm":
+		player doesn't have permission "np.ban.bypass"
+		kick player due to "&c&lYou are banned!%nl%%nl%&7Banned by: %{np.bannedby::%uuid of player%} parsed as player%%nl%&7Reason: %{np.banreason::%uuid of player%}%%nl%&7Duration: %{np.banduration::%uuid of player%}%%nl%&7Ban time: %{np.bantime::%uuid of player%}%%nl%%nl%&7You can appeal at:%nl%&f&nhttps://discord.gg/{@discordCode}"
+		loop all players:
+			loop-player has permission "np.tempban" or "np.ban"
+			send "&c%player% &7tried to join but they are banned." to loop-player
+	else if difference between {np.bantime::%uuid of player%} and now is less than {np.banduration::%uuid of player%}:
+		player doesn't have permission "np.ban.bypass"
+		kick player due to "&c&lYou are banned!%nl%%nl%&7Banned by: %{np.bannedby::%uuid of player%} parsed as player%%nl%&7Reason: %{np.banreason::%uuid of player%}%%nl%&7Duration: %{np.banduration::%uuid of player%}%%nl%&7Ban time: %{np.bantime::%uuid of player%}%%nl%%nl%&7You can appeal at:%nl%&f&nhttps://discord.gg/{@discordCode}"
+		loop all players:
+			loop-player has permission "np.tempban" or "np.ban"
+			send "&c%player% &7tried to join but they are banned." to loop-player
+	else:
+		remove "%uuid of player%" from {np.bannedplayers::*}
+	
+
+function singleToTimespan(w: text) :: text:
+	if {_w} is "mo":
+		return "months"
+	else if {_w} is "m":
+		return "minutes"
+	else if {_w} is "s":
+		return "seconds"
+	else if {_w} is "y":
+		return "years"
+	else if {_w} is "h":
+		return "hours"
+	else if {_w} is "d":
+		return "days"
+	else:
+		return "ERROR"
+
+command /kick [<offlineplayer>] [<text>]:
+	trigger:
+		if player doesn't have permission "np.kick":
+			send "&8[&c&lNP&8] &7You don't have permission to use this command."
+		else if arg 1 is not set:
+			send "&8[&c&lNP&8] &7Please specify a player!"
+		else:
+			if arg 2 is not set:
+				set {_r} to "Kicked"
+			else:
+				if arg 2 is "-s":
+					set {_r} to "Kicked"
+					set {_s} to true
+				else if last 2 characters of arg 2 is "-s":
+					set {_r} to subtext of arg 2 from characters 1 to (length of {_r} - 2)
+					set {_s} to true
+				else:
+					set {_r} to arg 2
+			
+			if {_s} is not true:
+				broadcast "&8[&c&lNP&8] &c%arg 1% &7was kicked by &c%player%&7 for ""&e%{_r}%&7"""
+			else:
+				loop all players:
+					loop-player has permission "np.kick"
+					send "&7[SILENT] &8[&c&lNP&8] &c%arg 1% &7was kicked by &c%player%&7 for ""&e%{_r}%""" to loop-player
+			kick arg 1 due to "&c&lYou were kicked!%nl%%nl%&7Kicked by: %player%%nl%&7Reason: %{_r}%"
+			add "&c%arg 1% &7was kicked by &c%player% &7for ""&e%{_r}%&7""" to {np.history::%uuid of arg 1%::*}
+			add now to {np.history.times::%uuid of arg 1%::*}
+
+command /mute [<offlineplayer>] [<text>]:
+	trigger:
+		if player doesn't have permission "np.mute":
+			send "&8[&c&lNP&8] &7You don't have permission to use this command."
+		else if arg 1 is not set:
+			send "&8[&c&lNP&8] &7Please specify a player!"
+		else:
+			if arg 2 is not set:
+				set {_r} to "Muted"
+			else:
+				if arg 2 is "-s":
+					set {_r} to "Muted"
+					set {_s} to true
+				else if last 2 characters of arg 2 is "-s":
+					set {_r} to subtext of arg 2 from characters 1 to (length of arg 2 - 2)
+					set {_s} to true
+				else:
+					set {_r} to arg 2
+				
+				add "%uuid of arg 1%" to {np.mutedplayers::*}
+				set {np.muteduration::%uuid of arg 1%} to "perm"
+				set {np.mutetime::%uuid of arg 1%} to now
+				set {np.mutereason::%uuid of arg 1%} to {_r}
+				set {np.muteby::%uuid of arg 1%} to "%uuid of player%"
+				add "&c%arg 1% &7was muted by &c%player% &7for ""&e%{_r}%&7""" to {np.history::%uuid of arg 1%::*}
+				add now to {np.history.times::%uuid of arg 1%::*}
+				if {_s} is not true:
+					broadcast "&8[&c&lNP&8] &c%arg 1% &7was muted by &c%player%&7 for ""&e%{_r}%&7"""
+				else:
+					loop all players:
+						loop-player has permission "np.mute"
+						send "&7[SILENT] &8[&c&lNP&8] &c%arg 1% &7was muted by &c%player%&7 for ""&e%{_r}%&7""" to loop-player
+
+command /tempmute [<offlineplayer>] [<text>]:
+	trigger:
+		if player doesn't have permission "np.tempmute":
+			send "&8[&c&lNP&8] &7You don't have permission to use this command."
+		else if arg 1 is not set:
+			send "&8[&c&lNP&8] &7Please specify a player!"
+		else:
+			# Timespan logic
+			set {_w::*} to arg 2 split at " "
+			if {_w::2} is not "minutes", "minute", "m", "hours", "hour", "h", "day", "days", "d", "week", "weeks", "w", "month", "months", "m", "year", "years", "y", "second", "seconds" or "s":
+				if {_w::1} does not contain "m", "h", "d", "w", "mo", "y" or "s":
+					send "&8[&c&lNP&8] &7Please specify a time duration (example: 1w, 1 week, 1 weeks, 1 w)"
+				else:
+					set {_duration} to {_w::1}
+			else:
+				set {_duration} to "%{_w::1}% %{_w::2}%"
+			
+			if {_duration} is not set:
+				send "&8[&c&lNP&8] &7Please specify a time duration (example: 1w, 1 week, 1 weeks, 1 w)"
+				stop
+			
+			# Reason
+			if {_w::2} is not set:
+				set {_r} to "Muted"
+			else:
+				if {_duration} contains " ":
+					set {_n} to 2
+				else:
+					set {_n} to 1
+				loop {_w::*}:
+					(loop-index parsed as integer) is greater than {_n}
+					if {_r} is not set:
+						set {_r} to loop-value
+					else:
+						set {_r} to "%{_r}% %loop-value%"
+				if {_r} is "":
+					set {_r} to "Muted"
+				else if {_r} is "-s" or " -s":
+					set {_r} to "Muted"
+					set {_s} to true
+				else if last 2 characters of {_r} is "-s":
+					set {_r} to subtext of {_r} from characters 1 to (length of {_r} - 3)
+					if {_r} is "":
+						set {_r} to "Muted"
+					set {_s} to true
+			
+			add "%uuid of arg 1%" to {np.mutedplayers::*}
+			if {_duration} doesn't contain " ":
+				if {_duration} doesn't contain "mo":
+					set {_t} to last character of {_duration}
+					set {_n} to subtext of {_duration} from characters 1 to (length of {_duration} - 1)
+				else:
+					set {_t} to last 2 characters of {_duration}
+					set {_n} to subtext of {_duration} from characters 1 to (length of {_duration} - 2)
+				set {_t} to singleToTimespan({_t})
+				if {_t} is "ERROR":
+					send "&8[&c&lNP&8] &7Error! Couldn't function timespan. Contact Obey##0001."
+					stop
+				set {_duration} to "%{_n}% %{_t}%" parsed as timespan
+			else:
+				set {_duration} to {_duration} parsed as timespan
+			set {np.muteduration::%uuid of arg 1%} to {_duration}
+			set {np.mutetime::%uuid of arg 1%} to now
+			set {np.mutereason::%uuid of arg 1%} to {_r}
+			set {np.muteby::%uuid of arg 1%} to "%uuid of player%"
+			add "&c%arg 1% &7was muted for &c%{_duration}% &7by &c%player% &7for ""&e%{_r}%&7""" to {np.history::%uuid of arg 1%::*}
+			add now to {np.history.times::%uuid of arg 1%::*}
+			if {_s} is not true:
+				broadcast "&8[&c&lNP&8] &c%arg 1% &7was muted for &c%{_duration}% &7by &c%player%&7 for ""&e%{_r}%&7"""
+			else:
+				loop all players:
+					loop-player has permission "np.tempmute"
+					send "&7[SILENT] &8[&c&lNP&8] &c%arg 1% &7was muted for &c%{_duration}% &7by &c%player%&7 for ""&e%{_r}%&7""" to loop-player
+
+on chat:
+	{np.mutedplayers::*} contains "%uuid of player%"
+	if {np.muteduration::%uuid of player%} is "perm":
+		player doesn't have permission "np.mute.bypass"
+		cancel event
+		send "&c&lYou are muted!"
+		send "&7Muted by: %{np.muteby::%uuid of player%} parsed as player%"
+		send "&7Reason: %{np.mutereason::%uuid of player%}%"
+		send "&7Duration: %{np.muteduration::%uuid of player%}%"
+		send "&7Mute time: %{np.mutetime::%uuid of player%}%"
+		send "&7You can appeal at:"
+		send "&f&nhttps://discord.gg/{@discordCode}"
+		loop all players:
+			loop-player has permission "np.mute" or "np.tempmute"
+			send "&c%player%&7 tried to speak but they are muted." to loop-player
+	else if difference between {np.mutetime::%uuid of player%} and now is less than {np.muteduration::%uuid of player%}:
+		player doesn't have permission "np.mute.bypass"
+		cancel event
+		send "&c&lYou are muted!"
+		send "&7Muted by: %{np.muteby::%uuid of player%} parsed as player%"
+		send "&7Reason: %{np.mutereason::%uuid of player%}%"
+		send "&7Duration: %{np.muteduration::%uuid of player%}%"
+		send "&7Mute time: %{np.mutetime::%uuid of player%}%"
+		send "&7You can appeal at:"
+		send "&f&nhttps://discord.gg/{@discordCode}"
+		loop all players:
+			loop-player has permission "np.mute" or "np.tempmute"
+			send "&c%player%&7 tried to speak but they are muted." to loop-player
+	else:
+		remove "%uuid of player%" from {np.mutedplayers::*}
+
+on command "/helpop" or "/report":
+	{np.mutedplayers::*} contains "%uuid of player%"
+	if difference between {np.mutetime::%uuid of player%} and now is less than {np.muteduration::%uuid of player%}:
+		player doesn't have permission "np.mute.bypass"
+		cancel event
+		send "&8[&c&lNP&8] &7You can't do that while muted!"
+	else:
+		remove "%uuid of player%" from {np.mutedplayers::*}
+
+command /history [<offlineplayer>]:
+	trigger:
+		if player doesn't have permission "np.history":
+			send "&8[&c&lNP&8] &7You don't have permission to use this command."
+		else if arg 1 is not set:
+			send "&8[&c&lNP&8] &7Please specify a player!"
+		else if {np.history::%uuid of arg 1%::*} is not set:
+			send "&8[&c&lNP&8] &c%arg 1%&7 has no punishment history."
+		else:
+			send "&7&m        &7 Loading history of &c%arg 1% &7&m        &7"
+			loop {np.history::%uuid of arg 1%::*}:
+				send "&7- [ &c%difference between {np.history.times::%uuid of arg 1%::%loop-index%} and now% ago &7] -"
+				send colored loop-value
+
+command /clearhistory [<offlineplayer>]:
+	aliases: /clearhist, /chistory
+	trigger:
+		if player doesn't have permission "np.history.clear":
+			send "&8[&c&lNP&8] &7You don't have permission to use this command."
+		else if arg 1 is not set:
+			send "&8[&c&lNP&8] &7Please specify a player."
+		else:
+			delete {np.history::%uuid of arg 1%::*}
+			delete {np.history.times::%uuid of arg 1%::*}
+			send "&8[&c&lNP&8] &7Cleared &c%arg 1%&7's history."
+
+command /unban [<offlineplayer>] [<text>]:
+	trigger:
+		if player doesn't have permission "np.unban":
+			send "&8[&c&lNP&8] &7You don't have permission to use this command."
+		else if arg 1 is not set:
+			send "&8[&c&lNP&8] &7Please specify a player!"
+		else if {np.bannedplayers::*} doesn't contain "%uuid of arg 1%":
+			send "&8[&c&lNP&8] &7That player isn't banned, to my calculations.."
+		else:
+			if arg 2 is "-s":
+				set {_s} to true
+			
+			remove "%uuid of arg 1%" from {np.bannedplayers::*}
+			if {_s} is not true:
+				broadcast "&8[&c&lNP&8] &c%arg 1%&7 was unbanned by &c%player%"
+			else:
+				loop all players:
+					loop-player has permission "np.unban"
+					send "&7[SILENT] &8[&c&lNP&8] &c%arg 1%&7 was unbanned by &c%player%" to loop-player
+
+command /unmute [<offlineplayer>] [<text>]:
+	trigger:
+		if player doesn't have permission "np.unmute":
+			send "&8[&c&lNP&8] &7You don't have permission to use this command."
+		else if arg 1 is not set:
+			send "&8[&c&lNP&8] &7Please specify a player!"
+		else if {np.mutedplayers::*} doesn't contain "%uuid of arg 1%":
+			send "&8[&c&lNP&8] &7That player isn't muted, to my calculations.."
+		else:
+			if arg 2 is "-s":
+				set {_s} to true
+			
+			remove "%uuid of arg 1%" from {np.mutedplayers::*}
+			if {_s} is not true:
+				broadcast "&8[&c&lNP&8] &c%arg 1%&7 was unmuted by &c%player%"
+			else:
+				loop all players:
+					loop-player has permission "np.unban"
+					send "&7[SILENT] &8[&c&lNP&8] &c%arg 1%&7 was unmuted by &c%player%" to loop-player
+
+command /cc [<text>]:
+	aliases: /clearchat, /clearc, /cchat
+	trigger:
+		if player doesn't have permission "np.clearchat":
+			send "&8[&c&lNP&8] &7You don't have permission to use this command."
+		else:
+			if arg 1 is "-s":
+				set {_s} to true
+			loop all players:
+				loop-player doesn't have permission "np.clearchat.bypass"
+				loop 100 times:
+					send "&7" to loop-player
+			if {_s} is not true:
+				broadcast "&c%player% &7cleared the chat."
+			else:
+				loop all players:
+					loop-player has permission "np.clearchat"
+					send "&7[SILENT] &c%player% &7cleared the chat." to loop-player
+
+# Alt list system
+
+on join:
+	set {np.currentip::%uuid of player%} to "%player's ip%"
+	if {np.altlist::%player's ip%::*} doesn't contain "%player's uuid%":
+		add "%player's uuid%" to {np.altlist::%player's ip%::*}
+
+command /alts [<offlineplayer>]:
+	trigger:
+		if player doesn't have permission "np.alts":
+			send "&8[&c&lNP&8] &7You don't have permission to use this command."
+		else if arg 1 is not set:
+			send "&8[&c&lNP&8] &7Please specify a player!"
+		else if {np.currentip::%uuid of arg 1%} is not set:
+			send "&8[&c&lNP&8] &7That player hasn't joined before.. Are you sure it's them?"
+		else:
+			loop {np.altlist::%{np.currentip::%uuid of arg 1%}%::*}:
+				if {np.bannedplayers::*} contains loop-value:
+					set {_r} to "&c%loop-value parsed as offline player%&7"
+				if {np.mutedplayers::*} contains loop-value:
+					if loop-value parsed as offline player is online:
+						set {_r} to "&ao &e%loop-value parsed as offline player%&7"
+					else:
+						set {_r} to "&e%loop-value parsed as offline player%&7"
+				else if loop-value parsed as offline player is online:
+					set {_r} to "&ao &7%loop-value parsed as offline player%"
+				else:
+					set {_r} to "&7%loop-value parsed as offline player%"
+				if {_output} is not set:
+					set {_output} to {_r}
+				else:
+					set {_output} to "%{_output}%, %{_r}%"
+			if player has permission "nn.alts.advanced":
+				send "&7Listing alts of &c%arg 1% &7[&c%{np.currentip::%uuid of arg 1%}%&7]"
+			else:
+				send "&7Listing alts of &c%arg 1%"
+			send "&7Info: &cBanned &7| &eMuted &7| &ao = Online &7| Offline"
+			send "&7%{_output}%"

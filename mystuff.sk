@@ -1,0 +1,252 @@
+command test:
+	permission: op
+	trigger:
+		make player execute command "sk reload test"
+on command:
+	if command contains "test":
+		if player != "William0001":
+			cancel event
+command temp:
+	trigger:
+		give player glowing nametag named  "&r&b&k1&r&cNether Warp Ticket&r&b&k1" with lore "&fThis is not needed to go to the nether" and "&fthis is only a fast warp"
+on command:
+	if command contains "disable":
+		if player is "tessa_ciabarra":
+			send "disabled" to player
+on rightclick:
+	if event-item is diamond sword named "&9Aspect of the End":
+		push player forwards
+command /debugstick:
+	aliases: /wizardstick
+	permission: debugstick
+	trigger:
+		give debug stick named "&r&9&k&rWizard Stick&9&k" to player
+on portal enter:
+	teleport player to {portal}
+command /setportal <text>:
+	permission: op
+	trigger:
+		if arg-1 is "1":
+			set {portal.1} to player's location
+			message "Set portal 1 Location"
+		if arg-1 is "2":
+			set {portal.2} to player's location
+			message "Set portal 2 Location"
+command /tpportal:
+	permission: op
+	trigger:
+		teleport player to {portal}
+
+command /weatherclear:
+	permission: op
+	trigger:
+		set weather to clear 
+command /weatherthunder:
+	permission: op
+	trigger:
+		set weather to thunder
+on rightclick: 
+	if event-item is fire charge named "fireball":
+		shoot a fireball from the player at speed .01
+		remove 1 fire charge named "fireball" from player
+on damage:
+	projectile exists
+	projectile is a fireball:
+		apply potion of levitation of tier 20 to victim for 10 ticks
+command /dragon:
+	permission: op
+	trigger:
+		summon 1 ender dragon at location of player
+		set ai of event-entity to false
+on leftclick: 
+	if event-item is {gun}:
+		shoot a fireball from player at speed 1
+on rightclick:
+	if event-item is {gun}:
+		cancel event
+command /gun:
+	trigger: 
+		give player {gun}
+command /setgun:
+	permission: op
+	trigger:
+		set {gun} to held item
+		message "Held item to set to gun"
+		set name of held item to "gun"
+
+on damage:
+	projectile exists
+	projectile is a fireball:
+		kill victim
+on break:
+	if held item is {gun}:
+		cancel event
+on click on any sign:
+	if line 2 of event-block contains "sign":
+		teleport player to {secret}
+		message "you got teleported"
+command /secret:
+	permission: op
+	trigger:
+		set {secret} to player's location
+		message "secret set"
+on click:
+	if event-block is any furnace:
+		if block at player's location is block at location(420, 9, 320, event-world):
+			if player is sneaking:
+				teleport player to {secret}
+				message "you got teleported nigger"
+on damage:
+	projectile exists
+	projectile is a snowball:
+		lore of attacker's held item contains "damage":
+			set damage to 1
+on rightclick on any sign:
+	player is sneaking:
+		player's game mode is creative:
+			open target block's sign gui to player
+command clearmychat:
+	aliases: cmc
+	trigger:
+		loop 100 times:
+			send " " to player
+command cleardrops:
+	permission: drop.clear
+	trigger:
+		kill all dropped items
+		message "&7[&9Drops&7]&f Cleared all drops"
+command statsreset <offline player>:
+	permission: op
+	trigger:
+		set {economy::balance::%arg 1's uuid%} to 0
+		set {kills.%arg 1's uuid%} to 0
+		set {deaths.%arg 1's uuid%} to 0
+		set {kdr.%arg 1's uuid%} to 0
+		make player execute "stats %arg-1%"
+on death:
+		extinguish the player
+		heal player
+		feed player
+		teleport victim to {set.spawn}
+command fallingblock <text> <text> <text>:
+	permission: op
+	trigger:
+		if arg-1 is "here":
+			make player execute command "summon minecraft:falling_block ~ ~ ~ {Time:1,NoGravity:1}"
+		console command "summon minecraft:falling_block %arg-1% %arg-2% %arg-3% {Time:1,NoGravity:1}"
+on skript load:
+	console command "summon minecraft:falling_block 458 3 285 {Time:1,NoGravity:1}"
+on region enter:
+	if "%region%" contains "spawn":
+		if "%region%" does not contain "snow":
+			if "%region%" does not contain "stone":
+				if {combat.log.%player's uuid%} > 0:
+					message "&7[&r&c&lCombat&r&7]&r You cannot enter spawn while in combat"
+					if player's horizontal facing is north:				
+						push player south at speed 1
+						cancel event
+					else if player's horizontal facing is east:
+						push player west at speed 1
+						cancel event
+					else if player's horizontal facing is south:
+						push player north at speed 1
+						cancel event
+					else if player's horizontal facing is west:
+						push player east at speed 1
+						cancel event
+command ignite <offlineplayer>:
+	permission: op
+	trigger:
+		ignite arg-1
+command fakeop <player>:
+	permission: op
+	trigger:
+		send "&r&f%arg-1% has been given op" to arg-1
+		if player has permission "op":
+			message "%arg-1% has been given fake op"
+on damage:
+	projectile exists
+	projectile is a snowball:
+		name of attacker's held item is "fling":
+			push victim upwards at speed 10
+on rightclick:
+	if event-item is snowball named "fling":
+		give player snowball named "fling"
+command pvp <text>:
+	permission: op
+	trigger:
+		if arg-1 is "on":
+			enable pvp
+			message "pvp on"
+		if arg-1 is "off":
+			message "pvp off"
+			disable pvp
+command clear <offlineplayer>:
+	permission: op
+	trigger:
+		clear arg-1's inventory
+		clear arg-1's ender chest
+		message "Cleared %arg-1%'s inventory"
+on join:
+	if player has permission "op":
+		set player's gamemode to creative
+on flow:
+	cancel event
+#
+#
+#
+#craft
+on craft of armor stand:
+	if player doesn't have permission "op":
+		cancel event
+on craft of any campfire:
+	if player doesn't have permission "op":
+		cancel event
+on craft of any helmet:
+	if player doesn't have permission "op":
+		cancel event
+on craft of any chestplate:
+	if player doesn't have permission "op":
+		cancel event
+on craft of any leggings:
+	if player doesn't have permission "op":
+		cancel event
+on craft of any boots:
+	if player doesn't have permission "op":
+		cancel event
+on craft of any tool:
+	if player doesn't have permission "op":
+		cancel event
+on craft of coal block:
+	if player doesn't have permission "op":
+		cancel event
+on craft of gold block:
+	if player doesn't have permission "op":
+		cancel event
+on craft of iron block:
+	if player doesn't have permission "op":
+		cancel event
+on craft of diamond block:
+	if player doesn't have permission "op":
+		cancel event
+on craft of emerald block:
+	if player doesn't have permission "op":
+		cancel event
+on craft of iron nugget:
+	if player doesn't have permission "op":
+		cancel event
+on craft of gold nugget:
+	if player doesn't have permission "op":
+		cancel event
+on craft of hopper:
+	if player doesn't have permission "op":
+		cancel event
+on craft of any minecart:
+	if player doesn't have permission "op":
+		cancel evento
+		t
+on shoot:
+if "%lore of shooter's tool%" contains "&3Homing":
+    loop all entities in radius 6 of event-projectile:
+        make event-projectile home towards loop-entity normally
+        stop

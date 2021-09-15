@@ -1,0 +1,42 @@
+on click:
+	if player does not have permission "op":
+		if event-block is dispenser:
+			cancel event
+		if event-block is any shulker box:
+			cancel event
+		if event-block is trapped chest:
+			cancel event
+		if event-block is dropper:
+			cancel event
+		if event-block is item frame:
+			cancel event
+on place:
+	if player does not have permission "op":
+		if event-block is dispenser:
+			cancel event
+		if event-block is any shulker box:
+			cancel event
+		if event-block is trapped chest:
+			cancel event
+		if event-block is dropper:
+			cancel event
+		if event-block is piston:
+			cancel event
+		if event-block is item frame:
+			cancel event
+on rightclick:
+	if player does not have permission "op":
+		if event-block is barrel:
+			cancel event
+		if event-block is chest:
+			cancel event
+		if event-block is item frame:
+			cancel event
+		if event-block is beehive:
+			cancel event
+		if event-block is cod bucket:
+			cancel event
+		if event-block is soul campfire:
+			cancel event
+		if event-item is any spawn egg:
+			cancel event

@@ -1,0 +1,16 @@
+	on place:
+		if {buildmode} is true:
+			add event-block's location to {placed::*}
+		
+	command resetmap:
+		permission: op
+		trigger:
+			set block at {placed::*} to air
+			
+	command buildmode <text>:
+		permission: op
+		trigger: 
+			if arg-1 is on:
+				set {buildmode} to true
+			if arg-1 is off
+				set {buildmode} to false

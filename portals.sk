@@ -1,0 +1,39 @@
+command ticket <text>:
+	permission: op
+	trigger:
+		if arg-1 is "nether":
+			give player glowing nametag named  "&r&b&k1&r&cNether Warp Ticket&r&b&k1" with lore "&fThis is not needed to go to the nether" and "&fthis is only a fast warp"
+			set {netherticket} to glowing nametag named  "&r&b&k1&r&cNether Warp Ticket&r&b&k1" with lore "&fThis is not needed to go to the nether" and "&fthis is only a fast warp"
+		if arg-1 is "sun":
+			give player glowing nametag named  "&r&eSun Warp Ticket" with lore "&fThis is not needed to go to the Sun" and "&fthis is only a fast warp"
+			set {sunticket} to glowing nametag named  "&r&eSun Warp Ticket" with lore "&fThis is not needed to go to the Sun" and "&fthis is only a fast warp"
+		if arg-1 is "cave":
+			give player glowing nametag named  "&r&7Cave Warp Ticket" with lore "&fThis is not needed to go to the Cave" and "&fthis is only a fast warp"
+			set  {caveticket} to glowing nametag named  "&r&7Cave Warp Ticket" with lore "&fThis is not needed to go to the Cave" and "&fthis is only a fast warp"
+on rightclick: 
+	if {combat.log.%player's uuid%} < 1:
+		if {combat.log.%player's uuid%} < 1:
+			if player's held item is {netherticket}:
+				teleport player to {portal.2}
+			if player's held item is {sunticket}:
+				teleport player to {sunwwarp}
+			if player's held item is {caveticket}:
+				teleport player to {cavewarp}
+			
+on portal enter: 
+	"%region at player%" contains "portal1":
+		teleport player to {portal.2}
+on portal enter: 
+	"%region at player%" contains "portal2":
+		teleport player to {portal.1}
+		
+command ticketwarps <text>:
+	permission: op
+	trigger:
+		if arg-1 is "sun":
+			set {sunwwarp} to player's position
+			message "warp set"
+		if arg-1 is "cave":
+			set {cavewarp} to player's position
+			message "warp set"
+	

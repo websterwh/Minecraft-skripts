@@ -1,0 +1,62 @@
+on click on any sign:
+	if line 2 of event-block is set:
+		set line 2 of event-block to "&e%line 2 of event-block%"
+	if line 3 of event-block is set:
+		set line 3 of event-block to "&a%line 3 of event-block%"
+	if line 2 of event-block contains "vodka":
+		if {economy::balance::%player's uuid%} >=10:
+			give {vodkabottle} to player
+			remove 10 from {economy::balance::%player's uuid%}
+			message "Removed 10$ from your balence"
+	if line 2 of event-block contains "beer":
+		if {economy::balance::%player's uuid%} >=1:
+			give {beerbottle} to player
+			remove 10 from {economy::balance::%player's uuid%}
+			message "Removed 10$ from your balence"
+	if line 2 of event-block contains "irish wiskey":
+		if {economy::balance::%player's uuid%} >=20:
+			give {irishwiskey} to player
+			remove 10 from {economy::balance::%player's uuid%}
+			message "Removed 10$ from your balence"
+	if line 2 of event-block contains "white wine":
+		if {economy::balance::%player's uuid%} >=15:
+			give {whitewine} to player
+			remove 10 from {economy::balance::%player's uuid%}
+			message "Removed 10$ from your balence"
+	if line 2 of event-block contains "red wine":
+		if {economy::balance::%player's uuid%} >=20:
+			give {redwine} to player
+			remove 10 from {economy::balance::%player's uuid%}
+			message "Removed 10$ from your balence"
+command /setvodka:
+	permission: op
+	trigger:
+		set {vodkabottle} to player's held item
+		message "Item Set"
+command /setbeer:
+	permission: op
+	trigger:
+		set {beerbottle} to player's held item
+		message "Item Set"
+command /setirish:
+	permission: op
+	trigger:
+		set {irishwiskey} to player's held item
+		message "Item Set"
+command /setwhitewine:
+	permission: op
+	trigger:
+		set {whitewine} to player's held item
+		message "Item Set"
+command /setredwine:
+	permission: op
+	trigger:
+		set {redwine} to player's held item
+		message "Item Set"
+on click on any sign:
+	if line 2 of event-block is set:
+		set {amount.money} to line 2 of event-block
+		set {amount.money} to {amount.money} parsed as number
+	if line 1 of event-block contains "money":
+		give player {amount.money} of glowing paper named "&a$1"
+		message "you recieved %{amount.money}% dollar"

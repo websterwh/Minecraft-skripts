@@ -1,0 +1,66 @@
+on block place:
+  player's gamemode is survival
+  player's world is "godbridge"
+  wait 5 seconds
+  set event-block to air
+
+on block break:
+  player's world is "godbridge"
+  player's gamemode is not creative
+  cancel event
+
+command setgodbridgespawn <number>:
+  permission: fede.setgodbridgespawn
+  trigger:
+    set {godbridge.spawn.0} to block at player
+    send "Godbridge spawn number %arg-1% has been set!"
+
+command godbridge:
+  trigger:
+    if {godbridge.0} is set:
+      send "§4Qualcuno sta già giocando a GodBridge!"
+      stop
+    chance of 20%:
+      player is not op
+      send "§b"
+      send "§d"
+    teleport player to {godbridge.spawn.0}
+    set {godbridge.0} to player
+    clear player's inventory
+    give 16 oak planks to player
+    set {godbridge.time.0} to 0
+
+every 2 ticks:
+  set {_a} to {godbridge.0}
+  {godbridge.0} is set
+  if {godbridge.0}'s world is not "godbridge":
+    delete {godbridge.0}
+  else:
+    if (block at {godbridge.0})'s y position < 0:
+      send "you lost!" to {godbridge.0}
+      delete {godbridge.0}
+      wait 1 second
+      make {_a} execute command "/hub"
+    else if {godbridge.time.0} > 22:
+      send "§4Tempo scaduto! Hai perso!" to {_a}
+      delete {godbridge.0}
+      wait 2 seconds
+      make {_a} execute command "/hub"
+  if distance between {_a} and {godbridge.spawn.0} > 0.5:
+    add 0.1 to {godbridge.time.0}
+on walk on diamond ore:
+  player is {godbridge.0}:
+    send "§2You completed the challenge in %{godbridge.time.0}% seconds!" to player
+    send "§2Risultato: "
+    if {godbridge.time.0} < 12:
+      send "§aVery well!"
+    else if {godbridge.time.0} < 14:
+      send "§eGood!"
+    else:
+      send "§6Not so good ... you want to try again?"
+    delete {godbridge.0}
+    wait 1 second
+    make player execute command "/hub"
+on disconnect:
+  player is {godbridge.0}:
+    delete {godbridge.0}

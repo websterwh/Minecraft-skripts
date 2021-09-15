@@ -1,0 +1,20 @@
+command /gms [<player>]:
+    permission: gamemode.change
+    trigger:
+        set gamemode of player to survival
+        send "&7[&eGamemode&7] &cGamemode Set to &9Survival &cfor player &9%player%" to player
+command /gmc:
+    permission: gamemode.change
+    trigger:
+        set gamemode of player to creative
+        send "&7[&eGamemode&7] &cGamemode Set to &9Creative" to player
+command /gmsp:
+    permission: gamemode.change
+    trigger:
+        set gamemode of player to spectator
+        send "&7[&eGamemode&7] &cGamemode Set to &9Spectator" to player
+command /gma:
+    permission: gamemode.change
+    trigger:
+        set gamemode of player to adventure
+        send "&7[&eGamemode&7] &cGamemode Set to &9Adventure" to player

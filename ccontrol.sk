@@ -1,0 +1,33 @@
+on drop:
+	if gamemode of player is creative:
+		if player doesn't have permission "creative.drops":
+			cancel event
+			send "&7[&4Drops&7] You can't drop items in creative" to player
+on pickup:
+	if gamemode of player is creative:
+		if player doesn't have permission "creative.pickup":	
+			cancel event
+on rightclick:
+	if event-item is any splash potion:
+		cancel event
+on command:
+	if gamemode of player is creative:
+		if command contains "pv":
+			if player doesn't have permission "creative.pv":
+				cancel event
+on command:
+	if gamemode of player is creative:
+		if command contains "playervault":
+			if player doesn't have permission "creative.pv":
+				cancel event
+on command:
+	if gamemode of player is creative:
+		if command contains "vault":
+			if player doesn't have permission "creative.pv":
+				cancel event
+on click:
+	if gamemode of player is creative:
+		if event-item is item frame:
+			if player does not have permission "creative":
+				cancel event
+				

@@ -1,0 +1,55 @@
+command +rep [<player>]:
+trigger:
+  if arg-1 is not player:
+    if arg-1 is set:
+      add 1 to {rep.%arg-1%}
+      send "&6You have boosted &e%arg-1&e's &6reputation!" to player
+      send "&6You have gained rep from &e%player%&6!" to arg-1
+      wait 5 minutes #If you want a better cool-down tell me
+      send "&9You can now increase the rep of another player again!" to player
+	  if {rep.%arg-1%} is > 20:
+		set prefix of %arg-1's% to "Rep God"
+	  if {rep.%arg-1%} is < 20:
+		set {repsneeded.%player%} to {rep.%arg-1%} - 20
+	  		message "&6You Need {repsneeded.%player%} More Reps"
+      stop
+if arg-1 is player:
+  send "&cYou cannot boost your own reputation!" to player
+  stop
+
+command -rep [<player>] [<text>]:
+trigger:
+  if arg-1 is not player:
+    if arg-1 is set:
+      if arg-2 does not exist:
+        subtract 1 from {rep.%arg-1%}
+        send "&6You have decreased &e%arg-1&e's &6reputation!" to player
+        send "&6You have lost rep from &e%player%&6!" to arg-1
+        set {rcd.%player%} to true
+        wait 5 minutes #If you want a better cool-down tell me
+        set {rcd.%player%} to false
+        send "&9You can now decrease the rep of another player again!" to player
+     if arg-2 is "anon":
+        subtract 1 from {rep.%arg-1%}
+        send "&6You have decreased &e%arg-1&e's &6reputation!" to player
+        send "&6You have lost rep from someone" to arg-1
+        set {rcd.%player%} to true
+        wait 5 minutes #If you want a better cool-down tell me
+        set {rcd.%player%} to false
+        send "&9You can now decrease the rep of another player again!" to player
+if arg-1 is player:
+  send "&cYou cannot worsen your own reputation!" to player
+  stop
+
+command rep [<offline player>]:
+trigger:
+  if arg-1 is not player:
+    send "&9That player has &3%{rep.%arg-1%} &9Reputation Points." to player
+  else:
+    send "&9You have &3{rep.%player%} &9Reputation Points." to player
+
+command rephelp:
+trigger:
+  send "&9&n--- &3GUIDE TO REPUTATION&3 &9&n---"
+  send "&a+rep <player> &2Increases Rep"
+  send "&c-rep <player> <anon> &cDecreases Rep. &9&oIf anon is after, its secret"

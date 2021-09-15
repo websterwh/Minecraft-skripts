@@ -1,0 +1,13 @@
+options:
+    gapooldown: 20 seconds
+    gapmessage: &cYou have to wait %difference between {@gapcooldown} and {_waited}%!!
+    PermissionBypass: ec.bypass
+
+on rightclick holding a golden apple:
+	if player don't have the permission "{@PermissionBypass}":
+		set {_waited} to difference between {gap.%player%.lastused} and now
+		if {_waited} is less than {@gapcooldown}:
+				message "{@gapmessage}"
+				cancel the event
+		else:
+			set {gap.%player%.lastused} to now

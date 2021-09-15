@@ -1,0 +1,5 @@
+command /setevent:
+	permission: set.use
+	trigger:
+		set {event} to player's location
+		send "Set event to %{event}%" to player

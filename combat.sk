@@ -1,0 +1,18 @@
+on damage:
+	if victim is a player:
+		if attacker is a player:
+			set {combat.log.%attacker's uuid%} to 8
+			set {combat.log.%victim's uuid%} to 8
+			set {last.attacker.%attacker's uuid%} to victim
+			set {last.attacker.%victim's uuid%} to attacker
+every 0.1 seconds:
+	loop all players:
+		if {combat.log.%loop-player's uuid%} is not set:
+			set {combat.log.%loop-player's uuid%} to 0
+		if {combat.log.%loop-player's uuid%} > 0:
+			remove 0.1 from {combat.log.%loop-player's uuid%}
+
+every 0.1 seconds:
+    loop all players:
+        if {combat.log.%loop-player's uuid%} > 0:
+            set gliding of loop-player to off

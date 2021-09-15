@@ -1,0 +1,7 @@
+command /ppland:
+    permission: ppland.use
+    trigger:
+        teleport player to {afk}
+            Send "Welcome to ppland!" to player
+
+        

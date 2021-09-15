@@ -1,0 +1,12 @@
+on join:
+	if {s2.reset.%player's uuid%} is not set:
+		set {economy::balance::%player's uuid%} to 0
+		set {kills.%player's uuid%} to 0
+		set {deaths.%player's uuid%} to 0
+		set {kdr.%player's uuid%} to 0
+		set {s2.reset.%player's uuid%} to true
+
+#{economy::balance::%loop-player's uuid%}
+#{kills.%loop-player's uuid%}
+#{deaths.%loop-player's uuid%}
+#{kdr.%loop-player's uuid%}

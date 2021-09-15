@@ -1,0 +1,40 @@
+options:
+	uno: &7
+	dos: &aFly mode enabled.
+	tres: &7
+	cuatro: &cFly mode disabled.
+
+command /fly:
+	executable by: players
+	trigger:
+		if player has permission "yourserver.toggle":
+			if {fly.%player%} is not set:
+				send player title "{@uno}" with subtitle "{@dos}" for 2 seconds
+				set player's flight mode to true
+				set {fly.%player%} to true
+				stop
+			if {fly.%player%} is true:
+				send player title "{@tres}" with subtitle "{@cuatro}" for 2 seconds
+				set player's flight mode to false
+				set {fly.%player%} to false
+				stop
+			if {fly.%player%} is false:
+				send player title "{@uno}" with subtitle "{@dos}" for 2 seconds
+				set player's flight mode to true
+				set {fly.%player%} to true
+				stop
+		else:
+			send "&cYou don't have permission!"
+
+on join:
+	if player has permission "yourserver.toggle":
+		if {fly.%player%} is true:
+			set player's flight mode to true
+			wait 0.5 seconds
+			set player's flight mode to true
+			wait 0.5 seconds
+			set player's flight mode to true
+			wait 0.5 seconds
+			set player's flight mode to true
+			wait 0.5 seconds
+			set player's flight mode to true

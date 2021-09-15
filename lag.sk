@@ -1,0 +1,5 @@
+command /lag:
+	permission: lag.use
+	trigger:
+		kill @e[type=minecraft:item]
+		Send "All dropped items cleared"

@@ -1,0 +1,7 @@
+ options:
+  allowed: tessa_ciabarra
+
+  if command contains "disable":
+    if player = "{@allowed}":
+      stop
+if player is 

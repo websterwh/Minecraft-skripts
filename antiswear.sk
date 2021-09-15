@@ -1,0 +1,4 @@
+on chat:
+	if player doesn't have permission "op":
+		if message contains "nigger" or "nigga" or "faggot" or "fag" or "niggah" or "retard" or "ngga" or "fag" or "n!gga" or "coon" or "nigg" or "n!gga" or "nigg@" or "n!gg@" or "NIGGA" or "nigg@" or "n i g g a" or "n i g g e r" or "nig" or "gger" or "ger" or "pog" or "pogg" or "poog" or "poggg" or "p o g" or "p0g" or "p()g" or "p0GGgGGG" or "p00ggers" or "p0oggers" or "po0ggers" or "p<>g" or "ngaa" or "n***" or "ni**ga" or "n***a" or "fa g" or "f ag" or "e z" or "ez" or "codegenss" or "codegens" or "c o d e g e n s" or " c o d e g e n s s" or "c odegenss" or "co degenss" or "negas" or "p 0 g" or "p.o.g.g.e.r.s" or "n-i-g-g-a" or "niqqer" or "ni99er" or "p.o.g" or "p/o/g" or "n/i/g/g/e/r" or "p.o.g" or "p.o.g.g.e.r.s" or "p . o . g . g . e . r . s" or "p . o . g . g . e . r . s" or "p . o . g" or "g a y" or "gay" or "g.a.y" or "g . a . y" or "ga y" or "g ay" or "n1gga":
+			cancel the event

@@ -1,0 +1,5 @@
+on consume golden apple
+	if {gap.cooldown} is < 1
+		stop
+		set {gap.cooldown} to 10
+		

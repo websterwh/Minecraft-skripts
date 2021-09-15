@@ -1,0 +1,120 @@
+command /event [<text>] [<int>]:
+	trigger:
+		if arg 1 is set:
+			if player has permission "event.all":
+				if arg 1 is "start":
+					if arg 2 is an integer:
+						set {eventuse} to true
+						broadcast "&6&lThe Event Has Started"
+						broadcast "&c&l%arg 2% &c&lSeconds Till Event Joins Close"
+						loop all players:
+							send "&c&lTo Join Event <command:/event>&b&lClick Here<reset> &c&lor do &e&l/event" to loop-player
+						set {cooldown.event} to arg 2
+				if arg 1 is "stop":
+					set {eventuse} to false
+					set {cooldown.event} to -1
+					broadcast "&cEvent Has Been Stopped"
+				if arg 1 is "spawn":
+					loop all players:
+						if x-coords of loop-player <= x-coords of {set.event.loc1}:
+							if x-coords of loop-player >= x-coords of {set.event.loc2}:
+								if z-coords of loop-player <= z-coords of {set.event.loc1}:
+									if z-coords of loop-player >= z-coords of {set.event.loc2}:
+										teleport loop-player to {set.spawn}
+		if arg 1 is not set:
+			if {combat.log.%player's uuid%} > 0:
+				send "&c&lYou are  in Combat Log"
+				stop trigger
+			if player has permission "event.all":
+				teleport player to {set.event}
+				stop trigger
+			if {eventuse} is not set:
+				set {eventuse} to false
+			if {eventuse} is true:
+				teleport player to {set.event}
+			if {eventuse} is false:
+				send "&cEvent has not Started or Joins are Closed"
+every 1 seconds:
+	if {cooldown.event} is not set:
+		set {cooldown.event} to -1
+	if {cooldown.event} >= 0:
+		remove 1 from {cooldown.event}
+	if {cooldown.event} = 60:
+		broadcast "&c&l%{cooldown.event}% &c&lSeconds Till Event Joins Close"
+		loop all players:
+			send "&c&lTo Join Event <command:/event>&b&lClick Here<reset> &c&lor do &e&l/event" to loop-player
+	if {cooldown.event} = 30:
+		broadcast "&c&l%{cooldown.event}% &c&lSeconds Till Event Joins Close"
+		loop all players:
+			send "&c&lTo Join Event <command:/event>&b&lClick Here<reset> &c&lor do &e&l/event" to loop-player
+	if {cooldown.event} = 15:
+		broadcast "&c&l%{cooldown.event}% &c&lSeconds Till Event Joins Close"
+		loop all players:
+			send "&c&lTo Join Event <command:/event>&b&lClick Here<reset> &c&lor do &e&l/event" to loop-player
+	if {cooldown.event} = 10:
+		broadcast "&c&l%{cooldown.event}% &c&lSeconds Till Event Joins Close"
+		loop all players:
+			send "&c&lTo Join Event <command:/event>&b&lClick Here<reset> &c&lor do &e&l/event" to loop-player
+	if {cooldown.event} = 5:
+		broadcast "&c&l%{cooldown.event}% &c&lSeconds Till Event Joins Close"
+		loop all players:
+			send "&c&lTo Join Event <command:/event>&b&lClick Here<reset> &c&lor do &e&l/event" to loop-player
+	if {cooldown.event} = 4:
+		broadcast "&c&l%{cooldown.event}% &c&lSeconds Till Event Joins Close"
+		loop all players:
+			send "&c&lTo Join Event <command:/event>&b&lClick Here<reset> &c&lor do &e&l/event" to loop-player
+	if {cooldown.event} = 3:
+		broadcast "&c&l%{cooldown.event}% &c&lSeconds Till Event Joins Close"
+		loop all players:
+			send "&c&lTo Join Event <command:/event>&b&lClick Here<reset> &c&lor do &e&l/event" to loop-player
+	if {cooldown.event} = 2:
+		broadcast "&c&l%{cooldown.event}% &c&lSeconds Till Event Joins Close"
+		loop all players:
+			send "&c&lTo Join Event <command:/event>&b&lClick Here<reset> &c&lor do &e&l/event" to loop-player
+	if {cooldown.event} = 1:
+		broadcast "&c&l%{cooldown.event}% &c&lSeconds Till Event Joins Close"
+		loop all players:
+			send "&c&lTo Join Event <command:/event>&b&lClick Here<reset> &c&lor do &e&l/event" to loop-player
+	if {cooldown.event} = 0:
+		broadcast "&c&lEvent Joins Have Been Closed" 
+		set gamemode of player to Adventure
+		set {eventuse} to false
+		set {cooldown.event} to -1
+every 0.1 seconds:
+	loop all players:
+		if x-coords of loop-player <= x-coords of {set.event.loc1}:
+			if x-coords of loop-player >= x-coords of {set.event.loc2}:
+				if z-coords of loop-player <= z-coords of {set.event.loc1}:
+					if z-coords of loop-player >= z-coords of {set.event.loc2}:
+						set gliding of loop-player to off
+on gliding state change:
+	if x-coords of player <= x-coords of {set.event.loc1}:
+		if x-coords of player >= x-coords of {set.event.loc2}:
+			if z-coords of player <= z-coords of {set.event.loc1}:
+				if z-coords of player >= z-coords of {set.event.loc2}:
+					teleport player to player
+on rightclick with fireworks:
+	if x-coords of player <= x-coords of {set.event.loc1}:
+		if x-coords of player >= x-coords of {set.event.loc2}:
+			if z-coords of player <= z-coords of {set.event.loc1}:
+				if z-coords of player >= z-coords of {set.event.loc2}:
+					cancel event
+					stop trigger
+
+on drop:
+	if x-coords of player <= x-coords of {set.event.loc1}:
+		if x-coords of player >= x-coords of {set.event.loc2}:
+			if z-coords of player <= z-coords of {set.event.loc1}:
+				if z-coords of player >= z-coords of {set.event.loc2}:
+					cancel event
+					send "&cCan't Drop Stuff Here" to player
+on break:
+	if x-coords of player <= x-coords of {set.event.loc1}:
+		if x-coords of player >= x-coords of {set.event.loc2}:
+			if z-coords of player <= z-coords of {set.event.loc1}:
+				if z-coords of player >= z-coords of {set.event.loc2}:
+					cancel drops
+
+command: /eventitem:
+	trigger:
+	set {eventitem} to player's held item

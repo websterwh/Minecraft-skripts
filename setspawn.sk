@@ -1,0 +1,10 @@
+command /setspawn:
+	permission: setspawn.use
+	trigger:
+		set {spawn} to location of block at location of player
+		send "Set Spawn to: %{spawn}%" to player
+		
+command /spawn:
+	trigger:
+		teleport player to {spawn} 
+		send "Teleporting to spawn"

@@ -1,0 +1,72 @@
+options:
+	tag: &5[&bTAG&5]
+
+every 2 seconds:
+	loop all players:
+		clear {autoclickertestclicks.%loop-player%}
+		set {autoclickertest.%loop-player%} to true
+		wait 1 second
+		set {autoclickertest.%loop-player%} to false
+		if {autoclickertestclicks.%loop-player%} > 19:
+			if {antiautomode} is "on":
+				execute console command "/ban %loop-player% &6Autoclicker [%{autoclickertestclicks.%loop-player%}% clicks]"
+				stop
+			if {antiautomode} is "off":
+				stop
+			if {antiautomode} is "alert":
+				execute console command "/alert %loop-player% %{autoclickertestclicks.%loop-player%}%"
+			if {antiautomode} is "safe":
+				if {safemodedetection.%loop-player%} > 1:
+					execute console command "/ban %loop-player% &6Autoclicker [%{autoclickertestclicks.%loop-player%}% clicks] [s3]"
+					clear {safemodedetection.%loop-player%}
+					stop
+				else:
+					add 1 to {safemodedetection.%loop-player%}
+					execute console command "/alert %loop-player% %{autoclickertestclicks.%loop-player%}%"
+on left click:
+	{autoclickertest.%player%} is true
+	add 1 to {autoclickertestclicks.%player%}
+on join:
+	set {autoclickertest.%player%} to false
+command /alert <text> <text>:
+	permission: op
+	trigger:
+		loop all players:
+			if loop-player have permission "player.admin.pro":
+				send "{@tag} &4ALERT MESSAGE TO ALL ADMIN" to loop-player
+				send "{@tag} &b%arg 1% &6clicked &b%arg 2% &6times" to loop-player
+				send "{@tag} &6in 1 second" to loop-player
+				send "{@tag} &6deal with this hacker" to loop-player
+				send "{@tag} &4ALERT MESSAGE TO ALL ADMIN" to loop-player
+command /antiauto [<text>]:
+	permission: pro.antiauto
+	trigger:
+		if arg 1 is not set:
+			send "{@tag} &6on = autoban"
+			send "{@tag} &6off = nothing"
+			send "{@tag} &6alert = alert staff"
+			send "{@tag} &6current mode is %{antiautomode}%"
+			stop
+		if arg 1 is "on":
+			set {antiautomode} to "on"
+			send "{@tag} &6mode >> on"
+			stop
+		if arg 1 is "off":
+			set {antiautomode} to "off"
+			send "{@tag} &6mode >> off"
+			stop
+		if arg 1 is "alert":
+			set {antiautomode} to "alert"
+			send "{@tag} &6mode >> alert"
+			stop
+		if arg 1 is "safe":
+			set {antiautomode} to "safe"
+			send "{@tag} &6mode >> safe"
+			stop
+		else:
+			send "{@tag} &6on = autoban"
+			send "{@tag} &6safe = autoban after 3 detection"
+			send "{@tag} &6off = nothing"
+			send "{@tag} &6alert = alert staff"
+			send "{@tag} &6current mode is %{antiautomode}%"
+			stop

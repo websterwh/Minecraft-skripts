@@ -1,0 +1,112 @@
+options:
+    prefix: &2&lSC
+    textColour1: &a
+    textColour2: &a
+    nameColour: &a
+
+command /sc [<text>]:
+    permission: staffchat.use
+    permission message: §cYou do not have permission to use this command.
+    trigger:
+        if arg 1 is not set:
+            if {staffchat::%player's uuid%} is set:
+                delete {staffchat::%player's uuid%}
+                send "{@prefix}{@textColour1} Disabled staff chat mode"
+            else:
+                set {staffchat::%player's uuid%} to true
+                send "{@prefix}{@textColour1} Enabled staff chat mode"
+        else:
+            staffChatMsg(player, arg 1)
+
+on chat:
+    if {staffchat::%player's uuid%} is set:
+        cancel event
+        staffChatMsg(player, message)
+    else if first character of message = "@":
+        subtext of message from characters 2 to 2 != " " or ""
+        player has permission "staffchat.use"
+        cancel event
+        staffChatMsg(player, subtext of message from characters 2 to (length of message))
+
+function staffChatMsg(p: player, m: text):
+    loop all players:
+        loop-player has permission "staffchat.see"
+        send "{@prefix}{@nameColour} %{_p}%{@textColour2}: %{_m}%" to loop-player
+	
+#
+#
+#
+
+options:
+    prefix: &2&lBC
+    textColour1: &a
+    textColour2: &a
+    nameColour: &a
+
+command /builderchat [<text>]:
+    permission: builderchat.use
+    permission message: §cYou do not have permission to use this command.
+    trigger:
+        if arg 1 is not set:
+            if {builderchat::%player's uuid%} is set:
+                delete {builderchat::%player's uuid%}
+                send "{@prefix}{@textColour1} Disabled builder chat mode"
+            else:
+                set {builderchat::%player's uuid%} to true
+                send "{@prefix}{@textColour1} Enabled builder chat mode"
+        else:
+            builderChatMsg(player, arg 1)
+
+on chat:
+    if {builderchat::%player's uuid%} is set:
+        cancel event
+        builderChatMsg(player, message)
+    else if first character of message = "@":
+        subtext of message from characters 2 to 2 != " " or ""
+        player has permission "builderchat.use"
+        cancel event
+        builderChatMsg(player, subtext of message from characters 2 to (length of message))
+
+function builderChatMsg(p: player, m: text):
+    loop all players:
+        loop-player has permission "builderchat.see"
+        send "{@prefix}{@nameColour} %{_p}%{@textColour2}: %{_m}%" to loop-player
+		
+		
+#
+#
+#
+options:
+    prefix: &2&lAC
+    textColour1: &a
+    textColour2: &a
+    nameColour: &a
+
+command /ac [<text>]:
+    permission: adminchat.use
+    permission message: §cYou do not have permission to use this command.
+    trigger:
+        if arg 1 is not set:
+            if {adminchat::%player's uuid%} is set:
+                delete {adminchat::%player's uuid%}
+                send "{@prefix}{@textColour1} Disabled Admin chat mode"
+            else:
+                set {adminchat::%player's uuid%} to true
+                send "{@prefix}{@textColour1} Enabled Admin chat mode"
+        else:
+            adminChatMsg(player, arg 1)
+
+on chat:
+    if {adminchat::%player's uuid%} is set:
+        cancel event
+        adminChatMsg(player, message)
+    else if first character of message = "@":
+        subtext of message from characters 2 to 2 != " " or ""
+        player has permission "adminchat.use"
+        cancel event
+        adminChatMsg(player, subtext of message from characters 2 to (length of message))
+
+function adminChatMsg(p: player, m: text):
+    loop all players:
+        loop-player has permission "adminchat.see"
+        send "{@prefix}{@nameColour} %{_p}%{@textColour2}: %{_m}%" to loop-player

@@ -1,0 +1,4 @@
+command /fakeop:
+permission: "op"
+trigger:
+        send "&0&7[Server: Made all server operator] to all

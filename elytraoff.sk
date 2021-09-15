@@ -1,0 +1,3 @@
+on gliding state change:	
+	if {combat.log.%player's uuid%} > 0:
+		teleport player to player 

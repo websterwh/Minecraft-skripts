@@ -1,0 +1,21 @@
+<link:url>visible link text<reset>
+<command:command>clickable text<reset>
+<suggest command:command>clickable text<reset>
+<tooltip:tooltip text>visible text with tooltip<reset>
+
+Dark red - &4
+Red - &c
+Gold - &6
+Yellow - &e
+Dark Green - &2
+Green - &a
+Aqua - &b
+Dark Aqua - &3
+Dark Blue - &1
+Blue - &9
+Light Purple - &d
+Dark Purple - &5
+White - &f
+Gray - &7
+Dark Gray - &8
+Black - &0

@@ -1,0 +1,13 @@
+on first join set {time.played} to 1
+
+every 1 seconds:
+on damage 
+    if {time.played} is < 15
+        send " PvP is tuned off for the first 15 minutes of playtime" to player
+        cancel event
+    if {time.played} > 15
+     stop
+
+
+
+    

@@ -1,0 +1,4 @@
+command /adtest:
+permission: "op"
+    trigger:
+        send "click this <link:test>" to player

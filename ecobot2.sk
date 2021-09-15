@@ -1,0 +1,5 @@
+command /startbot: 
+	permission: *
+	trigger:
+		login to "ODYzODA5MTU4OTQ4NDU0NDIw.YOsS-A.XBkdw-DG_MOIdlHRv_kr0Ecu3gI" with the name "EcoBot"
+		send "&7[&2EcoBot&7] &rStarting Bot" to player

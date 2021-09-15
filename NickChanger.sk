@@ -1,0 +1,57 @@
+function nickChange(player: player, newNickname: text) :: Boolean:
+	set {_player}'s default nametag to colored {_newNickname}
+	set {_player}'s display name to colored {_newNickname}
+	set tablist name of {_player} to colored {_newNickname}
+	set {PlayerNick.%{_player}%} to colored {_newNickname}
+	return true
+
+function nickReset(player: player) :: Boolean:
+	set {_player}'s default nametag to colored "%{_player}%"
+	set {_player}'s display name to colored "%{_player}%"
+	set tablist name of {_player} to colored "%{_player}%"
+	set {PlayerNick.%{_player}%} to colored "%{_player}%"
+	return true
+
+command /chnick <text>:
+	description: Set Nick example /chnick &2Dan Kuso
+	trigger:
+		if nickChange(player, arg 1):
+			message "Nick has been set"
+			exit
+		message "Error"
+
+command /chnickso <player> <text>:
+	description: Changing someone's nickname
+	trigger:
+		if nickChange(arg 1, arg 2):
+			message "Nick has been set"
+			message "Your nick has been set" to arg 1
+			exit
+		message "Error"
+
+command /chreset:
+	description: Reset nick to default
+	trigger:
+		if nickReset(player):
+			message "Nick has been reset"
+			exit
+		message "Error"
+	
+command /chresetso <player>:
+	description: Changing someone's nickname to default
+	trigger:
+		if nickReset(arg 1):
+			message "Nick has been reset"
+			message "Your nickname has been reset" to arg 1
+			exit
+		message "Error"
+
+on join:
+	wait 5 ticks
+	if {PlayerNick.%player%} is set:
+		execute console command "chnickso %player% %{PlayerNick.%player%}%"
+	else:
+		set {PlayerNick.%player%} to "%player%"
+
+on chat:
+	set message format to "%{PlayerNick.%player%}%&f: %message%"

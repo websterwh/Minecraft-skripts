@@ -1,0 +1,4 @@
+command /chest:
+	permission: chest
+	trigger:
+	open chest with 6 rows named "ender chest" to player

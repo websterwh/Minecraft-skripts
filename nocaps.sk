@@ -1,0 +1,4 @@
+on chat:
+    if player doesn't have permission "caps.allow":
+        if length of regex replace "[^A-Z]" with "" in message >= 10:
+            cancel event

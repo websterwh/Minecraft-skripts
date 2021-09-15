@@ -1,0 +1,29 @@
+command /parkouron: 
+	permission: on.parkour
+	trigger:
+		set {parkouruse} to "true"
+		send "&9[Parkour] Parkour is now enabled"
+		
+command /parkouroff: 
+	permission: off.parkour
+	trigger:
+		set {parkouruse} to "false"
+		send "&9[Parkour] Parkour is now disabled"
+		
+command /parkour [<text>]:
+    trigger:
+        if arg 1 is set:
+            if player has permission "parkour.all":
+                if arg 1 is "on":
+                    set {parkouruse} to true
+                    send "&aParkour Enabled"
+                if arg 1 is "off":
+                    set {parkouruse} to false
+                    send "&cParkour Disabled"
+        if arg 1 is not set:
+            if {parkouruse} is not set:
+                set {parkouruse} to false
+            if {parkouruse} is true:
+                teleport player to {set.parkour}
+            if {parkouruse} is false:
+                send "&cParkour is not Enabled"

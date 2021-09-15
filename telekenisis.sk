@@ -1,0 +1,78 @@
+# To add Telekenisis to a tool
+command /Telekenisis:
+	permission: op
+	trigger:
+		set lore of player's tool to "&7Telekenisis I"
+		message "enchanted"
+ 
+on break:
+	if player's gamemode is survival:
+		lore of player's held item contains "&7Telekenisis I":
+			if event-block is coal ore:
+				cancel event
+				give player coal
+				set event-block to air
+#Diamond
+on break:
+	lore of player's held item contains "&7Telekenisis I":
+		if event-block is diamond ore:
+			cancel event
+			give player diamond
+			set event-block to air
+#Lapis Lazuli
+on break:
+	lore of player's held item contains "&7Telekenisis I":
+		if event-block is lapis lazuli:
+			cancel event
+			give player lapis lazuli
+			set event-block to air
+#Emerald
+on break:
+	lore of player's held item contains "&7Telekenisis I":
+		if event-block is emerald ore:
+			cancel event
+			give player emerald
+			set event-block to air
+#Nether Gold Ore
+on break:
+	lore of player's held item contains "&7Telekenisis I":
+		if event-block is nether gold ore:
+			set {amount.nethergoldore} to random integer between 2 and 6
+			set {amount.nethergoldore} to {amount.nethergoldore} parsed as number
+			cancel event
+			give player {amount.nethergoldore} of golden nugget
+			set event-block to air
+#Nether Quartz
+on break:
+	lore of player's held item contains "&7Telekenisis I":
+		if event-block is nether quartz ore:
+			cancel event				
+			set {amount.netherquartz} to random integer between 5 and 12
+			set {amount.netherquartz} to {amount.netherquartz} parsed as number
+			give player {amount.netherquartz} of nether quartz 
+			set event-block to air
+#Redstone
+on break:
+	lore of player's held item contains "&7Telekenisis I":
+		if event-block is redstone ore:
+			set {amount.redstoneore} to random integer between 1 and 4
+			set {amount.redstoneore} to {amount.redstoneore} parsed as number
+			cancel event
+			give player {amount.redstoneore} of redstone
+			set event-block to air
+# All other blocks
+on break:
+	player's gamemode is survival
+	lore of player's held item contains "&7Telekenisis I":
+		if event-block is not coal ore:
+			if event-block is not diamond ore:
+				if event-block is not redstone ore:
+					if event-block is not lapis lazuli:
+						if event-block is not emerald ore:
+							if event-block is not nether gold ore:
+								if event-block is not nether quartz ore:
+									cancel event
+									give event-player event-block
+									set event-block to air
+#Made By ωilliam#6969
+#Contact me on Discord ωilliam#6969
