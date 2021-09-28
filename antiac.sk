@@ -1,0 +1,241 @@
+options:
+    #Simple options, you can edit these if you don't understand skript
+    prefix: &c&lAntiAC &8&l»&7
+    prefix2: &9&lCPS &8&l»&7
+    error: &c&lERROR &8&l»&c
+    noPerms: You do not have the correct permissions to use this command!
+    freezeInsteadOfKick: true
+    #More advanced options, be careful editing these
+    kickMsg: &cYou have been kicked!%nl%&r %nl%&7You are being suspected of using an autoclicker%nl%&r %nl%&cBelieve you were kicked wrongfully? Contact admins!
+    cpsForCheck: 10 
+    counterBeforeWarning: 5
+    #PS: cBW stands for counterBeforeWarning
+    #How many warnings before they get kicked
+    cBW_count: 5
+    #dont edit this
+    ver: 1.0.1
+
+#Dont edit this ↓
+
+variables:
+    {antiac::clickerHook} = true    
+    {antiac::mmoCoreHook} = true
+
+#Dont edit this ^
+
+on left click:
+    if {antiac::frozen::%player's uuid%} is not set:
+        set {antiac::cps::%player%} to ({antiac::cps::%player%} + 1)
+        wait 1 second
+        set {antiac::cps::%player%} to ({antiac::cps::%player%} - 1)
+
+#Every 5 tick checks
+
+on join:
+    while player is online:
+        wait 5 ticks
+        if player does not have permission "antiac.bypass":
+            if {antiac::cps::%player%} >= {@cpsForCheck}:
+                set {antiac::counter::%player's uuid%} to ({antiac::counter::%player's uuid%} + 1)
+            if {antiac::counter::%player's uuid%} >= {@counterBeforeWarning}:
+                antiac_warning(player, uuid of player)
+            if {antiac::warnings::%player's uuid%} >= {@cBW_count}:
+                if {@freezeInsteadOfKick} is false or no:
+                    antiac_kick(player, uuid of player)
+                else:
+                    antiac_freeze(player, uuid of player)
+
+#Every second checks
+
+on join:
+    delete {antiac::cps::%player%}
+
+on quit:
+    delete {antiac::cps::%player%}
+    if {antiac::frozen::%player's uuid%} is set:
+        loop all players:
+            if loop-player has permission "antiac.leavewhilefrozen.notify":
+                send "{@prefix2} &e%player%&7 left while frozen!" to loop-player
+                play sound "entity.villager.no" to loop-player
+                log "%player% &7left while frozen!" to "antiac/quits.log"
+
+#Checks
+
+on jump:
+    if {antiac::frozen::%player's uuid%} is set:
+        teleport player to {antiac::location::%player's uuid%}
+        message "{@error} You are frozen!"
+        play sound "entity.villager.no" to player
+
+on inventory open:
+    if {antiac::frozen::%player's uuid%} is set:
+        close player's inventory
+        message "{@error} You are frozen!"
+        play sound "entity.villager.no" to player
+
+on chat:
+    if {antiac::frozen::%player's uuid%} is set:
+        cancel event
+        message "{@error} You are frozen!"
+        play sound "entity.villager.no" to player
+
+on damage:
+    if victim is player:
+        if {antiac::frozen::%victim's uuid%} is set:
+            cancel event
+            message "{@error} &e%victim%&7 is frozen!" to attacker
+            play sound "entity.villager.no" to attacker
+
+on right click holding milk bucket:
+    if {antiac::frozen::%player's uuid%} is set:
+        cancel event
+        message "{@error} You are frozen!"
+        play sound "entity.villager.no" to player 
+
+on block break:
+    if {antiac::frozen::%player's uuid%} is set:
+        cancel event
+        message "{@error} You are frozen!"
+        play sound "entity.villager.no" to player 
+
+on build:
+    if {antiac::frozen::%player's uuid%} is set:
+        cancel event
+        message "{@error} You are frozen!"
+        play sound "entity.villager.no" to player 
+
+#Commands
+
+command /cpsfreeze [<offlineplayer>]:
+    usage: {@error} Wrong usage! &e/cpsfreeze <player>
+    trigger:
+        if arg-1 is set:
+            if player has permission "antiac.freeze":
+                if arg-1 is online:
+                    if arg-1 does not have permission "antiac.bypass":
+                        antiac_freeze(arg-1, uuid of arg-1)
+                    else:
+                        send "{@error} &e%arg-1%&c cannot be frozen"
+                else:
+                    send "{@error} &e%arg-1%&c is not online!"
+                    play sound "entity.villager.no" to player
+            else:
+                message "{@error} {@noPerms}"
+                play sound "entity.villager.no" to player
+        else:
+            send "{@error} Wrong usage! &e/cpsfreeze <player>"
+            play sound "entity.villager.no" to player
+
+command /cps [<string>]:
+    usage: {@error} Wrong usage! &e/cps [player]
+    trigger:
+        if arg-1 is not set:
+            if player has permission "antiac.cps.check":
+                send "{@prefix2} Your cps is &e%{antiac::cps::%player%} ? 0%"
+                play sound "entity.villager.yes" with volume 2.5 to player
+            else:
+                send "{@error} {@noPerms}"
+                play sound "entity.villager.no" with volume 2.5 to player
+        else:
+            if arg-1 is not "reload" or "help":
+                if player has permission "antiac.cps.check.others":
+                    if arg-1 parsed as player is online:
+                        send "{@prefix} The cps of &e%arg-1%&7 is &e%{antiac::cps::%arg-1%} ? 0%"
+                        play sound "entity.villager.yes" with volume 2.5 to player
+                    else:
+                        send "{@error} &e%arg-1%&c is not online!"
+                        play sound "entity.villager.no" with volume 2.5 to player
+                else:
+                    send "{@error} {@noPerms}"
+                    play sound "entity.villager.no" with volume 2.5 to player
+            else:
+                if arg-1 is "reload":
+                    if player has permission "antiac.reload":
+                        make player execute command "/skript reload Continuum/antiac"
+                        play sound "entity.villager.yes"
+                    else:
+                        send "{@error} {@noPerms}"
+                        play sound "entity.villager.no" with volume 2.5 to player
+                if arg-1 is "help":
+                    if player has permission "antiac.help":
+                        send "&eVersion &7- &e{@ver}"
+                        send ""
+                        send "&e/cps"
+                        send "&e/cps [player]"
+                        send "&e/cps reload"
+                        send "&e/cps help"
+                        send "&e/cpsfreeze <player>"
+                        send ""
+                        send "&eVersion &7- &e{@ver}"
+                    else:
+                        send "{@error} {@noPerms}"
+                        play sound "entity.villager.no" with volume 2.5 to player
+
+#Load & Unload
+
+on load:
+    send "{@prefix} Loaded &eVersion &7 &e{@ver}" to console
+    if {mmo::antiacHook} is set:
+        if {mmo::antiacHook} is true:
+            send "{@prefix} Hooked into &cMMO Bundle" to console
+        if {mmo::antiacHook} is false:
+            send "{@error} Found &cMMO Bundle&7's hook variable, but its set false? Contact continuum support discord" to console
+    if {clicker::antiacHook} is set:
+        if {clicker::antiacHook} is true:
+            send "{@prefix} Hooked into &6Golden Clicker" to console
+        if {clicker::antiacHook} is false:
+            send "{@error} Found &6Golden Clicker&7's hook variable, but its set false? Contact continuum support discord" to console
+
+on unload:
+    send "{@prefix} Unloaded &eVersion &7 &e{@ver}" to console
+
+#Void Functions
+
+function antiac_kick(p: player, u: string):
+    kick {_p} due to "{@kickMsg}"
+    delete {antiac::warnings::%{_u}%}
+    delete {antiac::counter::%{_u}%}
+    log "%{_p}% was kicked for being suspected of using an autoclicker!" to "antiac/kicks.log"
+    loop all players:
+        if loop-player has permission "antiac.kick.notify":
+            send "{@prefix} &e%{_p}%&7 was kicked for being suspected of using an autoclicker!" to loop-player
+            play sound "entity.villager.no" to loop-player
+
+function antiac_warning(p: player, u: string):
+    set {antiac::warnings::%{_u}%} to ({antiac::warnings::%{_u}%} + 1)
+    delete {antiac::counter::%{_u}%}
+    log "%{_p}% is being suspected of using an autoclicker %{antiac::warnings::%{_u}%} ? 0%/{@cBW_count}" to "antiac/suspects.log"
+    loop all players:
+        if loop-player has permission "antiac.warning.notify":
+            send "{@prefix} &e%{_p}%&7 is suspected of using an autoclicker &7&o[%{antiac::warnings::%{_u}%} ? 0%&7&o/{@cBW_count}]" to loop-player
+            play sound "entity.villager.no" to loop-player
+
+function antiac_freeze(p: player, u: string):
+    if {antiac::frozen::%{_u}%} is not set:
+        apply slowness 100 without any particles to {_p} for 999 hours replacing the existing effect
+        apply blindness 100 without any particles to {_p} for 999 hours replacing the existing effect
+        set {antiac::location::%{_u}%} to location of {_p}
+        set {_p}'s walk speed to 0
+        send "{@prefix2} You have been frozen because you are suspected of using an autoclicker! Do not leave the game." to {_p}
+        send title "{@prefix2} You have been frozen" with subtitle "&eDo not leave!" to {_p} for 5 seconds
+        play sound "entity.elder_guardian.curse" to {_p}
+        set {antiac::frozen::%{_u}%} to true
+        delete {antiac::warnings::%{_u}%}
+        delete {antiac::counter::%{_u}%}
+        log "%{_p}% was frozen for being suspected of using an autoclicker!" to "antiac/freezes.log"
+        loop all players:
+            if loop-player has permission "antiac.freeze.notify":
+                send formatted "<tooltip:&9Unfreeze &e%{_p}%&9?><cmd:/cpsfreeze %{_p}%>{@prefix} &e%{_p}%&7 was frozen for being suspected of using an autoclicker! &e&lHOVER" to loop-player
+                play sound "entity.villager.no" to loop-player
+    else:
+        reset walk speed of {_p}
+        clear all the potion effects of {_p}
+        delete {antiac::location::%{_u}%}
+        send "{@prefix2} You have been unfrozen!" to {_p}
+        delete {antiac::frozen::%{_u}%}
+        log "%{_p}% was unfrozen" to "antiac/freezes.log"
+        play sound "entity.villager.yes" to {_p}
+        loop all players:
+            if loop-player has permission "antiac.freeze.notify":
+                send formatted "<tooltip:&9Freeze &e%{_p}%&9?><cmd:/cpsfreeze %{_p}%>{@prefix} &e%{_p}%&7 was unfrozen! &e&lHOVER" to loop-player
+                play sound "entity.villager.no" to loop-player

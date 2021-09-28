@@ -1,0 +1,38 @@
+command /ride [<text>]:
+    cooldown: 10 seconds
+    cooldown message: &7Calm down...
+    permission: ride
+    trigger:
+        if "%arg-1%" parsed as a player is not online:
+            set {_b} to arg-1
+            set {_b::*} to {_b} split by "-"
+            set {_code} to {_b::1}
+            set {_p} to {_b::2}
+            set {_p} to {_p} parsed as a player
+            if {ride::code::*} contains "%{_code}%-%{_p}%":
+                remove "%{_code}%-%{_p}%" from {ride::code::*}
+                teleport {_p} to player
+                wait 3 ticks
+                make {_p} ride player
+                send "&b%{_p}% &7is now riding you!"
+                send "&7You are riding &b%player%" to {_p}
+                stop
+            else:
+                send "&7This ride request is &cinvalid!"
+                stop
+        else:
+            set {_code} to a random integer between 1000000000 and 99999999999999999
+            set {_code} to "%{_code}%-%player%"
+            add {_code} to {ride::code::*}
+            send formatted "&b%player% &7wants to ride you! <command:/ride %{_code}%>&b&nClick here<reset> &7to allow them..." to "%arg-1%" parsed as a player
+            send "&7Requested to ride &b%arg-1%"
+            wait 10 seconds
+            if {ride::code::*} contains "%{_code}%":
+                remove "%{_code}%" from {ride::code::*}
+                send "&7Ride request sent to &b%arg-1% &cexpired!"
+
+
+on right click on a player:
+	player is sneaking
+	player has permission "ride"
+	make player execute command "/ride %target player%"

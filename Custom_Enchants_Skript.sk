@@ -1,0 +1,1341 @@
+killed /customenchants:
+	aliases: /ce, /enchanter
+	permission: ce.use
+	permission message: &cThis feature is not out yet!
+	trigger:
+		open virtual chest inventory with size 1 named "&bCustom Enchantments" to player
+		set {_item} to nether star named "&cRandom Tier 1 Enchant"
+		set line 2 of lore of {_item} to "&dCost &b» &51x Nether Star"
+		set line 1 of lore of {_item} to "&eGet a random Custom Enchantment "
+		make a gui slot 2 of player with {_item} to close:
+			if player has a nether star:
+				set {tier1.player} to random integer between 1 and 21
+				if {tier1.player} is 1:
+					remove nether star from player
+					set {_book} to enchanted book named "&bBlind I"
+					set line 1 of lore of {_book} to "&eHas a chance of blinding the enemy for 3 seconds!"
+					set line 2 of lore of {_book} to "&7Axe Enchant"
+					give player {_book}
+				if {tier1.player} is 2:
+					remove nether star from player
+					set {_book} to enchanted book named "&bDrunken I"
+					set line 1 of lore of {_book} to "&eGives the wearer strength I,"
+					set line 2 of lore of {_book} to "&ebut also gives them slowness II!"
+					set line 3 of lore of {_book} to "&7Chestplate Enchant"
+					give player {_book}
+				if {tier1.player} is 3:
+					remove nether star from player
+					set {_book} to enchanted book named "&bGears I"
+					set line 1 of lore of {_book} to "&eGives the wearer Speed I!"
+					set line 2 of lore of {_book} to "&7Boots Enchant"
+					give player {_book}
+				if {tier1.player} is 4:
+					remove nether star from player
+					set {_book} to enchanted book named "&bFreeze I"
+					set line 1 of lore of {_book} to "&eHas a chance of freezing the enemy!"
+					set line 2 of lore of {_book} to "&7Sword Enchant"
+					give player {_book}
+				if {tier1.player} is 5:
+					remove nether star from player
+					set {_book} to enchanted book named "&bTeleport I"
+					set line 1 of lore of {_book} to "&eHas a chance of teleporting behind the enemy!"
+					set line 2 of lore of {_book} to "&7Sword Enchant"
+					give player {_book}
+				if {tier1.player} is 6:
+					remove nether star from player
+					set {_book} to enchanted book named "&bInfection I"
+					set line 1 of lore of {_book} to "&eHas a chance to posion the enemy!"
+					set line 2 of lore of {_book} to "&7Leggings Enchant"
+					give player {_book}
+				if {tier1.player} is 7:
+					remove nether star from player
+					set {_book} to enchanted book named "&bXP Stealer I"
+					set line 1 of lore of {_book} to "&eHas a chance to steal XP!"
+					set line 2 of lore of {_book} to "&7Sword Enchant"
+					give player {_book}
+				if {tier1.player} is 8:
+					remove nether star from player
+					set {_book} to enchanted book named "&bPurify I"
+					set line 1 of lore of {_book} to "&eHas a chance to heal all debufs!"
+					set line 2 of lore of {_book} to "&7Axe Enchant"
+					give player {_book}
+				if {tier1.player} is 9:
+					remove nether star from player
+					set {_book} to enchanted book named "&bHope I"
+					set line 1 of lore of {_book} to "&eHas a chance to regenerate at low health!"
+					set line 2 of lore of {_book} to "&7Helmet Enchant"
+					give player {_book}
+				if {tier1.player} is 10:
+					remove nether star from player
+					set {_book} to enchanted book named "&bVenom I"
+					set line 1 of lore of {_book} to "&eHas a chance to poison the enemy!"
+					set line 2 of lore of {_book} to "&7Bow Enchant"
+					give player {_book}
+				if {tier1.player} is 11:
+					remove nether star from player
+					set {_book} to enchanted book named "&bCupid I"
+					set line 1 of lore of {_book} to "&eHas a chance to heal on a bow hit!"
+					set line 2 of lore of {_book} to "&7Bow Enchant"
+					give player {_book}
+				if {tier1.player} is 12:
+					remove nether star from player
+					set {_book} to enchanted book named "&bFear I"
+					set line 1 of lore of {_book} to "&eHas a chance to make your enemy fear you and become weaker!"
+					set line 2 of lore of {_book} to "&7Helmet Enchant"
+					give player {_book}
+				if {tier1.player} is 13:
+					remove nether star from player
+					set {_book} to enchanted book named "&bExplosive"
+					set line 1 of lore of {_book} to "&eArrow attacks create explosions!"
+					set line 2 of lore of {_book} to "&7Bow Enchant"
+					give player {_book}
+				if {tier1.player} is 14:
+					remove nether star from player
+					set {_book} to enchanted book named "&bStamina"
+					set line 1 of lore of {_book} to "&eHunger will no longer be lost!"
+					set line 2 of lore of {_book} to "&7Armor Enchant"
+					give player {_book}
+				if {tier1.player} is 15:
+					remove nether star from player
+					set {_book} to enchanted book named "&bCurse I"
+					set line 1 of lore of {_book} to "&eHas a chance to gives your enemy mining fatigue!"
+					set line 2 of lore of {_book} to "&7Chestplate Enchant"
+					give player {_book}
+				if {tier1.player} is 16:
+					remove nether star from player
+					set {_book} to enchanted book named "&bSmash I"
+					set line 1 of lore of {_book} to "&eHas a chance to push your enemy back!"
+					set line 2 of lore of {_book} to "&7Weapon Enchant"
+					give player {_book}
+				if {tier1.player} is 17:
+					remove nether star from player
+					set {_book} to enchanted book named "&bRebound I"
+					set line 1 of lore of {_book} to "&eSpawns in a creeper upon death!"
+					set line 2 of lore of {_book} to "&7Leggings Enchant"
+					give player {_book}
+				if {tier1.player} is 18:
+					remove nether star from player
+					set {_book} to enchanted book named "&bReinforce I"
+					set line 1 of lore of {_book} to "&eHas a chance to give Resistance!"
+					set line 2 of lore of {_book} to "&7Chestplate Enchant"
+					give player {_book}
+				if {tier1.player} is 19:
+					remove nether star from player
+					set {_book} to enchanted book named "&bInquisitive I"
+					set line 1 of lore of {_book} to "&eGives more XP when killing mobs!"
+					set line 2 of lore of {_book} to "&7Weapon Enchant"
+					give player {_book}
+				if {tier1.player} is 20:
+					remove nether star from player
+					set {_book} to enchanted book named "&bOblivion I"
+					set line 1 of lore of {_book} to "&eHas a chance to spawn lightning and damage the enemy!"
+					set line 2 of lore of {_book} to "&7Chestplate Enchant"
+					give player {_book}
+				if {tier1.player} is 21:
+					remove nether star from player
+					set {_book} to enchanted book named "&bBunny I"
+					set line 1 of lore of {_book} to "&eGives Jump Boost while worn!"
+					set line 2 of lore of {_book} to "&7Boots Enchant"
+					give player {_book}
+		set {_item} to nether star named "&cRandom Tier 2 Enchant"
+		set line 2 of lore of {_item} to "&dCost &b» &53x Nether Star"
+		set line 1 of lore of {_item} to "&eGet a random Custom Enchantment "
+		make a gui slot 4 of player with {_item} to close:
+			if player has 3 nether star:
+				set {tier1.player} to random integer between 1 and 19
+				if {tier1.player} is 1:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5Blind II"
+					set line 1 of lore of {_book} to "&eHas a chance of blinding the enemy for 5 seconds!"
+					set line 2 of lore of {_book} to "&7Axe Enchant"
+					give player {_book}
+				if {tier1.player} is 2:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5Drunken II"
+					set line 1 of lore of {_book} to "&eGives the wearer strength II,"
+					set line 2 of lore of {_book} to "&ebut also gives them slowness III!"
+					set line 3 of lore of {_book} to "&7Chestplate Enchant"
+					give player {_book}
+				if {tier1.player} is 3:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5Gears II"
+					set line 1 of lore of {_book} to "&eGives the wearer Speed II!"
+					set line 2 of lore of {_book} to "&7Boots Enchant"
+					give player {_book}
+				if {tier1.player} is 4:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5Freeze II"
+					set line 1 of lore of {_book} to "&eHas a chance of freezing the enemy!"
+					set line 2 of lore of {_book} to "&7Sword Enchant"
+					give player {_book}
+				if {tier1.player} is 5:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5Teleport II"
+					set line 1 of lore of {_book} to "&eHas a chance of teleporting behind the enemy!"
+					set line 2 of lore of {_book} to "&7Sword Enchant"
+					give player {_book}
+				if {tier1.player} is 6:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5Infection II"
+					set line 1 of lore of {_book} to "&eHas a chance to posion the enemy!"
+					set line 2 of lore of {_book} to "&7Leggings Enchant"
+					give player {_book}
+				if {tier1.player} is 7:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5XP Stealer II"
+					set line 1 of lore of {_book} to "&eHas a chance to steal XP!"
+					set line 2 of lore of {_book} to "&7Sword Enchant"
+					give player {_book}
+				if {tier1.player} is 8:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5Purify II"
+					set line 1 of lore of {_book} to "&eHas a chance to heal all debufs!"
+					set line 2 of lore of {_book} to "&7Axe Enchant"
+					give player {_book}
+				if {tier1.player} is 9:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5Hope II"
+					set line 1 of lore of {_book} to "&eHas a chance to regenerate at low health!"
+					set line 2 of lore of {_book} to "&7Helmet Enchant"
+					give player {_book}
+				if {tier1.player} is 10:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5Venom II"
+					set line 1 of lore of {_book} to "&eHas a chance to poison the enemy!"
+					set line 2 of lore of {_book} to "&7Bow Enchant"
+					give player {_book}
+				if {tier1.player} is 11:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5Cupid II"
+					set line 1 of lore of {_book} to "&eHas a chance to heal on a bow hit!"
+					set line 2 of lore of {_book} to "&7Bow Enchant"
+					give player {_book}
+				if {tier1.player} is 12:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5Fear II"
+					set line 1 of lore of {_book} to "&eHas a chance to make your enemy fear you and become weaker!"
+					set line 2 of lore of {_book} to "&7Helmet Enchant"
+					give player {_book}
+				if {tier1.player} is 13:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5Curse II"
+					set line 1 of lore of {_book} to "&eHas a chance to gives your enemy mining fatigue!"
+					set line 2 of lore of {_book} to "&7Chestplate Enchant"
+					give player {_book}
+				if {tier1.player} is 14:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5Smash II"
+					set line 1 of lore of {_book} to "&eHas a chance to push your enemy back!"
+					set line 2 of lore of {_book} to "&7Weapon Enchant"
+					give player {_book}
+				if {tier1.player} is 15:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5Rebound II"
+					set line 1 of lore of {_book} to "&eSpawns in 2 creepers upon death!"
+					set line 2 of lore of {_book} to "&7Leggings Enchant"
+					give player {_book}
+				if {tier1.player} is 16:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5Reinforce II"
+					set line 1 of lore of {_book} to "&eHas a chance to give Resistance!"
+					set line 2 of lore of {_book} to "&7Chestplate Enchant"
+					give player {_book}
+				if {tier1.player} is 17:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5Inquisitive II"
+					set line 1 of lore of {_book} to "&eGives more XP when killing mobs!"
+					set line 2 of lore of {_book} to "&7Weapon Enchant"
+					give player {_book}
+				if {tier1.player} is 18:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5Oblivion II"
+					set line 1 of lore of {_book} to "&eHas a chance to spawn lightning and damage the enemy!"
+					set line 2 of lore of {_book} to "&7Chestplate Enchant"
+					give player {_book}
+				if {tier1.player} is 19:
+					remove 3 nether star from player
+					set {_book} to enchanted book named "&5Bunny II"
+					set line 1 of lore of {_book} to "&eGives Jump Boost while worn!"
+					set line 2 of lore of {_book} to "&7Boots Enchant"
+					give player {_book}
+		set {_item} to nether star named "&cRandom Tier 3 Enchant"
+		set line 2 of lore of {_item} to "&dCost &b» &54x Nether Star"
+		set line 1 of lore of {_item} to "&eGet a random Custom Enchantment"
+		make a gui slot 6 of player with {_item} to close:
+			if player has 4 nether star:
+				set {tier1.player} to random integer between 1 and 15
+				if {tier1.player} is 1:
+					remove 4 nether star from player
+					set {_book} to enchanted book named "&6Blind III"
+					set line 1 of lore of {_book} to "&eHas a chance of blinding the enemy for 7 seconds!"
+					set line 2 of lore of {_book} to "&7Axe Enchant"
+					give player {_book}
+				if {tier1.player} is 2:
+					remove 4 nether star from player
+					set {_book} to enchanted book named "&6Freeze III"
+					set line 1 of lore of {_book} to "&eHas a chance of freezing the enemy!"
+					set line 2 of lore of {_book} to "&7Sword Enchant"
+					give player {_book}
+				if {tier1.player} is 3:
+					remove 4 nether star from player
+					set {_book} to enchanted book named "&6Teleport III"
+					set line 1 of lore of {_book} to "&eHas a chance of teleporting behind the enemy!"
+					set line 2 of lore of {_book} to "&7Sword/Axe Enchant"
+					give player {_book}
+				if {tier1.player} is 4:
+					remove 4 nether star from player
+					set {_book} to enchanted book named "&6Infection III"
+					set line 1 of lore of {_book} to "&eHas a chance to posion the enemy!"
+					set line 2 of lore of {_book} to "&7Leggings Enchant"
+					give player {_book}
+				if {tier1.player} is 5:
+					remove 4 nether star from player
+					set {_book} to enchanted book named "&6XP Stealer III"
+					set line 1 of lore of {_book} to "&eHas a chance to steal XP!"
+					set line 2 of lore of {_book} to "&7Sword Enchant"
+					give player {_book}
+				if {tier1.player} is 6:
+					remove 4 nether star from player
+					set {_book} to enchanted book named "&6Purify III"
+					set line 1 of lore of {_book} to "&eHas a chance to heal all debufs!"
+					set line 2 of lore of {_book} to "&7Axe Enchant"
+					give player {_book}
+				if {tier1.player} is 7:
+					remove 4 nether star from player
+					set {_book} to enchanted book named "&6Hope III"
+					set line 1 of lore of {_book} to "&eHas a chance to regenerate at low health!"
+					set line 2 of lore of {_book} to "&7Armor Enchant"
+					give player {_book}
+				if {tier1.player} is 8:
+					remove 4 nether star from player
+					set {_book} to enchanted book named "&6Venom III"
+					set line 1 of lore of {_book} to "&eHas a chance to poison the enemy!"
+					set line 2 of lore of {_book} to "&7Bow Enchant"
+					give player {_book}
+				if {tier1.player} is 9:
+					remove 4 nether star from player
+					set {_book} to enchanted book named "&6Cupid III"
+					set line 1 of lore of {_book} to "&eHas a chance to heal on a bow hit!"
+					set line 2 of lore of {_book} to "&7Bow Enchant"
+					give player {_book}
+				if {tier1.player} is 10:
+					remove 4 nether star from player
+					set {_book} to enchanted book named "&6Fear III"
+					set line 1 of lore of {_book} to "&eHas a chance to make your enemy fear you and become weaker!"
+					set line 2 of lore of {_book} to "&7Helmet Enchant"
+					give player {_book}
+				if {tier1.player} is 11:
+					remove 4 nether star from player
+					set {_book} to enchanted book named "&6Curse III"
+					set line 1 of lore of {_book} to "&eHas a chance to gives your enemy mining fatigue!"
+					set line 2 of lore of {_book} to "&7Chestplate Enchant"
+					give player {_book}
+				if {tier1.player} is 12:
+					remove 4 nether star from player
+					set {_book} to enchanted book named "&6Smash III"
+					set line 1 of lore of {_book} to "&eHas a chance to push your enemy back!"
+					set line 2 of lore of {_book} to "&7Weapon Enchant"
+					give player {_book}
+				if {tier1.player} is 13:
+					remove 4 nether star from player
+					set {_book} to enchanted book named "&6Reinforce III"
+					set line 1 of lore of {_book} to "&eHas a chance to give Resistance!"
+					set line 2 of lore of {_book} to "&7Chestplate Enchant"
+					give player {_book}
+				if {tier1.player} is 14:
+					remove 4 nether star from player
+					set {_book} to enchanted book named "&6Inquisitive III"
+					set line 1 of lore of {_book} to "&eGives more XP when killing mobs!"
+					set line 2 of lore of {_book} to "&7Weapon Enchant"
+					give player {_book}
+				if {tier1.player} is 15:
+					remove 4 nether star from player
+					set {_book} to enchanted book named "&6Oblivion III"
+					set line 1 of lore of {_book} to "&eHas a chance to spawn lightning and damage the enemy!"
+					set line 2 of lore of {_book} to "&7Chestplate Enchant"
+					give player {_book}
+					
+on damage:
+	if lore of attacker's weapon contains "&bBlind I":
+		chance of 5%:
+			apply blindness 1 to victim for 3 seconds
+	if lore of attacker's weapon contains "&bBlind II":
+		chance of 7%:
+			apply blindness 1 to victim for 5 seconds
+	if lore of attacker's weapon contains "&bBlind II":
+		chance of 8%:
+			apply blindness 1 to victim for 7 seconds
+
+
+every second:
+	loop all players:
+#Drunken
+		if lore of loop-player's chestplate contains "&bDrunken I":
+			apply strength 1 to loop-player for 1 seconds
+			apply slowness 2 to loop-player for 1 seconds
+		if lore of loop-player's chestplate contains "&5Drunken II":
+			apply strength 2 to loop-player for 1 second
+			apply slowness 3 to loop-player for 1 second
+#Gears
+		if lore of loop-player's boots contains "&bGears I":
+			apply speed 1 to loop-player for 1 seconds
+		if lore of loop-player's boots contains "&5Gears II":
+			apply speed 2 to loop-player for 1 seconds
+#Bunny
+		if lore of loop-player's boots contains "&bBunny I":
+			apply jump boost 1 to loop-player for 1 seconds
+		if lore of loop-player's boots contains "&5Bunny II":
+			apply jump boost 2 to loop-player for 1 seconds
+
+
+
+#Blind
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bBlind I":
+			if event-item is any axe:
+				if lore of event-item doesn't contain "&bBlind I":
+					if lore of event-item doesn't contain "&5Blind II":
+						if lore of event-item doesn't contain "&6Blind III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&bBlind I"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5Blind II":
+			if event-item is any axe:
+				if lore of event-item doesn't contain "&bBlind I":
+					if lore of event-item doesn't contain "&5Blind II":
+						if lore of event-item doesn't contain "&6Blind III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&5Blind II"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&6Blind III":
+			if event-item is any axe:
+				if lore of event-item doesn't contain "&6Blind III":
+					if lore of event-item doesn't contain "&5Blind II":
+						if lore of event-item doesn't contain "&6Blind III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&6Blind III"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+#Drunken
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bDrunken I":
+			if event-item is any chestplate:
+				if lore of event-item doesn't contain "&bDrunken I":
+					if lore of event-item doesn't contain "&5Drunken II":
+						cancel the event
+						set lore of event-item to "%lore of event-item%||&bDrunken I"
+						send "&aYour enchant has been successfully applied!" to the player
+						set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5Drunken II":
+			if event-item is any chestplate:
+				if lore of event-item doesn't contain "&bDrunken I":
+					if lore of event-item doesn't contain "&5Drunken II":
+						cancel the event
+						set lore of event-item to "%lore of event-item%||&5Drunken II"
+						send "&aYour enchant has been successfully applied!" to the player
+						set cursor slot of player to air
+#Gears 
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bGears I":
+			if event-item is any boots:
+				if lore of event-item doesn't contain "&bGears I":
+					if lore of event-item doesn't contain "&5Gears II":
+						cancel the event
+						set lore of event-item to "%lore of event-item%||&bGears I"
+						send "&aYour enchant has been successfully applied!" to the player
+						set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5Gears II":
+			if event-item is any boots:
+				if lore of event-item doesn't contain "&bGears I":
+					if lore of event-item doesn't contain "&5Gears II":
+						cancel the event
+						set lore of event-item to "%lore of event-item%||&5Gears II"
+						send "&aYour enchant has been successfully applied!" to the player
+						set cursor slot of player to air	
+#Freeze
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bFreeze I":
+			if event-item is any sword:
+				if lore of event-item doesn't contain "&bFreeze I":
+					if lore of event-item doesn't contain "&5Freeze II":
+						if lore of event-item doesn't contain "&6Freeze III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&bFreeze I"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5Freeze II":
+			if event-item is any sword:
+				if lore of event-item doesn't contain "&bFreeze I":
+					if lore of event-item doesn't contain "&5Freeze II":
+						if lore of event-item doesn't contain "&6Freeze III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&5Freeze II"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&6Freeze III":
+			if event-item is any sword:
+				if lore of event-item doesn't contain "&bFreeze I":
+					if lore of event-item doesn't contain "&5Freeze II":
+						if lore of event-item doesn't contain "&6Freeze III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&6Freeze III"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+on damage of player:
+	attacker is a player
+	if lore of attacker's held item contains "&bFreeze I":
+		chance of 2%:
+			remove slowness from victim
+			apply slowness 5 to victim for 5 seconds
+			stop
+	if lore of attacker's held item contains "&5Freeze II":
+		chance of 3.5%:
+			remove slowness from victim
+			apply slowness 5 to victim for 5 seconds
+			stop
+	if lore of attacker's held item contains "&6Freeze III":
+		chance of 5%:
+			remove slowness from victim
+			apply slowness 5 to victim for 5 seconds
+			stop
+#Teleport
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bTeleport I":
+			if event-item is any sword or axe:
+				if lore of event-item doesn't contain "&bTeleport I":
+					if lore of event-item doesn't contain "&5Teleport II":
+						if lore of event-item doesn't contain "&6Teleport III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&bTeleport I"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5Teleport II":
+			if event-item is any sword or axe:
+				if lore of event-item doesn't contain "&bTeleport I":
+					if lore of event-item doesn't contain "&5Teleport II":
+						if lore of event-item doesn't contain "&6Teleport III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&5Teleport II"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&6Teleport III":
+			if event-item is any sword or axe:
+				if lore of event-item doesn't contain "&bTeleport I":
+					if lore of event-item doesn't contain "&5Teleport II":
+						if lore of event-item doesn't contain "&6Teleport III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&6Teleport III"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+on damage of player:
+	attacker is a player
+	if lore of attacker's held item contains "&bTeleport I":
+		chance of 1.5%:
+			teleport the attacker behind the victim
+			stop
+	if lore of attacker's held item contains "&5Teleport II":
+		chance of 3%:
+			teleport the attacker behind the victim
+			stop
+	if lore of attacker's held item contains "&6Teleport III":
+		chance of 4.5%:
+			teleport the attacker behind the victim
+			stop
+#Infection
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bInfection I":
+			if event-item is any leggings:
+				if lore of event-item doesn't contain "&bInfection I":
+					if lore of event-item doesn't contain "&5Infection II":
+						if lore of event-item doesn't contain "&6Infection III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&bInfection I"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5Infection II":
+			if event-item is any leggings:
+				if lore of event-item doesn't contain "&bInfection I":
+					if lore of event-item doesn't contain "&5Infection II":
+						if lore of event-item doesn't contain "&6Infection III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&5Infection II"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&6Infection III":
+			if event-item is any leggings:
+				if lore of event-item doesn't contain "&bInfection I":
+					if lore of event-item doesn't contain "&5Infection II":
+						if lore of event-item doesn't contain "&6Infection III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&6Infection III"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+on damage of a player:
+	attacker is a player
+	if lore of victim's leggings contains "&bInfection I":
+		chance of 2%:
+			remove poison from attacker
+			apply poison 1 to attacker for 5 seconds
+			stop
+	if lore of victim's leggings contains "&5Infection II":
+		chance of 4%:
+			remove poison from attacker
+			apply poison 2 to attacker for 5 seconds
+			stop
+	if lore of victim's leggings contains "&6Infection III":
+		chance of 6%:
+			remove poison from attacker
+			apply poison 3 to attacker for 5 seconds
+			stop
+#XP Stealer
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bXP Stealer I":
+			if event-item is any sword:
+				if lore of event-item doesn't contain "&bXP Stealer I":
+					if lore of event-item doesn't contain "&5XP Stealer II":
+						if lore of event-item doesn't contain "&6XP Stealer III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&bXP Stealer I"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5XP Stealer II":
+			if event-item is any sword:
+				if lore of event-item doesn't contain "&bXP Stealer I":
+					if lore of event-item doesn't contain "&5XP Stealer II":
+						if lore of event-item doesn't contain "&6XP Stealer III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&5XP Stealer II"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&6XP Stealer III":
+			if event-item is any sword:
+				if lore of event-item doesn't contain "&bXP Stealer I":
+					if lore of event-item doesn't contain "&5XP Stealer II":
+						if lore of event-item doesn't contain "&6XP Stealer III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&6XP Stealer III"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+on damage of a player:
+	attacker is a player
+	if lore of attacker's held item contains "&bXP Stealer I":
+		chance of 2.5%:
+			victim's level is larger than 1
+			reduce the victim's level by 1
+			increase the attacker's level by 1
+			stop
+	if lore of attacker's held item contains "&5XP Stealer II":
+		chance of 5%:
+			victim's level is larger than 1
+			reduce the victim's level by 1
+			increase the attacker's level by 1
+			stop
+	if lore of attacker's held item contains "&6XP Stealer III":
+		chance of 7.5%:
+			victim's level is larger than 1
+			reduce the victim's level by 1
+			increase the attacker's level by 1
+			stop
+#Purify
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bPurify I":
+			if event-item is any axe:
+				if lore of event-item doesn't contain "&bPurify I":
+					if lore of event-item doesn't contain "&5Purify II":
+						if lore of event-item doesn't contain "&6Purify III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&bPurify I"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5Purify II":
+			if event-item is any axe:
+				if lore of event-item doesn't contain "&bPurify I":
+					if lore of event-item doesn't contain "&5Teleport II":
+						if lore of event-item doesn't contain "&6Purify III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&5Purify II"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&6Purify III":
+			if event-item is any axe:
+				if lore of event-item doesn't contain "&bPurify I":
+					if lore of event-item doesn't contain "&5Purify II":
+						if lore of event-item doesn't contain "&6Purify III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&6Purify III"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+on damage of player:
+	attacker is a player
+	if lore of attacker's held item contains "&bPurify I":
+		chance of 4%:
+			remove poison from the attacker
+			remove wither from the attacker
+			remove weakness from the attacker
+			remove slowness from the attacker
+			remove mining fatigue from the attacker
+			remove nausea from the attacker
+			stop
+	if lore of attacker's held item contains "&5Purify II":
+		chance of 6%:
+			remove poison from the attacker
+			remove wither from the attacker
+			remove weakness from the attacker
+			remove slowness from the attacker
+			remove mining fatigue from the attacker
+			remove nausea from the attacker
+			stop
+	if lore of attacker's held item contains "&6Purify III":
+		chance of 8%:
+			remove poison from the attacker
+			remove wither from the attacker
+			remove weakness from the attacker
+			remove slowness from the attacker
+			remove mining fatigue from the attacker
+			remove nausea from the attacker
+			stop
+
+
+#Hope
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bHope I":
+			if event-item is any helmet or chestplate or leggings or boots:
+				if lore of event-item doesn't contain "&bHope I":
+					if lore of event-item doesn't contain "&5Hope II":
+						if lore of event-item doesn't contain "&6Hope III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&bHope I"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5Hope II":
+			if event-item is any helmet or chestplate or leggings or boots:
+				if lore of event-item doesn't contain "&bHope I":
+					if lore of event-item doesn't contain "&5Hope II":
+						if lore of event-item doesn't contain "&6Hope III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&5Hope II"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&6Hope III":
+			if event-item is any helmet or chestplate or leggings or boots:
+				if lore of event-item doesn't contain "&bHope I":
+					if lore of event-item doesn't contain "&5Hope II":
+						if lore of event-item doesn't contain "&6Hope III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&6Hope III"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+on damage of player:
+	attacker is a player
+	if lore of victim's helmet contains "&bHope I":
+		health of victim is less than 10
+		chance of 3%:
+			remove regeneration from victim
+			apply potion of regeneration 3 to victim for 5 seconds
+	if lore of victim's chestplate contains "&bHope I":
+		health of victim is less than 10
+		chance of 3%:
+			remove regeneration from victim
+			apply potion of regeneration 3 to victim for 5 seconds
+	if lore of victim's leggings contains "&bHope I":
+		health of victim is less than 10
+		chance of 3%:
+			remove regeneration from victim
+			apply potion of regeneration 3 to victim for 5 seconds
+	if lore of victim's boots contains "&bHope I":
+		health of victim is less than 10
+		chance of 3%:
+			remove regeneration from victim
+			apply potion of regeneration 3 to victim for 5 seconds
+	if lore of victim's helmet contains "&5Hope II":
+		health of victim is less than 10
+		chance of 5%:
+			remove regeneration from victim
+			apply potion of regeneration 3 to victim for 5 seconds
+	if lore of victim's chestplate contains "&5Hope II":
+		health of victim is less than 10
+		chance of 5%:
+			remove regeneration from victim
+			apply potion of regeneration 3 to victim for 5 seconds
+	if lore of victim's leggings contains "&5Hope II":
+		health of victim is less than 10
+		chance of 5%:
+			remove regeneration from victim
+			apply potion of regeneration 3 to victim for 5 seconds
+	if lore of victim's boots contains "&5Hope II":
+		health of victim is less than 10
+		chance of 5%:
+			remove regeneration from victim
+			apply potion of regeneration 3 to victim for 5 seconds
+	if lore of victim's helmet contains "&6Hope III":
+		health of victim is less than 10
+		chance of 9%:
+			remove regeneration from victim
+			apply potion of regeneration 3 to victim for 5 seconds
+	if lore of victim's chestplate contains "&6Hope III":
+		health of victim is less than 10
+		chance of 9%:
+			remove regeneration from victim
+			apply potion of regeneration 3 to victim for 5 seconds
+	if lore of victim's leggings contains "&6Hope III":
+		health of victim is less than 10
+		chance of 9%:
+			remove regeneration from victim
+			apply potion of regeneration 3 to victim for 5 seconds
+	if lore of victim's boots contains "&6Hope III":
+		health of victim is less than 10
+		chance of 9%:
+			remove regeneration from victim
+			apply potion of regeneration 3 to victim for 5 seconds
+#Venom
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bVenom I":
+			if event-item is any bow:
+				if lore of event-item doesn't contain "&bVenom I":
+					if lore of event-item doesn't contain "&5Venom II":
+						if lore of event-item doesn't contain "&6Venom III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&bVenom I"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5Venom II":
+			if event-item is any bow:
+				if lore of event-item doesn't contain "&bVenom I":
+					if lore of event-item doesn't contain "&5Venom II":
+						if lore of event-item doesn't contain "&6Venom III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&5Venom II"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&6Venom III":
+			if event-item is any bow:
+				if lore of event-item doesn't contain "&bVenom I":
+					if lore of event-item doesn't contain "&5Venom II":
+						if lore of event-item doesn't contain "&6Venom III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&6Venom III"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+on projectile hit:
+	projectile is an arrow
+	if lore of shooter's held item contains "&bVenom I":
+		chance of 5%:
+			loop all players in radius 2 of projectile:
+				remove poison from loop-player
+				apply poison 1 to loop-player for 5 seconds
+				stop
+	if lore of shooter's held item contains "&5Venom II":
+		chance of 10%:
+			loop all players in radius 2 of projectile:
+				remove poison from loop-player
+				apply poison 1 to loop-player for 5 seconds
+				stop
+	if lore of shooter's held item contains "&6Venom III":
+		chance of 15%:
+			loop all players in radius 2 of projectile:
+				remove poison from loop-player
+				apply poison 1 to loop-player for 5 seconds
+				stop
+#Cupid
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bCupid I":
+			if event-item is any bow:
+				if lore of event-item doesn't contain "&bCupid I":
+					if lore of event-item doesn't contain "&5Cupid II":
+						if lore of event-item doesn't contain "&6Cupid III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&bCupid I"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5Cupid II":
+			if event-item is any bow:
+				if lore of event-item doesn't contain "&bCupid I":
+					if lore of event-item doesn't contain "&5Cupid II":
+						if lore of event-item doesn't contain "&6Cupid III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&5Cupid II"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&6Cupid III":
+			if event-item is any bow:
+				if lore of event-item doesn't contain "&bCupid I":
+					if lore of event-item doesn't contain "&5Cupid II":
+						if lore of event-item doesn't contain "&6Cupid III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&6Cupid III"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+on projectile hit:
+	projectile is an arrow
+	if lore of shooter's held item contains "&bCupid I":
+		chance of 7.5%:
+			heal shooter by 1 heart
+			stop
+	if lore of shooter's held item contains "&5Cupid II":
+		chance of 7.5%:
+			heal shooter by 2 heart
+			stop
+	if lore of shooter's held item contains "&6Cupid III":
+		chance of 7.5%:
+			heal shooter by 3 hearts
+			stop
+
+
+#Fear
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bFear I":
+			if event-item is any helmet:
+				if lore of event-item doesn't contain "&bFear I":
+					if lore of event-item doesn't contain "&5Fear II":
+						if lore of event-item doesn't contain "&6Fear III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&bFear I"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5Fear II":
+			if event-item is any helmet:
+				if lore of event-item doesn't contain "&bFear I":
+					if lore of event-item doesn't contain "&5Fear II":
+						if lore of event-item doesn't contain "&6Fear III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&5Fear II"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&6Fear III":
+			if event-item is any helmet:
+				if lore of event-item doesn't contain "&bFear I":
+					if lore of event-item doesn't contain "&5Fear II":
+						if lore of event-item doesn't contain "&6Fear III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&6Fear III"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+
+on damage of a player:
+	attacker is a player
+	if lore of victim's helmet contains "&bFear I":
+		chance of 2%:
+			remove weakness from attacker
+			apply weakness 1 to the attacker for 5 seconds
+			stop
+	if lore of victim's helmet contains "&5Fear II":
+		chance of 4%:
+			remove weakness from attacker
+			apply weakness 1 to the attacker for 5 seconds
+			stop
+	if lore of victim's helmet contains "&6Fear III":
+		chance of 6%:
+			remove weakness from attacker
+			apply weakness 1 to the attacker for 5 seconds
+			stop
+#Explosive
+
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bExplosive":
+			if event-item is any bow:
+				if lore of event-item doesn't contain "&bExplosive":
+					cancel the event
+					set lore of event-item to "%lore of event-item%||&bExplosive"
+					send "&aYour enchant has been successfully applied!" to the player
+					set cursor slot of player to air
+on projectile hit:
+	projectile is an arrow
+	if lore of shooter's held item contains "&bExplosive":
+		create a fake explosion at event-location
+		stop
+
+#Stamina
+
+
+
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bStamina":
+			if event-item is any helmet or chestplate or leggings or boots:
+				if lore of event-item doesn't contain "&bStamina":
+					cancel the event
+					set lore of event-item to "%lore of event-item%||&bStamina"
+					send "&aYour enchant has been successfully applied!" to the player
+					set cursor slot of player to air
+
+on hunger meter change:
+	if lore of player's helmet contains "&bStamina":
+		cancel event
+		stop
+	if lore of player's chestplate contains "&bStamina":
+		cancel event
+		stop
+	if lore of player's leggings contains "&bStamina":
+		cancel event
+		stop
+	if lore of player's boots contains "&bStamina":
+		cancel event
+		stop
+
+#Curse
+
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bCurse I":
+			if event-item is any chestplate:
+				if lore of event-item doesn't contain "&bCurse I":
+					if lore of event-item doesn't contain "&5Curse II":
+						if lore of event-item doesn't contain "&6Curse III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&bCurse I"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5Curse II":
+			if event-item is any chestplate:
+				if lore of event-item doesn't contain "&bCurse I":
+					if lore of event-item doesn't contain "&5Curse II":
+						if lore of event-item doesn't contain "&6Curse III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&5Curse II"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&6Curse III":
+			if event-item is any chestplate:
+				if lore of event-item doesn't contain "&bCurse I":
+					if lore of event-item doesn't contain "&5Curse II":
+						if lore of event-item doesn't contain "&6Curse III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&6Curse III"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+
+on damage of a player:
+	attacker is a player
+	if lore of victim's chestplate contains "&bCurse I":
+		chance of 2%:
+			remove mining fatigue from attacker
+			apply mining fatigue 1 to attacker for 5 seconds
+			stop
+	if lore of victim's chestplate contains "&5Curse II":
+		chance of 4%:
+			remove mining fatigue from attacker
+			apply mining fatigue 2 to attacker for 5 seconds
+			stop
+	if lore of victim's chestplate contains "&6Curse III":
+		chance of 6%:
+			remove mining fatigue from attacker
+			apply mining fatigue 3 to attacker for 5 seconds
+			stop
+
+#Smash
+
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bSmash I":
+			if event-item is any axe or sword:
+				if lore of event-item doesn't contain "&bSmash I":
+					if lore of event-item doesn't contain "&5Smash II":
+						if lore of event-item doesn't contain "&6Smash III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&bSmash I"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5Smash II":
+			if event-item is any axe or sword:
+				if lore of event-item doesn't contain "&bSmash I":
+					if lore of event-item doesn't contain "&5Smash II":
+						if lore of event-item doesn't contain "&6Smash III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&5Smash II"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&6Smash III":
+			if event-item is any axe or sword:
+				if lore of event-item doesn't contain "&bSmash I":
+					if lore of event-item doesn't contain "&5Smash II":
+						if lore of event-item doesn't contain "&6Smash III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&6Smash III"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+
+
+on damage of player:
+	attacker is a player
+	if lore of attacker's held item contains "&bSmash I":
+		chance of 2%:
+			push victim 5 blocks backwards
+			stop
+	if lore of attacker's held item contains "&5Smash II":
+		chance of 4%:
+			push victim 5 blocks backwards
+			stop
+	if lore of attacker's held item contains "&6Smash III": 
+		chance of 6%:
+			push victim 5 blocks backwards
+			stop
+
+#Rebound
+
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bRebound I":
+			if event-item is any leggings:
+				if lore of event-item doesn't contain "&bRebound I":
+					if lore of event-item doesn't contain "&5Rebound II":
+						cancel the event
+						set lore of event-item to "%lore of event-item%||&bRebound I"
+						send "&aYour enchant has been successfully applied!" to the player
+						set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5Rebound II":
+			if event-item is any leggings:
+				if lore of event-item doesn't contain "&bRebound I":
+					if lore of event-item doesn't contain "&5Rebound II":
+						cancel the event
+						set lore of event-item to "%lore of event-item%||&5Rebound II"
+						send "&aYour enchant has been successfully applied!" to the player
+						set cursor slot of player to air
+
+on death of a player:
+	attacker is a player
+	if lore of victim's leggings contains "&bRebound I":
+		spawn 1 creeper at victim
+		apply resistance 10 to the spawned creeper for 1 minute
+		set the name of the spawned creeper to "&6&lRebound"
+		stop
+	if lore of victim's leggings contains "&5Rebound II":
+		spawn 2 creeper at victim
+		apply resistance 10 to the spawned creeper for 1 minute
+		set the name of the spawned creeper to "&6&lRebound"
+		stop
+
+
+#Reinforce
+
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bReinforce I":
+			if event-item is any chestplate:
+				if lore of event-item doesn't contain "&bReinforce I":
+					if lore of event-item doesn't contain "&5Reinforce II":
+						if lore of event-item doesn't contain "&6Reinforce III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&bReinforce I"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5Reinforce II":
+			if event-item is any chestplate:
+				if lore of event-item doesn't contain "&bReinforce I":
+					if lore of event-item doesn't contain "&5Reinforce II":
+						if lore of event-item doesn't contain "&6Reinforce III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&5Reinforce II"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&6Reinforce III":
+			if event-item is any chestplate:
+				if lore of event-item doesn't contain "&bReinforce I":
+					if lore of event-item doesn't contain "&5Reinforce II":
+						if lore of event-item doesn't contain "&6Reinforce III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&6Reinforce III"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+
+
+on damage of a player:
+	attacker is a player
+	if lore of victim's chestplate contains "&bReinforce I":
+		chance of 3%:
+			remove resistance from victim
+			apply resistance 1 to victim for 5 seconds
+			stop
+	if lore of victim's chestplate contains "&5Reinforce II":
+		chance of 5%:
+			remove resistance from victim
+			apply resistance 1 to victim for 5 seconds
+			stop
+	if lore of victim's chestplate contains "&6Reinforce III":
+		chance of 7.5%:
+			remove resistance from victim
+			apply resistance 1 to victim for 5 seconds
+			stop
+
+#Inquisitive
+
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bInquisitive I":
+			if event-item is any axe or sword:
+				if lore of event-item doesn't contain "&bInquisitive I":
+					if lore of event-item doesn't contain "&5Inquisitive II":
+						if lore of event-item doesn't contain "&6Inquisitive III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&bInquisitive I"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5Inquisitive II":
+			if event-item is any axe or sword:
+				if lore of event-item doesn't contain "&bInquisitive I":
+					if lore of event-item doesn't contain "&5Inquisitive II":
+						if lore of event-item doesn't contain "&6Inquisitive III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&5Inquisitive II"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&6Inquisitive III":
+			if event-item is any axe or sword:
+				if lore of event-item doesn't contain "&bInquisitive I":
+					if lore of event-item doesn't contain "&5Inquisitive II":
+						if lore of event-item doesn't contain "&6Inquisitive III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&6Inquisitive III"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+
+on death:
+	if victim is a player:
+		stop
+	attacker is a player
+	if lore of attacker's held item contains "&bInquisitive I":
+		give 5 xp to the attacker
+		stop
+	if lore of attacker's held item contains "&5Inquisitive II":
+		give 10 xp to the attacker
+		stop
+	if lore of attacker's held item contains "&6Inquisitive III":
+		give 15 xp to the attacker
+		stop
+
+#Oblivion
+
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bOblivion I":
+			if event-item is any chestplate:
+				if lore of event-item doesn't contain "&bOblivion I":
+					if lore of event-item doesn't contain "&5Oblivion II":
+						if lore of event-item doesn't contain "&6Oblivion III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&bOblivion I"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5Oblivion II":
+			if event-item is any chestplate:
+				if lore of event-item doesn't contain "&bOblivion I":
+					if lore of event-item doesn't contain "&5Oblivion II":
+						if lore of event-item doesn't contain "&6Oblivion III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&5Oblivion II"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&6Oblivion III":
+			if event-item is any chestplate:
+				if lore of event-item doesn't contain "&bOblivion I":
+					if lore of event-item doesn't contain "&5Oblivion II":
+						if lore of event-item doesn't contain "&6Oblivion III":
+							cancel the event
+							set lore of event-item to "%lore of event-item%||&6Oblivion III"
+							send "&aYour enchant has been successfully applied!" to the player
+							set cursor slot of player to air
+
+on damage of a player:
+	attacker is a player
+	if lore of victim's chestplate contains "&bOblivion I":
+		chance of 5%:
+			loop all players in radius 10 of victim:
+				strike lightning effect at loop-player
+				damage loop-player by 1 heart
+				stop
+	if lore of victim's chestplate contains "&5Oblivion II":
+		chance of 5%:
+			loop all players in radius 10 of victim:
+				strike lightning effect at loop-player
+				damage loop-player by 2 hearts
+				stop
+	if lore of victim's chestplate contains "&6Oblivion III":
+		chance of 5%:
+			loop all players in radius 10 of victim:
+				strike lightning effect at loop-player
+				damage loop-player by 3 hearts
+				stop
+
+#Bunny
+on inventory click:
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&bBunny I":
+			if event-item is any boots:
+				if lore of event-item doesn't contain "&bBunny I":
+					if lore of event-item doesn't contain "&5Bunny II":
+						cancel the event
+						set lore of event-item to "%lore of event-item%||&bBunny I"
+						send "&aYour enchant has been successfully applied!" to the player
+						set cursor slot of player to air
+	if cursor slot of player is enchanted book:
+		if name of cursor slot of player is "&5Bunny II":
+			if event-item is any boots:
+				if lore of event-item doesn't contain "&bBunny I":
+					if lore of event-item doesn't contain "&5Bunny II":
+						cancel the event
+						set lore of event-item to "%lore of event-item%||&5Bunny II"
+						send "&aYour enchant has been successfully applied!" to the player
+						set cursor slot of player to air
+
+
+
+
+
+
+
+
+
+
+#Wither Event
+on spawn of wither:
+	execute console command "/bc &c&lA wither has been spawned!"
+
+on death of wither:
+	execute console command "/bc &c&lA wither has been killed by %attacker%!"

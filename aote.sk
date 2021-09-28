@@ -1,14 +1,17 @@
 on right click:
-	if event-item is diamond sword named "<blue>Aspect Of The End":
+	if event-item is diamond sword named "&bAspect Of The End":
 		if {aotecooldown.%player's uuid%} > 8:
 			message "you have to wait %{aotecooldown.%player's uuid%}% seconds"
-			stop
-		push player forwards at speed 2
-		set {aotecooldown.%player's uuid%} to 0
-		
+			stop trigger
+		if {aotecooldown.%player's uuid%} < 8:
+			push player forward at speed 2
+			wait 10 ticks
+			set velocity of player to new Vector 0, 0, 0
+			set {aotecooldown.%player's uuid%} to 8
+
 every 0.1 second:
-	loop all players
-		if {aotecooldown.%loop-player's uuid%} is not set 
+	loop all players:
+		if {aotecooldown.%loop-player's uuid%} is not set:
 			set {aotecooldown.%loop-player's uuid%} to 0
-		if {aotecooldown.%loop-player's uuid%} is > 0
+		if {aotecooldown.%loop-player's uuid%} > 0:
 			remove 0.1 from {aotecooldown.%loop-player's uuid%}

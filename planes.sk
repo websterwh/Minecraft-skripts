@@ -1,0 +1,345 @@
+# =================================================
+# Airplanes
+# Developed by Adventure Studios for the Minehut Market
+# Requires SkBee, Skacket, ProtocolLib
+# https://minehut.com/market/creator/adventure-studios - Team Minehut Marketplace profile
+# https://discord.gg/hFMugd6pVD - Official Team Discord
+# =================================================
+
+options: # These options configure the settings used in the game. Make sure to only change the text after the colon.
+
+# Need help? Check out the Gitbook: https://adventurestudios.gitbook.io/adventure-studios/
+
+# Prefix - We recommend you set this to your server's name. This will prefix most messages. Hex codes are available for 1.16+
+	prefix: <##7289DA>Adventure Studios &7»
+
+# Admin Permission - The permission required to use admin commands
+	adminPerm: planes.admin
+
+# Sound - The sound played when interacting with things
+	# A valid sound list can be found here: http://www.theredengineer.com/1.9-playsound-list.html
+	sound: block.note_block.pling
+
+# Success Color - The color displayed in text for successes
+	successColor: <##1CFF72>
+
+# Failure Color - The color displayed in text for failures
+	failureColor: <##FF561C>
+
+# Ambient Color - The generic color displayed in text
+	ambientColor: <##8E8E8E>
+
+# Resource Pack - The direct download link for a pack that sends to register airplane models, sounds + more
+	resourcePack: https://www.dropbox.com/s/to6rk6sm3lyfcxc/Planes.zip?dl=1
+
+
+
+
+
+# =================================================
+# Airplane Code
+# Do not edit anything below unless you know what you're doing
+#
+# Note that this Skript heavily relies on the resource pack
+# =================================================
+
+on tab complete of "/planes" or "/airplanes" or "/plane" or "/airplane":
+	set tab completions for position 1 to "pack", "items", "clear" and "recipe"
+
+on load:
+	# ===
+	clear {planes::item::*}
+	set {planes::item::red} to knowledge book named "<##FF300F>Red Plane {@ambientColor}(Right-Click)" with lore "&7", "{@ambientColor}Right-Click while holding to deploy", "{@ambientColor}a red airplane." and "&7" with nbt "{CustomModelData:100001}"
+	set {planes::item::blue} to knowledge book named "<##00AEFF>Blue Plane {@ambientColor}(Right-Click)" with lore "&7", "{@ambientColor}Right-Click while holding to deploy", "{@ambientColor}a blue airplane." and "&7" with nbt "{CustomModelData:100003}"
+	set {planes::item::pink} to knowledge book named "<##FF4DD4>Pink Plane {@ambientColor}(Right-Click)" with lore "&7", "{@ambientColor}Right-Click while holding to deploy", "{@ambientColor}a pink airplane." and "&7" with nbt "{CustomModelData:100005}"
+	set {planes::item::yellow} to knowledge book named "<##EBFF28>Yellow Plane {@ambientColor}(Right-Click)" with lore "&7", "{@ambientColor}Right-Click while holding to deploy", "{@ambientColor}a yellow airplane." and "&7" with nbt "{CustomModelData:100007}"
+	# ===
+	register new shaped recipe for {planes::item::red} using nether star, air, red glazed terracotta, air, red glazed terracotta, air, red glazed terracotta, air and iron ingot with id "plane_red"
+	register new shaped recipe for {planes::item::blue} using nether star, air, light blue glazed terracotta, air, light blue glazed terracotta, air, light blue glazed terracotta, air and iron ingot with id "plane_blue"
+	register new shaped recipe for {planes::item::pink} using nether star, air, pink glazed terracotta, air, pink glazed terracotta, air, pink glazed terracotta, air and iron ingot with id "plane_pink"
+	register new shaped recipe for {planes::item::yellow} using nether star, air, yellow glazed terracotta, air, yellow glazed terracotta, air, yellow glazed terracotta, air and iron ingot with id "plane_yellow"
+	wait 1 second
+	loop all entities where [input is an armor stand]:
+		if {planes::item::*} contains helmet of loop-entity:
+			add loop-entity to {planes::entities::armorstands::*}
+
+on Skript load:
+	wait 15 seconds
+	loop all entities where [input is an armor stand]:
+		if {planes::item::*} contains helmet of loop-entity:
+			add loop-entity to {planes::entities::armorstands::*}
+
+on disconnect:
+	delete {planes::entities::players::%uuid of player%::packcheck}
+
+on resource pack accept:
+	set {planes::entities::players::%uuid of player%::packcheck} to true
+
+on join:
+	wait 2.5 seconds
+	if {planes::entities::players::%uuid of player%::packcheck} is not set:
+		send resource pack "{@resourcePack}" to player
+		send "{@prefix} {@successColor}The airplane resource pack was sent to your client. {@ambientColor}Didn't load? Make sure you have resource packs enabled in your ꜱᴇʀᴠᴇʀ ʟɪꜱᴛ » ᴇᴅɪᴛ ꜱᴇʀᴠᴇʀ"
+		play sound "{@sound}" at volume 0.75 with pitch 1.5 to player
+	else:
+		send "{@prefix} {@failureColor}You already have a server resource pack loaded, so we didn't send the Airplane Pack. If you would like to unload the previous pack and load the planes pack, click <cmd:/planes pack><tooltip:&aClick to install the planes pack.>&c&lHERE<reset>{@failureColor}."
+		play sound "{@sound}" at volume 0.75 with pitch 0.75 to player
+
+on inventory click:
+	if "%event-inventory%" contains "inventory of horse":
+		if event-item is {planes::item::red} or {planes::item::blue} or {planes::item::pink} or {planes::item::yellow}:
+			cancel event
+
+command /planes [<text>] [<text>]:
+	aliases: /airplanes, /plane, /airplane
+	cooldown: 1 second
+	cooldown message: {@failureColor}Please wait 1 second between plane command execution.
+	trigger:
+		if arg-1 is "pack":
+			send resource pack "{@resourcePack}" to player
+			send "{@prefix} {@successColor}The airplane resource pack was sent to your client. {@ambientColor}Didn't load? Make sure you have resource packs enabled in your ꜱᴇʀᴠᴇʀ ʟɪꜱᴛ » ᴇᴅɪᴛ ꜱᴇʀᴠᴇʀ"
+			play sound "{@sound}" at volume 0.75 with pitch 1.5 to player
+		else if arg-1 is "items":
+			if player has permission "planes.admin":
+				send "{@prefix} {@successColor}Recieved each type of airplane."
+				give player 1 of {planes::item::red}, 1 of {planes::item::blue}, 1 of {planes::item::pink} and 1 of {planes::item::yellow}
+				play sound "{@sound}" at volume 0.75 with pitch 1.5 to player
+			else:
+				send "{@prefix} {@failureColor}This subcommand requires the permission {@adminPerm}{@failureColor}, of which you are lacking."
+				play sound "{@sound}" at volume 0.75 with pitch 0.75 to player
+		else if arg-1 is "clear":
+			if player has permission "planes.admin":
+				send "{@prefix} {@successColor}All airplanes have been cleared."
+				play sound "{@sound}" at volume 0.75 with pitch 1.5 to player
+				kill all entities where [{planes::entities::armorstands::*} contains input]
+				clear {planes::entities::armorstands::*}
+			else:
+				send "{@prefix} {@failureColor}This subcommand requires the permission {@adminPerm}{@failureColor}, of which you are lacking."
+				play sound "{@sound}" at volume 0.75 with pitch 0.75 to player
+		else if arg-1 is "recipe":
+			send "{@prefix} {@successColor}Opening recipe display."
+			play sound "{@sound}" at volume 0.75 with pitch 1.5 to player
+			set metadata tag "planeRecipeMenu" of player to chest inventory with 5 rows named "<##6E6E6E>» Airplane Recipe"
+			set slot (integers between 0 and 44) of metadata tag "planeRecipeMenu" of player to gray stained glass pane named "&7"
+			set slot (integers between 10 and 12), (integers between 19 and 21) and (integers between 28 and 30) of metadata tag "planeRecipeMenu" of player to light gray stained glass pane named "&7"
+			set slot 10 of metadata tag "planeRecipeMenu" of player to nether star
+			set slot 30 of metadata tag "planeRecipeMenu" of player to iron ingot
+			if arg-2 is "blue":
+				set slot 12, 20 and 28 of metadata tag "planeRecipeMenu" of player to light blue glazed terracotta
+				set slot 24 of metadata tag "planeRecipeMenu" of player to 1 of {planes::item::blue}
+				open (metadata tag "planeRecipeMenu" of player) to player
+			else if arg-2 is "yellow":
+				set slot 12, 20 and 28 of metadata tag "planeRecipeMenu" of player to yellow glazed terracotta
+				set slot 24 of metadata tag "planeRecipeMenu" of player to 1 of {planes::item::yellow}
+				open (metadata tag "planeRecipeMenu" of player) to player
+			else if arg-2 is "red":
+				set slot 12, 20 and 28 of metadata tag "planeRecipeMenu" of player to red glazed terracotta
+				set slot 24 of metadata tag "planeRecipeMenu" of player to 1 of {planes::item::red}
+				open (metadata tag "planeRecipeMenu" of player) to player
+			else if arg-2 is "pink":
+				set slot 12, 20 and 28 of metadata tag "planeRecipeMenu" of player to pink glazed terracotta
+				set slot 24 of metadata tag "planeRecipeMenu" of player to 1 of {planes::item::pink}
+				open (metadata tag "planeRecipeMenu" of player) to player
+			else:
+				send "{@prefix} {@failureColor}Invalid command usage! {@ambientColor}Correct usage: <##6E6E6E>/planes <pack|items|clear|recipe (pink|blue|yellow|red)>"
+				play sound "{@sound}" at volume 0.75 with pitch 0.75 to player
+		else:
+			send "{@prefix} {@failureColor}Invalid command usage! {@ambientColor}Correct usage: <##6E6E6E>/planes <pack|items|clear|recipe (pink|blue|yellow|red)>"
+			play sound "{@sound}" at volume 0.75 with pitch 0.75 to player
+
+on inventory click:
+	if event-inventory = (metadata tag "planeRecipeMenu" of player):
+		cancel event
+
+on death:
+	if {planes::entities::armorstands::*} contains victim:
+		remove victim from {planes::entities::armorstands::*}
+
+on damage of armor stand:
+	if attacker is a player:
+		if {planes::entities::armorstands::*} contains victim:
+			cancel event
+			play sound "{@sound}" at volume 0.75 with pitch 0.75 to attacker
+			send "{@prefix} {@failureColor}You cannot harm airplane entities. If you wish to remove the targeted plane, {@ambientColor}Shift + Right-Click{@failureColor} on it." to attacker
+
+on steering vehicle:
+	set {_vehicle} to vehicle of event-player
+	set {_pitch} to metadata value "plane_pitch" of {_vehicle} ? 0
+	set {_roll} to metadata value "plane_roll" of {_vehicle} ? 0
+	set {_yaw} to metadata value "plane_yaw" of {_vehicle} ? 0
+	if "%movements%" contains "jump":
+		if block below {_vehicle} is solid:
+			push {_vehicle} forwards with force 0.1
+	else if "%movements%" contains "forwards":
+		add 1 to {_pitch} if {_pitch} <= 15
+	else if "%movements%" contains "backwards":
+		remove 1 from {_pitch} if {_pitch} >= -15
+	else if "%movements%" contains "left":
+		if {_roll} <= 20:
+			if {_roll} >= -20:
+				add 1 to {_roll}
+		remove 2 from {_yaw}
+		set metadata value "plane_tilt_cooldown_left" of event-player to true
+	else if "%movements%" contains "right":
+		if {_roll} <= 20:
+			if {_roll} >= -20:
+				remove 1 from {_roll}
+		add 2 to {_yaw}
+		set metadata value "plane_tilt_cooldown_right" of event-player to true
+	set metadata value "plane_pitch" of {_vehicle} to {_pitch}
+	set metadata value "plane_roll" of {_vehicle} to {_roll}
+	set metadata value "plane_yaw" of {_vehicle} to {_yaw}
+
+on right click:
+	if {planes::entities::armorstands::*} contains event-entity:
+		if player is sneaking:
+			cancel event
+			if passenger of event-entity is not set:
+				if player is sneaking:
+					drop helmet of event-entity at location of event-entity
+					play sound "{@sound}" at volume 0.75 with pitch 0.75 to player
+					send "{@prefix} {@failureColor}You have removed the targeted airplane." to player
+					remove event-entity from {planes::entities::armorstands::*}
+					kill event-entity
+				else:
+					play sound "{@sound}" at volume 0.75 with pitch 0.75 to player
+					send "{@prefix} {@failureColor}You must be crouching to remove airplanes." to player
+			else:
+				play sound "{@sound}" at volume 0.75 with pitch 0.75 to player
+				send "{@prefix} {@failureColor}Someone is currently riding this airplane, therefore you may not remove it." to player
+		else:
+			cancel event
+			send "{@prefix} {@successColor}Entered airplane! Here are the controls:%nl%<##B0B0B0>  ● WASD » Tilt the airplane%nl%<##B0B0B0>  ● Space » Taxi (Only available while on ground)%nl%<##B0B0B0>  ● Take off by leaning fully backwards!" to player
+			set metadata value "plane_tilt_cooldown_left" of player to false
+			set metadata value "plane_tilt_cooldown_right" of player to false
+			play sound "{@sound}" at volume 0.75 with pitch 0.75 to player
+			play 75 of composter at (event-entity's head location) offset by vector(1, 0.75, 1) with extra 0
+			teleport event-entity to location 0.5 above event-entity
+			make player ride event-entity
+			apply slow falling of tier 999 without particles to event-entity for 111111 seconds
+			set {_speed} to 0.01
+			if "%full nbt of vehicle of player%" contains "CustomModelData:100001":
+				add "{CustomModelData:100002}" to nbt of helmet of vehicle of player
+			else if "%full nbt of vehicle of player%" contains "CustomModelData:100003":
+				add "{CustomModelData:100004}" to nbt of helmet of vehicle of player
+			else if "%full nbt of vehicle of player%" contains "CustomModelData:100005":
+				add "{CustomModelData:100006}" to nbt of helmet of vehicle of player
+			else if "%full nbt of vehicle of player%" contains "CustomModelData:100007":
+				add "{CustomModelData:100008}" to nbt of helmet of vehicle of player
+			while player is riding event-entity:
+				if block 1.75 in front of (location 0.75 above event-entity) is solid:
+					if block below event-entity is not solid:
+						if {_speed} > 0.025:
+							if "%full nbt of vehicle of player%" contains "CustomModelData:100002":
+								add "{CustomModelData:100001}" to nbt of helmet of vehicle of player
+							else if "%full nbt of vehicle of player%" contains "CustomModelData:100004":
+								add "{CustomModelData:100003}" to nbt of helmet of vehicle of player
+							else if "%full nbt of vehicle of player%" contains "CustomModelData:100006":
+								add "{CustomModelData:100005}" to nbt of helmet of vehicle of player
+							else if "%full nbt of vehicle of player%" contains "CustomModelData:100008":
+								add "{CustomModelData:100007}" to nbt of helmet of vehicle of player
+							send "{@prefix} {@successColor}Your airplane has crashed!" to player
+							drop helmet of event-entity at location of event-entity
+							play sound "{@sound}" at volume 0.75 with pitch 1.5 to player
+							play 75 of flame at (event-entity's head location) offset by vector(1.5, 1.5, 1.5) with extra 0
+							play 70 of large_smoke at (event-entity's head location) offset by vector(1.5, 1.5, 1.5) with extra 0
+							remove event-entity from {planes::entities::armorstands::*}
+							kill event-entity
+				if {_speed} > 0.075:
+					play 1 of cloud at (event-entity's head location) offset by vector(0.7, 0, 0.7) with extra 0
+				set {_pitch} to metadata value "plane_pitch" of event-entity ? 0
+				set {_roll} to metadata value "plane_roll" of event-entity ? 0
+				set {_yaw} to metadata value "plane_yaw" of event-entity ? 0
+				if {_roll} > 0:
+					if metadata value "plane_tilt_cooldown_left" of player is false:
+						remove 1 from {_roll}
+					else:
+						set metadata value "plane_tilt_cooldown_left" of player to false
+				else if {_roll} < 0:
+					if metadata value "plane_tilt_cooldown_right" of player is false:
+						add 1 to {_roll}
+					else:
+						set metadata value "plane_tilt_cooldown_right" of player to false
+				set metadata value "plane_roll" of event-entity to {_roll}
+				updatePlaneNBT(event-entity)
+				if {_speed} < 0.15:
+					if block below vehicle of player is solid:
+						if {_pitch} < -12.5:
+							add 0.001 to {_speed}
+						else:
+							if {_speed} > 0:
+								add -0.001 to {_speed}
+					else:
+						add 0.001 to {_speed}
+				else if block below vehicle of player is solid:
+					if {_speed} < 0.15:
+						if (0 - {_pitch}) > 15:
+							add 0.001 to {_speed}
+						else:
+							if {_speed} > 0:
+								add -0.002 to {_speed}
+					else:
+						add -0.002 to {_speed}
+				set {_lift} to (0.05 - {_pitch} / 150) * ({_speed} * 6.66)
+				send action bar "{@successColor}&oThrust: {@ambientColor}%round({_speed} * 100 * 10)%&7/{@ambientColor}150 {@successColor}&oLift: {@ambientColor}%round({_lift}* 100 - 5)%&7/{@ambientColor}11" to player
+				push event-entity upwards at speed {_lift} * 0.9
+				push event-entity forwards at speed {_speed} * 0.7
+				wait 0.05 seconds
+			wait 1 second
+			remove slow falling from event-entity
+	else if tool of player is knowledge book:
+		if full nbt of tool of player contains "CustomModelData:100001":
+			cancel event
+			planeSpawn(player, {planes::item::red})
+			set tool of player to air
+			play sound "{@sound}" at volume 0.75 with pitch 1.5 to player
+			send "{@prefix} {@successColor}You have successfully deployed a red airplane.%nl%{@ambientColor}(Shift + Right-Click on the plane to re-obtain it)"
+		else if full nbt of tool of player contains "CustomModelData:100003":
+			cancel event
+			planeSpawn(player, {planes::item::blue})
+			set tool of player to air
+			play sound "{@sound}" at volume 0.75 with pitch 1.5 to player
+			send "{@prefix} {@successColor}You have successfully deployed a blue airplane.%nl%{@ambientColor}(Shift + Right-Click on the plane to re-obtain it)"
+		else if full nbt of tool of player contains "CustomModelData:100005":
+			cancel event
+			planeSpawn(player, {planes::item::pink})
+			set tool of player to air
+			play sound "{@sound}" at volume 0.75 with pitch 1.5 to player
+			send "{@prefix} {@successColor}You have successfully deployed a pink airplane.%nl%{@ambientColor}(Shift + Right-Click on the plane to re-obtain it)"
+		else if full nbt of tool of player contains "CustomModelData:100007":
+			cancel event
+			planeSpawn(player, {planes::item::yellow})
+			set tool of player to air
+			play sound "{@sound}" at volume 0.75 with pitch 1.5 to player
+			send "{@prefix} {@successColor}You have successfully deployed a yellow airplane.%nl%{@ambientColor}(Shift + Right-Click on the plane to re-obtain it)"
+
+function updatePlaneNBT(vehicle: entity):
+	set {_pitch} to metadata value "plane_pitch" of {_vehicle} ? 0
+	set {_roll} to metadata value "plane_roll" of {_vehicle} ? 0
+	set {_yaw} to metadata value "plane_yaw" of {_vehicle} ? 0
+	add "{Pose:{Head:[%{_pitch}%f,0.01f,%{_roll}%f]}}" to nbt of {_vehicle}
+	add "{Rotation:[%{_yaw}%f]}" to nbt of {_vehicle}
+
+on dismount:
+	set {_vehicle} to vehicle of player
+	set metadata value "plane_pitch" of {_vehicle} to -3
+	set metadata value "plane_roll" of {_vehicle} to 0
+	updatePlaneNBT({_vehicle})
+	if "%full nbt of vehicle of player%" contains "CustomModelData:100002":
+		add "{CustomModelData:100001}" to nbt of helmet of vehicle of player
+	else if "%full nbt of vehicle of player%" contains "CustomModelData:100004":
+		add "{CustomModelData:100003}" to nbt of helmet of vehicle of player
+	else if "%full nbt of vehicle of player%" contains "CustomModelData:100006":
+		add "{CustomModelData:100005}" to nbt of helmet of vehicle of player
+	else if "%full nbt of vehicle of player%" contains "CustomModelData:100008":
+		add "{CustomModelData:100007}" to nbt of helmet of vehicle of player
+
+function planeSpawn(p: player, color: object):
+	spawn an armor stand at {_p} with nbt "{Invisible:1b,CustomModelData:100001,NoBasePlate:1,Pose:{Body:[90f,0f,0f],LeftLeg:[173f,0f,330f],RightLeg:[173f,0f,30f]}}"
+	add "{Rotation:[%yaw of {_p}%f],Pose:{Head:[-5f,0f,0f]}}" to nbt of spawned armor stand
+	set helmet of spawned armor stand to {_color}
+	# ===
+	add spawned armor stand to {planes::entities::armorstands::*}
+	set metadata value "plane_yaw" of spawned armor stand to yaw of spawned armor stand
+	set metadata value "plane_pitch" of spawned armor stand to pitch of spawned armor stand
+	push spawned armor stand forwards with force 0.5

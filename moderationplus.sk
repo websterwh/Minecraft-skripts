@@ -1,0 +1,702 @@
+options:
+#[PERMISSIONS]
+    permission.punish: permission.punish
+    permission.modify: permission.modify
+    permission.vanish: permission.vanish
+    permission.bypass: permission.bypass
+    permission.staffChat: permission.staffchat
+#[MESSAGES]
+    msg.noPermissions: &c&lERROR &8• &7You don't have the required permissions.
+    msg.wrongUsage: &c&lPUNISH &8• &7/punish <player>
+    msg.cannotPunishPlayer: &c&lPUNISH &8• &7You can't punish this player!
+    msg.teleport: &aSuccesfully teleported to %{_suspect}%&a!
+    msg.noTeleport: &cYou can't teleport to a offline player.
+    msg.noInventory: &cYou can't open a offline player's inventory.
+    msg.noHistory: &c&lPUNISH &8• &7%{_suspect}%&7's history is empty.
+    msg.addReason: &c&lPUNISH &8• &7Type the name of the reason that you would like to add in the minecraft chat. If you wanna cancel this action type &ccancel&7.
+    msg.cancelled: &c&lPUNISH &8• &7You have succesfully &ccancelled&7 this action.
+    msg.noSpace: &c&lPUNISH &8• &7The maximum amount of reasons has been reached (&c28&7). If you would like to add another reason, you have to delete one.
+    msg.succesfullyAddedReason: &c&lPUNISH &8• &7The reason &f%{_newReason}% &7has been &asuccesfully &7added to the menu. 
+    msg.kick: &c&lKICK &8• &7You have been kicked &8| &cReason: &7%{_reason}%
+    msg.kickBroadcast: &c&lKICK &8• &c%{_suspect}% &7got kicked &8| &cReason: &7%{_reason}%
+    msg.warn: &c&lWARN &8• &7You have been warned &8| &cReason: &7%{_reason}%
+    msg.warnBroadcast: &c&lWARN &8• &c%{_suspect}% &7got warned &8| &cReason: &7%{_reason}%
+    msg.mute: &c&LMUTE &8• &7You have been muted &8| &cReason: &7%{_reason}% &8| &cTime: &7%{_time} ? ""Permanent""%
+    msg.muteBroadcast: &c&lMUTE &8• &c%{_suspect}% &7got muted &8| &cReason: &7%{_reason}% &8| &cTime: &7%{_time} ? ""Permanent""%
+    msg.ban: &c&lBAN &8• &7You have been banned &8| &cReason: &7%{_reason}% &8| &cTime: &7%{_time} ? "" Permanent""%, you will be unbanned at &c%{punish::Ban::expire::%{_uuid}%} ? ""Never""%
+    msg.banBroadcast: &c&lBAN &8• &c%{_suspect}% &7got banned &8| &cReason: &7%{_reason}% &8| &cTime: &7%{_time} ? ""Permanent""%
+    msg.alreadyPunished: &c&lPUNISH &8• &7This player already got a &7%{_type} in lowercase%&7.
+    msg.silentPunish: &f[SILENT]
+    msg.muted: &cYou are muted till %{punish::Mute::expire::%player's uuid%}%&7.
+    msg.connectWhenBanned: &cYour ban will expire at %{punish::Ban::expire::%player's uuid%}%&7.
+    msg.noAlt: &c&lPUNISH &8• &7%{_suspect}%&7 doesn't have any alt accounts.
+    msg.vanishTrue: &c&lPUNISH &8• &7succesfully set vanishing when teleporting to &atrue&7.
+    msg.vanishFalse:&c&lPUNISH &8• &7succesfully set vanishing when teleporting to &cfalse&7.
+    msg.vanished: &aYou are now in vanish.
+    msg.unVanished: &cYou are no longer in vanish.
+    msg.lockdown: &c&lLOCKDOWN &8• &7This server is going into lockdown, all normal players will be kicked in 5 seconds.
+    msg.connectWhenLockdown: This server is currently in lockdown.
+    msg.removeLockdown: &c&lLOCKDOWN &8• &7This server is no longer in lockdown.
+    msg.clearChat: &cThe chat has been cleared.
+    msg.muteChat: &cThe chat has been muted.
+    msg.unmuteChat: &cThe chat has been unmuted.
+    msg.chatMuted: &cThe chat is currently muted.
+    msg.addFilter: &c&lFILTER &8• &7The word %{_filter}% &7has been &asuccesfully &7added to the chat filter.
+    msg.removeFilter: &c&lFILTER &8• &7The word %{_filter}% &7has been &asuccesfully &7removed from the chat filter.
+    msg.clearFilter: &c&lFILTER &8• &7The chat filter has been &asuccesfully &7cleared.
+    msg.listFilter: &c&lFILTER &8•  &7The chat filter contains the following: &7%{moderation::filter::*} ? """"%
+    msg.alreadyFilter: &c&lFILTER &8•  &7The word %{_filter}% &7is already added to the chat filter.
+    msg.chatFilter: &cYour message was caught by our chat filter.
+#[ACTIONBAR]
+    actionbar.currentlyVanished: &aYou are currently vanished.
+#[SOUNDS]
+    sound.teleport: "ENTITY_ENDERMAN_TELEPORT"
+    sound.unknown: "ENTITY.VILLAGER.NO"
+    sound.return: "UI.STONECUTTER.SELECT_RECIPE"
+    sound.switchPage: "ENTITY_CHICKEN_EGG" 
+    sound.deleteReason: "BLOCK_ANVIL_PLACE"
+    sound.success: "ENTITY.EXPERIENCE_ORB.PICKUP" 
+    sound.broadcast: "BLOCK.NOTE_BLOCK.HARP"
+    sound.ping: "BLOCK.NOTE_BLOCK.PLING"
+#[GUI NAMES]
+    gui.menuName: &c&lPunish &8• &fMenu
+    gui.timeName: &c&l%{_type}% &8• &fTimespan
+    gui.reasonName: &c&l%{_type}% &8• &fReason
+    gui.confirmationName: &c&l%{_type}% &8• &fConfirmation
+    gui.historyName: &c&lHistory &8• &fPage
+    gui.altAccountsName: &c&lAlt accounts &8• &f%{_suspect}%
+    gui.moderationName: &c&lModeration &8• &fMenu
+#[GUI ITEMS]
+    item.guiReason: book
+    item.guiHistory: paper
+
+on script load:
+    set {punish::time::blocks::*} to lime wool, green wool, yellow wool, orange wool, magenta wool, purple wool, red wool, lime concrete, green concrete, yellow concrete, orange concrete, magenta concrete, purple concrete, red concrete, lime terracotta, green terracotta, yellow terracotta, orange terracotta, magenta terracotta, purple terracotta and red terracotta
+    set {punish::time::timespan::*} to "5 minutes", "15 minutes", "30 minutes", "1 hour", "2 hours", "3 hours", "4 hours", "6 hours", "8 hours", "10 hours", "12 hours", "1 day", "2 days", "3 days", "4 days", "6 days", "8 days", "10 days", "12 days", "14 days" and "Permanent"
+
+command ph [<string = "help">] [<integer = 1>]:
+    trigger:
+        if arg-1 = "help":
+            if arg-2 = 1:
+                send " "
+                send "&c&lPunish &8• &f(Help) [1/8]"
+                send "&f- &7Alt accounts &8(/ph help 2)"
+                send "&f- &7Chat filter &8(/ph help 3)"
+                send "&f- &7General &8(/ph help 4)"
+                send "&f- &7History &8(/ph help 5)"
+                send "&f- &7Menu &8(/ph help 6)"
+                send "&f- &7Reason &8(/ph help 7)"
+                send "&f- &7Teleport &8(/ph help 8)" 
+                send " "
+                send "&c[Previous]<reset> <command:/ph help 2>&a[Next]<reset>"
+                send " "
+            else if arg-2 = 2:
+                send " "
+                send "&c&lPunish &8• &f(Alt accounts) [2/8]"
+                send "&7Easily track down players' alt"
+                send "&7accounts using the command below."
+                send " "
+                send "&f➥ &7/punish <player> alt"
+                send " "
+                send "<command:/ph help 1>&c[Previous]<reset> <command:/ph help 3>&a[Next]<reset>"
+                send " "
+            else if arg-2 = 3:
+                send " "
+                send "&c&lPunish &8• &f(Chat filter) [3/8]"
+                send "&7Make sure no-one is using unappropriate words"
+                send "&7in your minecraft server with a chat filter."
+                send "&7Use the commands down below to modify the filter."
+                send " "
+                send "&f➥ &7/moderation filter add <string>"
+                send "&f➥ &7/moderation filter remove <string>"
+                send "&f➥ &7/moderation filter clear"
+                send "&f➥ &7/moderation filter list"
+                send " "
+                send "<command:/ph help 2>&c[Previous]<reset> <command:/ph help 4>&a[Next]<reset>"
+                send " "                  
+            else if arg-2 = 4:
+                send " "
+                send "&c&lPunish &8• &f(General) [4/8]"
+                send "&7Take care of your server with various"
+                send "&7tools by using the command below."
+                send " "
+                send "&f➥ &7/moderation"
+                send "&f➥ &7/sc <text>"
+                send " "
+                send "<command:/ph help 3>&c[Previous]<reset> <command:/ph help 5>&a[Next]<reset>"
+                send " "            
+            else if arg-2 = 5:
+                send " "
+                send "&c&lPunish &8• &f(History) [5/8]"
+                send "&7If a player gets punished it will"
+                send "&7be stored in the player's history."
+                send "&7Access a player's history by"
+                send "&7using the command below."
+                send " "
+                send "&f➥ &7/punish <player> history"
+                send " "
+                send "<command:/ph help 4>&c[Previous]<reset> <command:/ph help 6>&a[Next]<reset>"
+                send " "
+            else if arg-2 = 6:
+                send " "
+                send "&c&lPunish &8• &f(Menu) [6/8]"
+                send "&7You're in luck, because the following"
+                send "&7command makes it all very easy to"
+                send "&7judge and monitor players through a"
+                send "&7menu with all kinds of cool gadgets."
+                send " "
+                send "&f➥ &7/punish <player>"
+                send " "                
+                send "<command:/ph help 5>&c[Previous]<reset> <command:/ph help 7>&a[Next]<reset>"
+                send " "
+            else if arg-2 = 7:
+                send " "
+                send "&c&lPunish &8• &f(Reason) [7/8]"
+                send "&7Make your own reasons for punishing"
+                send "&7someone with the following command."
+                send " "
+                send "&f➥ &7/punish addreason <string>"
+                send " " 
+                send "&7This reason automatically gets added"
+                send "&7to the menu handled on the previous page."
+                send " "  
+                send "<command:/ph help 6>&c[Previous]<reset> <command:/ph help 8>&a[Next]<reset>"
+                send " "
+            else if arg-2 = 8:
+                send " "
+                send "&c&lPunish &8• &f(Teleport) [8/8]"
+                send "&7The menu handled on page [5/7] also"
+                send "&7has a teleport function. You can enable"
+                send "&7or disable vanishing &7when teleporting"
+                send "&7to a player with the following command."
+                send " "
+                send "&f➥ &7/punish vanish <true/false>"
+                send "&f➥ &7/vanish"
+                send " "
+                send "<command:/ph help 7>&c[Previous]<reset> &a[Next]"
+                send " "
+
+command moderation [<string>] [<string>] [<string>]:
+    permission: {@permission.punish}
+    permission message: {@msg.noPermissions}
+    aliases: mod
+    trigger:
+        if arg-1 is set:
+            if arg-1 = "filter":
+                set {_filter} to arg-3
+                if arg-2 = "add":
+                    if {moderation::filter::*} doesn't contain {_filter}:
+                        add {_filter} to {moderation::filter::*}
+                        send "{@msg.addFilter}"
+                    else:
+                        send "{@msg.alreadyFilter}"
+                else if arg-2 = "remove":
+                    remove {_filter} from {moderation::filter::*}
+                    send "{@msg.removeFilter}"
+                else if arg-2 = "list":
+                    send "{@msg.listFilter}"
+                else if arg-2 = "clear":
+                    clear {moderation::filter::*}
+                    send "{@msg.clearFilter}"
+        else:
+            create a gui with virtual chest inventory with 4 rows named "{@gui.moderationName}":
+                format gui (integers from 0 to 35) to gray stained glass pane named " "
+                format gui 0, 1, 7, 8, 9, 17, 18, 26, 27, 28, 34 and 35 to black stained glass pane named " "
+                format gui 11 to hopper named "&f&lClear chat" with lore "&7Click to clear the minecraft chat":
+                    play sound {@sound.success} with volume 0.5 and pitch 1 to player
+                    close player's inventory
+                    loop 100 times:
+                        broadcast " "
+                    broadcast "{@msg.clearChat}"
+                format gui 13 to anvil named "&f&lMute chat" with lore "&7Click to mute the minecraft chat":
+                    if {moderation::mute chat} is not set:
+                        play sound {@sound.success} with volume 0.5 and pitch 1 to player
+                        set {moderation::mute chat} to true 
+                        broadcast "{@msg.muteChat}"
+                        close player's inventory
+                format gui 15 to dark oak door named "&f&lLockdown" with lore "&7Click to put the server in lockdown":
+                    if {moderation::lockdown} is not set:
+                        play sound {@sound.success} with volume 0.5 and pitch 1 to player
+                        set {moderation::lockdown} to true
+                        broadcast "{@msg.lockdown}"
+                        close player's inventory
+                        wait 5 seconds
+                        kick all players where [input doesn't have permission "{@permission.punish}"] due to "{@msg.connectWhenLockdown}"
+                format gui 20 to red stained glass pane named "&c&lEmpty"
+                format gui 22 to checkModeration("mute chat", ("&7The minecraft chat is currently muted." and "&7Click to unmute the minecraft chat")):
+                    if {moderation::mute chat} is set:
+                        play sound {@sound.success} with volume 0.5 and pitch 1 to player
+                        delete {moderation::mute chat}
+                        broadcast "{@msg.unmuteChat}"
+                        player command "moderation"
+                format gui 24 to checkModeration("lockdown", ("&7The server is currently in lockdown." and "&7Click to get the server out of lockdown")): 
+                    if {moderation::lockdown} is set:
+                        play sound {@sound.success} with volume 0.5 and pitch 1 to player
+                        delete {moderation::lockdown}
+                        broadcast "{@msg.removeLockdown}"
+                        player command "moderation"
+                open gui last gui to player
+
+command punish [<offline player>] [<string>]:
+    permission: {@permission.punish}
+    permission message: {@msg.noPermissions}
+    aliases: pun
+    trigger:
+        if arg-1 is set:
+            if arg-1 = "vanish":
+                if player has permission "{@permission.modify}":
+                    if arg-2 = "true":
+                        set {punish::vanish} to true
+                        send "{@msg.vanishTrue}"
+                    else if arg-2 = "false":
+                        delete {punish::vanish}
+                        send "{@msg.vanishFalse}"
+            else if arg-1 = "addreason":
+                if player has permission "{@permission.modify}":
+                    if arg-2 is set:
+                        if size of {punish::reason::*} >= 28:
+                            send "{@msg.noSpace}"
+                            stop
+                        set {_newReason} to "&r%arg-2%"
+                        send "{@msg.succesfullyAddedReason}"
+                        play sound {@sound.success} with volume 0.5 and pitch 1 to player
+                        add {@item.guiReason} named {_newReason} with lore "&7[Left-click] to select reason" and "&7[Right-click] to delete reason" to {punish::reason::*}
+            else:
+                set {_uuid} to uuid of arg-1
+                set {_suspect} to arg-1
+                if arg-2 is set:
+                    if arg-2 = "alt":
+                        getAltAccounts(player, {_suspect})
+                    else if arg-2 = "history":
+                        if size of {punish::history::%{_uuid}%::*} >= 1:
+                            paginationGUI(player, {_suspect}, 1, {punish::history::%{_uuid}%::*})
+                        else:
+                            play sound {@sound.unknown} with volume 0.5 and pitch 1 to player
+                            close player's inventory
+                            send "{@msg.noHistory}"                        
+                else:
+                    if arg-1 doesn't have permission "{@permission.bypass}":
+                        create a gui with virtual chest inventory with 6 rows named "{@gui.menuName}":
+                            format gui (integers from 0 to 53) to gray stained glass pane named " "
+                            format gui 0, 1, 7, 8, 9, 17, 36, 44, 45, 46, 52 and 53 to black stained glass pane named " "
+                            format gui 10 to redstone named "&f&lWarn" with lore "&7Click here to warn &c%{_suspect}%" and "&7for a certain reason":
+                                getPunishReason(player, {_suspect}, "Warn")
+                            format gui 12 to redstone repeater named "&f&lMute" with lore "&7Click here to mute &c%{_suspect}%" and "&7for a certain reason and timespan":
+                                getPunishReason(player, {_suspect}, "Mute")
+                            format gui 14 to redstone comparator named "&f&lKick" with lore "&7Click here to kick &c%{_suspect}%" and "&7for a certain reason":
+                                getPunishReason(player, {_suspect}, "Kick")
+                            format gui 16 to tnt named "&f&lBan" with lore "&7Click here to ban &c%{_suspect}%" and "&7for a certain reason and timespan":
+                                getPunishReason(player, {_suspect}, "Ban")
+                            format gui 19 to checkPunishment({_suspect}, "Warn", "Warned", ("&7This player is currently warned." and "&7Click to unwarn &c%{_suspect}%")):
+                                if {punish::Warn::%{_uuid}%} is set:
+                                    play sound {@sound.success} with volume 0.5 and pitch 1 to player
+                                    delete {punish::Warn::%{_uuid}%}
+                                    delete {punish::Warn::expire::%{_uuid}%}
+                                    player command "punish %{_suspect}%"
+                            format gui 21 to checkPunishment({_suspect}, "Mute", "Muted", ("&7This player is currently muted." and "&7Click to unmute &c%{_suspect}%")):
+                                if {punish::Mute::%{_uuid}%} is set:
+                                    play sound {@sound.success} with volume 0.5 and pitch 1 to player
+                                    delete {punish::Mute::%{_uuid}%}
+                                    delete {punish::Mute::expire::%{_uuid}%}
+                                    player command "punish %{_suspect}%"
+                            format gui 23 to red stained glass pane named "&c&lEmpty"
+                            format gui 25 to checkPunishment({_suspect}, "Ban", "Banned", ("&7This player is currently banned." and "&7Click to unban &c%{_suspect}%")):
+                                if {punish::Ban::%{_uuid}%} is set:
+                                    play sound {@sound.success} with volume 0.5 and pitch 1 to player
+                                    delete {punish::Ban::%{_uuid}%}
+                                    delete {punish::Ban::expire::%{_uuid}%}
+                                    unban {_suspect}
+                                    player command "punish %{_suspect}%"
+                            if arg-1 is online:
+                                format gui 39 to compass named "&f&lTeleport" with lore "&7Coords: &eX%round({_suspect}'s x-loc)%, &aY%round({_suspect}'s y-loc)%, &9Z%round({_suspect}'s z-loc)%", "" and "&7Click to teleport":
+                                    if {punish::vanish} is set:
+                                        set metadata "vanish" of player to true 
+                                        hide the player from all players where [input doesn't have permission "{@permission.vanish}"]
+                                        send "{@msg.vanished}"
+                                    teleport player to location of {_suspect}
+                                    play sound {@sound.teleport} with volume 0.5 and pitch 1 to player
+                                    close player's inventory
+                                    send "{@msg.teleport}"
+                                format gui 40 to ("%{_suspect}%" parsed as offline player)'s skull named "&f&l%{_suspect}%" with lore "&7Status: &a&lOnline", "", "&7[Left-click] to see history", and "&7[Right-click] to see alt accounts":
+                                    if "%click type%" contains "LEFT":
+                                        if size of {punish::history::%{_uuid}%::*} >= 1:
+                                            paginationGUI(player, {_suspect}, 1, {punish::history::%{_uuid}%::*})
+                                        else:
+                                            play sound {@sound.unknown} with volume 0.5 and pitch 1 to player
+                                            close player's inventory
+                                            send "{@msg.noHistory}"
+                                    else:
+                                        getAltAccounts(player, {_suspect})
+                                format gui 41 to chest named "&f&lInventory" with lore "&7[Left-click] to see &7inventory" and "&7[Right click] to see &7ender chest":
+                                    checkInventory(player, {_suspect}, "%click type%")
+                            else:
+                                format gui 39 to compass named "&f&lTeleport" with lore "&7You can't teleport to a offline" and "&7player's location":
+                                    play sound {@sound.unknown} with volume 0.5 and pitch 1 to player
+                                    close player's inventory
+                                    send "{@msg.noTeleport}"
+                                format gui 40 to {_suspect}'s skull named "&f&l%{_suspect}%" with lore "&7Status: &c&lOffline", "", "&7[Left-click] to see history", and "&7[Right-click] to see alt accounts":
+                                    if "%click type%" contains "LEFT":
+                                        if size of {punish::history::%{_uuid}%::*} >= 1:
+                                            paginationGUI(player, {_suspect}, 1, {punish::history::%{_uuid}%::*})
+                                        else:
+                                            play sound {@sound.unknown} with volume 0.5 and pitch 1 to player
+                                            close player's inventory
+                                            send "{@msg.noHistory}"
+                                    else:
+                                        getAltAccounts(player, {_suspect})
+                                format gui 41 to chest named "&f&lInventory" with lore "&7You can't open a offline" and "&7player's inventory":
+                                    play sound {@sound.unknown} with volume 0.5 and pitch 1 to player
+                                    close player's inventory
+                                    send "{@msg.noInventory}"                        
+                            open gui last gui to player
+                    else:
+                        send "{@msg.cannotPunishPlayer}"
+        else:
+            send "{@msg.wrongUsage}"
+
+command sc [<text>]:
+    permission: {@permission.staffChat}
+    permission message: {@msg.noPermissions}
+    trigger:
+        if arg is set:
+            send "&6[SC&6] &8• &f%player's display name% &8» &7%colored arg%" to all players where [input has permission "{@permission.staffChat}"]
+        else:
+            if metadata "staff-chat" of player is set:
+                send "&6[SC&6] &7Staff chat &cdisabled"
+                clear metadata "staff-chat" of player
+            else:
+                send "&6[SC&6] &7Staff chat &aenabled"
+                set metadata "staff-chat" of player to true
+command vanish:
+    permission: {@permission.vanish} 
+    permission message: {@msg.noPermissions}
+    trigger:
+        if metadata "vanish" of player is set:
+            send "{@msg.unVanished}"
+            reveal the player from all players
+            clear metadata "vanish" of player
+        else:
+            send "{@msg.vanished}"
+            hide the player from all players where [input doesn't have permission "{@permission.vanish}"]
+            set metadata "vanish" of player to true
+
+
+function checkModeration(type: string, lore: strings) :: itemtype:
+    if {moderation::%{_type}%} is not set:
+        return 1 of red stained glass pane named "&c&lEmpty"
+    return 1 of lime stained glass pane named "&a&l%{_type} in strict proper case%" with lore {_lore::*}
+
+function checkPunishment(player: offline player, type: string, word: string, lore: strings) :: itemtype:
+    set {_uuid} to uuid of {_player}
+    if {punish::%{_type}%::%{_uuid}%} is not set:
+        return 1 of red stained glass pane named "&c&lEmpty"
+    return 1 of lime stained glass pane named "&a&l%{_word}%" with lore {_lore::*}
+
+function checkInventory(player: player, suspect: offline player, clicktype: text):
+    if {_clicktype} contains "LEFT":
+        open {_suspect}'s inventory for {_player}
+    else:
+        open {_suspect}'s ender chest for {_player}
+
+function getAltAccounts(player: player, suspect: offline player):
+    if size of {punish::alt::%{_IP}%::*} >= 2:
+        set {_IP} to ip of {_suspect}
+        create a gui with virtual chest inventory with 4 rows named "{@gui.altAccountsName}":
+            format gui (integers from 0 to 9), 17, 18 and (integers from 26 to 35) to gray stained glass pane named " "
+            format gui 31 to barrier named "&c&lReturn":
+                play sound {@sound.return} with volume 0.5 and pitch 1 to {_player}
+                {_player} command "punish %{_suspect}%"
+            set {_format} to 10
+            loop {punish::alt::%{_IP}%::*}:
+                loop-value != {_suspect}
+                format gui {_format} to ("%loop-value%" parsed as offline player)'s skull named "&f%loop-value%"
+                if {_format} = 17:
+                    add 3 to {_format}  
+                else:
+                    add 1 to {_format}   
+            open gui last gui to {_player} 
+    else:
+        play sound {@sound.unknown} with volume 0.5 and pitch 1 to {_player}
+        close {_player}'s inventory
+        send "{@msg.noAlt}" to {_player}
+
+function paginationGUI(player: player, suspect: offline player, startPage: integer, list: objects):
+    set {_guiSize} to 45
+    set {_uuid} to uuid of {_suspect}
+    set {_slot} to (({_startPage} * {_guiSize}) + 1) - {_guiSize}
+    create a gui with virtual chest inventory with ({_guiSize}/9) + 1 rows named "{@gui.historyName} %{_startPage}%":
+        format gui (integers from 0 to 54) to stone button named " "
+        format gui (integers from 2 to 6) and (integers from 47 to 51) to gray stained glass pane named " "
+        format gui 0, 1, 7, 8, 45, 46, 52 and 53 to black stained glass pane named " "
+        format gui 4 to {_suspect}'s skull named "&f&l%{_suspect}%" with lore "&7Click to clear history":
+            if size of {punish::history::%{_uuid}%::*} >= 1:
+                if {_player} has permission "{@permission.modify}":
+                    play sound {@sound.success} with volume 0.5 and pitch 1 to {_player}
+                    delete {punish::history::%{_uuid}%::*}
+                    player command "punish %{_suspect}%"
+                else:
+                    play sound {@sound.unknown} with volume 0.5 and pitch 1 to {_player}
+            else:
+                play sound {@sound.unknown} with volume 0.5 and pitch 1 to {_player}
+        format gui 49 to barrier named "&c&lReturn":
+            play sound {@sound.return} with volume 0.5 and pitch 1 to {_player}
+            {_player} command "punish %{_suspect}%"
+        set {_counter} and {_format} to 9
+        loop {_list::*}:
+            if {_counter}+1 is between {_slot} and {_slot}+({_guiSize}-1):
+                format gui {_format} to loop-value:
+                    if "%click type%" contains "LEFT":
+                        if {_player} has permission "{@permission.modify}":
+                            play sound {@sound.deleteReason} with volume 0.1 and pitch 1 to {_player}
+                            remove event-item from {punish::history::%{_uuid}%::*}
+                            if size of {punish::history::%{_uuid}%::*} >= 1: 
+                                paginationGUI({_player}, {_suspect}, {_startPage}, {punish::history::%{_uuid}%::*})
+                            else:
+                                player command "punish %{_suspect}%"
+                add 1 to {_format}
+            add 1 to {_counter}
+        if {_startPage} is 1:
+            if {_format} >= 45:
+                format gui {_guiSize}+5 to arrow named "&f&lNext page ->&r"
+        else:
+            if {_format} >= 45:
+                format gui {_guiSize}+3 to arrow named "&f&l<- Previous page&r"
+                format gui {_guiSize}+5 to arrow named "&f&lNext page ->&r"
+            else:
+                format gui {_guiSize}+3 to arrow named "&f&l<- Previous page&r"
+        open gui last gui to {_player}
+
+on inventory click:
+    if name of current inventory of player contains "{@gui.historyName} ":
+        if event-item = arrow named "&f&lNext page ->&r" or "&f&l<- Previous page&r":
+            play sound {@sound.switchPage} with volume 0.5 and pitch 1 to player
+            set {_getCurrentPage} to name of player's current inventory
+            replace all "{@gui.historyName} " with "" in {_getCurrentPage}
+            set {_getCurrentPage} to {_getCurrentPage} parsed as integer
+            if event-item = arrow named "&f&lNext page ->&r":
+                add 1 to {_getCurrentPage}
+            else:
+                remove 1 from {_getCurrentPage}
+            if {_getCurrentPage} is 0:
+                play sound {@sound.unknown} with volume 0.5 and pitch 1 to player
+                stop
+            set {_suspect} to (uncolored name of slot 4 of event-inventory parsed as offline player)
+            set {_uuid} to uuid of {_suspect}
+            paginationGUI(player, {_suspect}, {_getCurrentPage}, {punish::history::%{_uuid}%::*})
+    else if name of current inventory of player contains uncolored "Confirmation":
+        if event-slot = 16:
+            play sound "block.note_block.snare" with volume 0.5 and pitch 2 to player
+            if {punish::broadcast::%player%} is not set:
+                set {punish::broadcast::%player%} to true
+                set slot 16 of player's current inventory to lime dye named "&f&lBroadcast" with lore "&7Click to &cdisable &7broadcasting"
+            else:
+                set slot 16 of player's current inventory to gray dye named "&f&lBroadcast" with lore "&7Click to &aenable &7broadcasting"
+                delete {punish::broadcast::%player%}
+
+on inventory close:
+    if name of current inventory of player contains uncolored "Punish" or "Confirmation":
+        if {punish::broadcast::%player%} is set:
+            delete {punish::broadcast::%player%}
+
+function getPunishReason(player: player, suspect: offline player, type: string) :: string:
+    set {_uuid} to uuid of {_suspect}
+    if {punish::%{_type}%::%{_uuid}%} is not set:
+        create a gui with virtual chest inventory with 6 rows named "{@gui.reasonName}":
+            format gui (integers from 0 to 54) to stone button named " "
+            format gui (integers from 2 to 6), 18, 26, 27, 35 and (integers from 47 to 51) to gray stained glass pane named " "
+            format gui 0, 1, 7, 8, 9, 17, 36, 44, 45, 46, 52 and 53 to black stained glass pane named " "
+            format gui 48 to anvil named "&f&lClear all" with lore "&7Click to clear all reasons":
+                if {_player} has permission "{@permission.modify}":
+                    play sound {@sound.deleteReason} with volume 0.3 and pitch 1 to {_player}
+                    delete {punish::reason::*}
+                    getPunishReason({_player}, {_suspect}, {_type})
+            format gui 49 to barrier named "&c&lReturn":
+                play sound {@sound.return} with volume 0.5 and pitch 1 to {_player}
+                {_player} command "punish %{_suspect}%"   
+            format gui 50 to nether star named "&f&lAdd reason" with lore "&7Click to add a reason":
+                if {_player} has permission "{@permission.modify}":
+                    play sound {@sound.success} with volume 0.5 and pitch 1 to {_player}
+                    close {_player}'s inventory
+                    set {punish::addReason::%{_player}%} to true
+                    send "{@msg.addReason}" to {_player}
+                else:
+                    play sound {@sound.unknown} with volume 0.5 and pitch 1 to {_player}
+                    close {_player}'s inventory 
+                    send "{@msg.noPermissions}" to {_player}
+            set {_format} to 10
+            loop {punish::reason::*}:
+                format gui {_format} to loop-value:
+                    if "%click type%" contains "RIGHT":
+                        if {_player} has permission "{@permission.modify}":
+                            play sound {@sound.deleteReason} with volume 0.1 and pitch 1 to {_player}
+                            remove event-item from {punish::reason::*}
+                            getPunishReason({_player}, {_suspect}, {_type})
+                    else:
+                        if {_type} = "mute" or "ban":
+                            getPunishTime({_player}, {_suspect}, {_type}, (name of event-item))
+                        else:
+                            getPunishAcceptance({_player}, {_suspect}, {_type}, (name of event-item))
+                if {_format} = 16, 25 or 34:
+                    add 3 to {_format}
+                else:
+                    add 1 to {_format}
+                exit loop if {_format} >= 45 
+            open gui last gui to {_player}
+    else:
+        play sound {@sound.unknown} with volume 0.5 and pitch 1 to {_player}
+        close {_player}'s inventory
+        send "{@msg.alreadyPunished}" to {_player}
+
+function getPunishTime(player: player, suspect: offline player, type: string, reason: string):
+    create a gui with virtual chest inventory with 5 rows named "{@gui.timeName}":
+        format gui (integers from 0 to 54) to gray stained glass pane named " "
+        format gui 0, 1, 7, 8, 9, 17, 27, 35, 36, 37, 43 and 44 to black stained glass pane named " "
+        format gui 4 to clock named " "
+        format gui 40 to barrier named "&c&lReturn":
+            play sound {@sound.return} with volume 0.5 and pitch 1 to {_player}
+            getPunishReason({_player}, {_suspect}, {_type})
+        set {_format} to 10
+        loop {punish::time::blocks::*}: 
+            format gui {_format} to loop-value named "&f&l%{punish::time::timespan::%loop-index%}%":
+                getPunishAcceptance({_player}, {_suspect}, {_type}, {_reason}, (uncolored name of event-item parsed as a timespan))
+            if {_format} = 16 or 25:
+                add 3 to {_format}
+            else:
+                add 1 to {_format}  
+        open gui last gui to {_player}            
+
+function getPunishAcceptance(player: player, suspect: offline player, type: string, reason: string, time: timespan = "Not required"):
+    create a gui with virtual chest inventory with 3 rows named "{@gui.confirmationName}":
+        format gui (integers from 0 to 26) to gray stained glass pane named " "
+        format gui (integers from 18 to 26) to red stained glass pane named "&c&lCancel":
+            close {_player}'s inventory
+        format gui (integers from 23 to 26) to lime stained glass pane named "&a&lConfirm":
+            getPunishExecuted({_player}, {_suspect}, {_type}, {_reason}, {_time}, {punish::broadcast::%{_player}%})
+        format gui 22 to barrier named "&c&lReturn":
+            return({_player}, {_suspect}, {_type}, {_reason})
+        format gui 10 to {_suspect}'s skull named "&f&l%{_suspect}%"
+        format gui 12 to anvil named "&f&lType: &7%{_type}%"
+        format gui 13 to book named "&f&lReason: &7%{_reason}%"
+        format gui 14 to clock named "&f&lTime: &7%{_time} ? ""Permanent""%"
+        format gui 16 to gray dye named "&f&lBroadcast" with lore "&7Click to &aenable &7broadcasting"
+        open gui last gui to {_player}
+
+function getPunishExecuted(player: player, suspect: offline player, type: string, reason: string, time: timespan = "Not required", broadcast: boolean):
+    set {_uuid} to uuid of {_suspect}
+    play sound {@sound.broadcast} with volume 0.5 and pitch 2 to {_player}
+    close {_player}'s inventory
+    if {_time} is not set:
+        {_type} = "Ban" or "Mute"
+        set {_time} to "Permanent"
+    set {_timespan} to {_time}
+    set {_timespan} to 1000000 days if {_timespan} = "Permanent"
+    add {@item.guiHistory} named "&c&l%{_type}%" with lore "&fReason: &7%{_reason}%", "&fTime: &7%{_time} ? ""Not required""%", "&fDate: &7%now%", "&fBy: &7%{_player}%", "" and "&7[Left-click] to delete" to {punish::history::%{_uuid}%::*}
+    if {_type} = "Kick":
+        kick {_suspect} due to "{@msg.kick}"
+        if {_broadcast} is set:
+            broadcast "{@msg.kickBroadcast}"
+        else:
+            send "{@msg.silentPunish} {@msg.kickBroadcast}" to all players where [input has permission "{@permission.punish}"]
+    else if {_type} = "Warn":
+        play sound {@sound.ping} with volume 0.5 and pitch 1 to {_suspect}
+        send "{@msg.warn}" to {_suspect}
+        if {_broadcast} is set:
+            broadcast "{@msg.warnBroadcast}"
+        else:
+            send "{@msg.silentPunish} {@msg.warnBroadcast}" to all players where [input has permission "{@permission.punish}"]
+        set {punish::Warn::%{_uuid}%} to true
+        set {punish::Warn::expire::%{_uuid}%} to now
+        add 15 minutes to {punish::Warn::expire::%{_uuid}%}
+        set {_unwarntime} to difference between {punish::Warn::expire::%{_uuid}%} and now
+        wait {_unwarntime}
+        if {punish::Warn::%{_uuid}%} is true:
+            delete {punish::Warn::%{_uuid}%}
+            delete {punish::Warn::expire::%{_uuid}%}
+    else if {_type} = "Mute":
+        play sound {@sound.ping} with volume 0.5 and pitch 1 to {_suspect}
+        send "{@msg.mute}" to {_suspect}
+        if {_broadcast} is set:
+            broadcast "{@msg.muteBroadcast}"
+        else:
+            send "{@msg.silentPunish} {@msg.muteBroadcast}" to all players where [input has permission "{@permission.punish}"]
+        set {punish::Mute::%{_uuid}%} to true
+        set {punish::Mute::expire::%{_uuid}%} to now
+        add {_timespan} to {punish::Mute::expire::%{_uuid}%}
+        set {_unmutetime} to difference between {punish::Mute::expire::%{_uuid}%} and now
+        wait {_unmutetime}
+        if {punish::Mute::%{_uuid}%} is true:
+            delete {punish::Mute::%{_uuid}%}
+            delete {punish::Mute::expire::%{_uuid}%}
+    else:
+        kick {_suspect} due to "{@msg.ban}"
+        ban {_suspect} due to "{@msg.ban}"
+        if {_broadcast} is set:
+            broadcast "{@msg.banBroadcast}"
+        else:
+            send "{@msg.silentPunish} {@msg.banBroadcast}" to all players where [input has permission "{@permission.punish}"]
+        set {punish::Ban::%{_uuid}%} to true
+        set {punish::Ban::expire::%{_uuid}%} to now
+        add {_timespan} to {punish::Ban::expire::%{_uuid}%}
+        set {_unbantime} to difference between {punish::Ban::expire::%{_uuid}%} and now
+        wait {_unbantime}
+        if {punish::Ban::%{_uuid}%} is true:
+            delete {punish::Ban::%{_uuid}%}
+            delete {punish::Ban::expire::%{_uuid}%}
+            unban {_suspect}
+
+function return(player: player, suspect: offline player, type: string, reason: string):
+    if {_type} = "Kick" or "Warn":
+        getPunishReason({_player}, {_suspect}, {_type})
+    else:
+        getPunishTime({_player}, {_suspect}, {_type}, {_reason})
+    play sound {@sound.return} with volume 0.5 and pitch 1 to {_player}
+
+on chat:
+    loop {moderation::filter::*}:
+        if message contains loop-value:
+            send "{@msg.chatFilter}"
+            cancel event 
+            stop
+    if metadata "staff-chat" of player is set:
+        cancel event
+        send "&6[SC&6] &8• &f%player's display name% &8» &7%colored message%" to players where [input has permission "{@permission.staffChat}"]
+        stop
+    else if {punish::Mute::%player's uuid%} is set:
+        cancel event 
+        send "{@msg.muted}"
+    else if {moderation::mute chat} is set:
+        player doesn't have permission "{@permission.punish}"
+        cancel event
+        send "{@msg.chatMuted}"
+    else if {punish::addReason::%player%} is set:
+        cancel event
+        if uncolored message = "cancel" or "cancel.":
+            play sound {@sound.success} with volume 0.5 and pitch 1 to player
+            delete {punish::addReason::%player%}
+            send "{@msg.cancelled}"
+        else:
+            if size of {punish::reason::*} >= 28:
+                send "{@msg.noSpace}"
+                stop
+            set {_newReason} to "&r%message%"
+            send "{@msg.succesfullyAddedReason}"
+            play sound {@sound.success} with volume 0.5 and pitch 1 to player
+            set {_newReason} to {@item.guiReason} named {_newReason} with lore "&7[Left-click] to select reason" and "&7[Right-click] to delete reason"
+            add {_newReason} to {punish::reason::*}
+            delete {punish::addReason::%player%}
+
+on first join:
+    add player to {punish::alt::%IP of player%::*}
+
+on join:
+    while player is online:
+        if metadata "vanish" of player is set:
+            send action bar "{@actionbar.currentlyVanished}" to player
+        wait 1 second
+
+on connect:
+    if {punish::Ban::%player's uuid%} is set:
+        kick player due to "{@msg.connectWhenBanned}"
+    else if {moderation::lockdown} is set:
+        player doesn't have permission "{@permission.punish}"
+        kick player due to "{@msg.connectWhenLockdown}"
