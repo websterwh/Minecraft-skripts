@@ -1,0 +1,338 @@
+command /baltop:
+	trigger:
+		set {test.leader.%player's uuid%} to 0
+		set {leaderboard.bal.place.10} to 0
+		set {leaderboard.bal.place.9} to 0
+		set {leaderboard.bal.place.8} to 0
+		set {leaderboard.bal.place.7} to 0
+		set {leaderboard.bal.place.6} to 0
+		set {leaderboard.bal.place.5} to 0
+		set {leaderboard.bal.place.4} to 0
+		set {leaderboard.bal.place.3} to 0
+		set {leaderboard.bal.place.2} to 0
+		set {leaderboard.bal.place.1} to 0
+		send "&6&m          &6Balance Top&6&m          "
+		loop {allplayer} times:
+			add 1 to {test.leader.%player's uuid%}
+			if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} is not set:
+				set {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} to 0
+			if {leaderboard.bal.place.1} = 0:
+				set {leaderboard.bal.place.1} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.1}%}%}:
+					set {leaderboard.bal.place.10} to {leaderboard.bal.place.9}
+					set {leaderboard.bal.place.9} to {leaderboard.bal.place.8}
+					set {leaderboard.bal.place.8} to {leaderboard.bal.place.7}
+					set {leaderboard.bal.place.7} to {leaderboard.bal.place.6}
+					set {leaderboard.bal.place.6} to {leaderboard.bal.place.5}
+					set {leaderboard.bal.place.5} to {leaderboard.bal.place.4}
+					set {leaderboard.bal.place.4} to {leaderboard.bal.place.3}
+					set {leaderboard.bal.place.3} to {leaderboard.bal.place.2}
+					set {leaderboard.bal.place.2} to {leaderboard.bal.place.1}
+					set {leaderboard.bal.place.1} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {leaderboard.bal.place.2} = 0:
+					set {leaderboard.bal.place.2} to {test.leader.%player's uuid%}
+				if {player.uuid.%{leaderboard.bal.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.2}%}%}:
+						set {leaderboard.bal.place.10} to {leaderboard.bal.place.9}
+						set {leaderboard.bal.place.9} to {leaderboard.bal.place.8}
+						set {leaderboard.bal.place.8} to {leaderboard.bal.place.7}
+						set {leaderboard.bal.place.7} to {leaderboard.bal.place.6}
+						set {leaderboard.bal.place.6} to {leaderboard.bal.place.5}
+						set {leaderboard.bal.place.5} to {leaderboard.bal.place.4}
+						set {leaderboard.bal.place.4} to {leaderboard.bal.place.3}
+						set {leaderboard.bal.place.3} to {leaderboard.bal.place.2}
+						set {leaderboard.bal.place.2} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.bal.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {leaderboard.bal.place.3} = 0:
+						set {leaderboard.bal.place.3} to {test.leader.%player's uuid%}
+					if {player.uuid.%{leaderboard.bal.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.3}%}%}:
+							set {leaderboard.bal.place.10} to {leaderboard.bal.place.9}
+							set {leaderboard.bal.place.9} to {leaderboard.bal.place.8}
+							set {leaderboard.bal.place.8} to {leaderboard.bal.place.7}
+							set {leaderboard.bal.place.7} to {leaderboard.bal.place.6}
+							set {leaderboard.bal.place.6} to {leaderboard.bal.place.5}
+							set {leaderboard.bal.place.5} to {leaderboard.bal.place.4}
+							set {leaderboard.bal.place.4} to {leaderboard.bal.place.3}
+							set {leaderboard.bal.place.3} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.bal.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.bal.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {leaderboard.bal.place.4} = 0:
+							set {leaderboard.bal.place.4} to {test.leader.%player's uuid%}
+						if {player.uuid.%{leaderboard.bal.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.4}%}%}:
+								set {leaderboard.bal.place.10} to {leaderboard.bal.place.9}
+								set {leaderboard.bal.place.9} to {leaderboard.bal.place.8}
+								set {leaderboard.bal.place.8} to {leaderboard.bal.place.7}
+								set {leaderboard.bal.place.7} to {leaderboard.bal.place.6}
+								set {leaderboard.bal.place.6} to {leaderboard.bal.place.5}
+								set {leaderboard.bal.place.5} to {leaderboard.bal.place.4}
+								set {leaderboard.bal.place.4} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.bal.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.bal.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {player.uuid.%{leaderboard.bal.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {leaderboard.bal.place.5} = 0:
+								set {leaderboard.bal.place.5} to {test.leader.%player's uuid%}
+							if {player.uuid.%{leaderboard.bal.place.5}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+								if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.5}%}%}:
+									set {leaderboard.bal.place.10} to {leaderboard.bal.place.9}
+									set {leaderboard.bal.place.9} to {leaderboard.bal.place.8}
+									set {leaderboard.bal.place.8} to {leaderboard.bal.place.7}
+									set {leaderboard.bal.place.7} to {leaderboard.bal.place.6}
+									set {leaderboard.bal.place.6} to {leaderboard.bal.place.5}
+									set {leaderboard.bal.place.5} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.bal.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.bal.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {player.uuid.%{leaderboard.bal.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {player.uuid.%{leaderboard.bal.place.5}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+								if {leaderboard.bal.place.6} = 0:
+									set {leaderboard.bal.place.6} to {test.leader.%player's uuid%}
+								if {player.uuid.%{leaderboard.bal.place.6}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+									if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.6}%}%}:
+										set {leaderboard.bal.place.10} to {leaderboard.bal.place.9}
+										set {leaderboard.bal.place.9} to {leaderboard.bal.place.8}
+										set {leaderboard.bal.place.8} to {leaderboard.bal.place.7}
+										set {leaderboard.bal.place.7} to {leaderboard.bal.place.6}
+										set {leaderboard.bal.place.6} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.bal.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.bal.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {player.uuid.%{leaderboard.bal.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {player.uuid.%{leaderboard.bal.place.5}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+								if {player.uuid.%{leaderboard.bal.place.6}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+									if {leaderboard.bal.place.7} = 0:
+										set {leaderboard.bal.place.7} to {test.leader.%player's uuid%}
+									if {player.uuid.%{leaderboard.bal.place.7}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+										if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.7}%}%}:
+											set {leaderboard.bal.place.10} to {leaderboard.bal.place.9}
+											set {leaderboard.bal.place.9} to {leaderboard.bal.place.8}
+											set {leaderboard.bal.place.8} to {leaderboard.bal.place.7}
+											set {leaderboard.bal.place.7} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.bal.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.bal.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {player.uuid.%{leaderboard.bal.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {player.uuid.%{leaderboard.bal.place.5}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+								if {player.uuid.%{leaderboard.bal.place.6}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+									if {player.uuid.%{leaderboard.bal.place.7}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+										if {leaderboard.bal.place.8} = 0:
+											set {leaderboard.bal.place.8} to {test.leader.%player's uuid%}
+										if {player.uuid.%{leaderboard.bal.place.8}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+											if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.8}%}%}:
+												set {leaderboard.bal.place.10} to {leaderboard.bal.place.9}
+												set {leaderboard.bal.place.9} to {leaderboard.bal.place.8}
+												set {leaderboard.bal.place.8} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.bal.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.bal.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {player.uuid.%{leaderboard.bal.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {player.uuid.%{leaderboard.bal.place.5}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+								if {player.uuid.%{leaderboard.bal.place.6}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+									if {player.uuid.%{leaderboard.bal.place.7}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+										if {player.uuid.%{leaderboard.bal.place.8}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+											if {leaderboard.bal.place.9} = 0:
+												set {leaderboard.bal.place.9} to {test.leader.%player's uuid%}
+											if {player.uuid.%{leaderboard.bal.place.9}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+												if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.9}%}%}:
+													set {leaderboard.bal.place.10} to {leaderboard.bal.place.9}
+													set {leaderboard.bal.place.9} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.bal.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.bal.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {player.uuid.%{leaderboard.bal.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {player.uuid.%{leaderboard.bal.place.5}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+								if {player.uuid.%{leaderboard.bal.place.6}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+									if {player.uuid.%{leaderboard.bal.place.7}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+										if {player.uuid.%{leaderboard.bal.place.8}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+											if {player.uuid.%{leaderboard.bal.place.9}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+												if {leaderboard.bal.place.10} = 0:
+													set {leaderboard.bal.place.10} to {test.leader.%player's uuid%}
+												if {player.uuid.%{leaderboard.bal.place.10}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+													if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.10}%}%}:
+														set {leaderboard.bal.place.10} to {test.leader.%player's uuid%}
+		send "&a##1 &c%{player.player.%{leaderboard.bal.place.1}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.1}%}%}%"
+		send "&a##2 &c%{player.player.%{leaderboard.bal.place.2}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.2}%}%}%"
+		send "&a##3 &c%{player.player.%{leaderboard.bal.place.3}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.3}%}%}%"
+		send "&a##4 &c%{player.player.%{leaderboard.bal.place.4}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.4}%}%}%"
+		send "&a##5 &c%{player.player.%{leaderboard.bal.place.5}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.5}%}%}%"
+		send "&a##6 &c%{player.player.%{leaderboard.bal.place.6}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.6}%}%}%"
+		send "&a##7 &c%{player.player.%{leaderboard.bal.place.7}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.7}%}%}%"
+		send "&a##8 &c%{player.player.%{leaderboard.bal.place.8}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.8}%}%}%"
+		send "&a##9 &c%{player.player.%{leaderboard.bal.place.9}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.9}%}%}%"
+		send "&a##10 &c%{player.player.%{leaderboard.bal.place.10}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.10}%}%}%"
+		send "&6&m                                 "
+command /balancetop:
+	trigger:
+		set {test.leader.%player's uuid%} to 0
+		set {leaderboard.bal.place.10} to 0
+		set {leaderboard.bal.place.9} to 0
+		set {leaderboard.bal.place.8} to 0
+		set {leaderboard.bal.place.7} to 0
+		set {leaderboard.bal.place.6} to 0
+		set {leaderboard.bal.place.5} to 0
+		set {leaderboard.bal.place.4} to 0
+		set {leaderboard.bal.place.3} to 0
+		set {leaderboard.bal.place.2} to 0
+		set {leaderboard.bal.place.1} to 0
+		send "&6&m          &6Balance Top&6&m          "
+		loop {allplayer} times:
+			add 1 to {test.leader.%player's uuid%}
+			if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} is not set:
+				set {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} to 0
+			if {leaderboard.bal.place.1} = 0:
+				set {leaderboard.bal.place.1} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.1}%}%}:
+					set {leaderboard.bal.place.10} to {leaderboard.bal.place.9}
+					set {leaderboard.bal.place.9} to {leaderboard.bal.place.8}
+					set {leaderboard.bal.place.8} to {leaderboard.bal.place.7}
+					set {leaderboard.bal.place.7} to {leaderboard.bal.place.6}
+					set {leaderboard.bal.place.6} to {leaderboard.bal.place.5}
+					set {leaderboard.bal.place.5} to {leaderboard.bal.place.4}
+					set {leaderboard.bal.place.4} to {leaderboard.bal.place.3}
+					set {leaderboard.bal.place.3} to {leaderboard.bal.place.2}
+					set {leaderboard.bal.place.2} to {leaderboard.bal.place.1}
+					set {leaderboard.bal.place.1} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {leaderboard.bal.place.2} = 0:
+					set {leaderboard.bal.place.2} to {test.leader.%player's uuid%}
+				if {player.uuid.%{leaderboard.bal.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.2}%}%}:
+						set {leaderboard.bal.place.10} to {leaderboard.bal.place.9}
+						set {leaderboard.bal.place.9} to {leaderboard.bal.place.8}
+						set {leaderboard.bal.place.8} to {leaderboard.bal.place.7}
+						set {leaderboard.bal.place.7} to {leaderboard.bal.place.6}
+						set {leaderboard.bal.place.6} to {leaderboard.bal.place.5}
+						set {leaderboard.bal.place.5} to {leaderboard.bal.place.4}
+						set {leaderboard.bal.place.4} to {leaderboard.bal.place.3}
+						set {leaderboard.bal.place.3} to {leaderboard.bal.place.2}
+						set {leaderboard.bal.place.2} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.bal.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {leaderboard.bal.place.3} = 0:
+						set {leaderboard.bal.place.3} to {test.leader.%player's uuid%}
+					if {player.uuid.%{leaderboard.bal.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.3}%}%}:
+							set {leaderboard.bal.place.10} to {leaderboard.bal.place.9}
+							set {leaderboard.bal.place.9} to {leaderboard.bal.place.8}
+							set {leaderboard.bal.place.8} to {leaderboard.bal.place.7}
+							set {leaderboard.bal.place.7} to {leaderboard.bal.place.6}
+							set {leaderboard.bal.place.6} to {leaderboard.bal.place.5}
+							set {leaderboard.bal.place.5} to {leaderboard.bal.place.4}
+							set {leaderboard.bal.place.4} to {leaderboard.bal.place.3}
+							set {leaderboard.bal.place.3} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.bal.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.bal.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {leaderboard.bal.place.4} = 0:
+							set {leaderboard.bal.place.4} to {test.leader.%player's uuid%}
+						if {player.uuid.%{leaderboard.bal.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.4}%}%}:
+								set {leaderboard.bal.place.10} to {leaderboard.bal.place.9}
+								set {leaderboard.bal.place.9} to {leaderboard.bal.place.8}
+								set {leaderboard.bal.place.8} to {leaderboard.bal.place.7}
+								set {leaderboard.bal.place.7} to {leaderboard.bal.place.6}
+								set {leaderboard.bal.place.6} to {leaderboard.bal.place.5}
+								set {leaderboard.bal.place.5} to {leaderboard.bal.place.4}
+								set {leaderboard.bal.place.4} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.bal.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.bal.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {player.uuid.%{leaderboard.bal.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {leaderboard.bal.place.5} = 0:
+								set {leaderboard.bal.place.5} to {test.leader.%player's uuid%}
+							if {player.uuid.%{leaderboard.bal.place.5}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+								if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.5}%}%}:
+									set {leaderboard.bal.place.10} to {leaderboard.bal.place.9}
+									set {leaderboard.bal.place.9} to {leaderboard.bal.place.8}
+									set {leaderboard.bal.place.8} to {leaderboard.bal.place.7}
+									set {leaderboard.bal.place.7} to {leaderboard.bal.place.6}
+									set {leaderboard.bal.place.6} to {leaderboard.bal.place.5}
+									set {leaderboard.bal.place.5} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.bal.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.bal.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {player.uuid.%{leaderboard.bal.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {player.uuid.%{leaderboard.bal.place.5}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+								if {leaderboard.bal.place.6} = 0:
+									set {leaderboard.bal.place.6} to {test.leader.%player's uuid%}
+								if {player.uuid.%{leaderboard.bal.place.6}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+									if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.6}%}%}:
+										set {leaderboard.bal.place.10} to {leaderboard.bal.place.9}
+										set {leaderboard.bal.place.9} to {leaderboard.bal.place.8}
+										set {leaderboard.bal.place.8} to {leaderboard.bal.place.7}
+										set {leaderboard.bal.place.7} to {leaderboard.bal.place.6}
+										set {leaderboard.bal.place.6} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.bal.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.bal.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {player.uuid.%{leaderboard.bal.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {player.uuid.%{leaderboard.bal.place.5}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+								if {player.uuid.%{leaderboard.bal.place.6}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+									if {leaderboard.bal.place.7} = 0:
+										set {leaderboard.bal.place.7} to {test.leader.%player's uuid%}
+									if {player.uuid.%{leaderboard.bal.place.7}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+										if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.7}%}%}:
+											set {leaderboard.bal.place.10} to {leaderboard.bal.place.9}
+											set {leaderboard.bal.place.9} to {leaderboard.bal.place.8}
+											set {leaderboard.bal.place.8} to {leaderboard.bal.place.7}
+											set {leaderboard.bal.place.7} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.bal.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.bal.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {player.uuid.%{leaderboard.bal.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {player.uuid.%{leaderboard.bal.place.5}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+								if {player.uuid.%{leaderboard.bal.place.6}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+									if {player.uuid.%{leaderboard.bal.place.7}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+										if {leaderboard.bal.place.8} = 0:
+											set {leaderboard.bal.place.8} to {test.leader.%player's uuid%}
+										if {player.uuid.%{leaderboard.bal.place.8}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+											if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.8}%}%}:
+												set {leaderboard.bal.place.10} to {leaderboard.bal.place.9}
+												set {leaderboard.bal.place.9} to {leaderboard.bal.place.8}
+												set {leaderboard.bal.place.8} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.bal.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.bal.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {player.uuid.%{leaderboard.bal.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {player.uuid.%{leaderboard.bal.place.5}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+								if {player.uuid.%{leaderboard.bal.place.6}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+									if {player.uuid.%{leaderboard.bal.place.7}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+										if {player.uuid.%{leaderboard.bal.place.8}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+											if {leaderboard.bal.place.9} = 0:
+												set {leaderboard.bal.place.9} to {test.leader.%player's uuid%}
+											if {player.uuid.%{leaderboard.bal.place.9}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+												if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.9}%}%}:
+													set {leaderboard.bal.place.10} to {leaderboard.bal.place.9}
+													set {leaderboard.bal.place.9} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.bal.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.bal.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.bal.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {player.uuid.%{leaderboard.bal.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {player.uuid.%{leaderboard.bal.place.5}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+								if {player.uuid.%{leaderboard.bal.place.6}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+									if {player.uuid.%{leaderboard.bal.place.7}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+										if {player.uuid.%{leaderboard.bal.place.8}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+											if {player.uuid.%{leaderboard.bal.place.9}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+												if {leaderboard.bal.place.10} = 0:
+													set {leaderboard.bal.place.10} to {test.leader.%player's uuid%}
+												if {player.uuid.%{leaderboard.bal.place.10}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+													if {economy::balance::%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {economy::balance::%{player.uuid.%{leaderboard.bal.place.10}%}%}:
+														set {leaderboard.bal.place.10} to {test.leader.%player's uuid%}
+		send "&a##1 &c%{player.player.%{leaderboard.bal.place.1}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.1}%}%}%"
+		send "&a##2 &c%{player.player.%{leaderboard.bal.place.2}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.2}%}%}%"
+		send "&a##3 &c%{player.player.%{leaderboard.bal.place.3}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.3}%}%}%"
+		send "&a##4 &c%{player.player.%{leaderboard.bal.place.4}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.4}%}%}%"
+		send "&a##5 &c%{player.player.%{leaderboard.bal.place.5}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.5}%}%}%"
+		send "&a##6 &c%{player.player.%{leaderboard.bal.place.6}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.6}%}%}%"
+		send "&a##7 &c%{player.player.%{leaderboard.bal.place.7}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.7}%}%}%"
+		send "&a##8 &c%{player.player.%{leaderboard.bal.place.8}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.8}%}%}%"
+		send "&a##9 &c%{player.player.%{leaderboard.bal.place.9}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.9}%}%}%"
+		send "&a##10 &c%{player.player.%{leaderboard.bal.place.10}%}% &a$%{economy::balance::%{player.uuid.%{leaderboard.bal.place.10}%}%}%"
+		send "&6&m                                 "

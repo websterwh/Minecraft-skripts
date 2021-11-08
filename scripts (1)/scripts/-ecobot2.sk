@@ -1,0 +1,4 @@
+command /test: 
+	permission: 
+	trigger:
+		send "ur gay" to player

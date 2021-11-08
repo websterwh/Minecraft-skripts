@@ -1,0 +1,90 @@
+options:
+	1:"William0001"
+	2:
+on click:
+	if event-block is dispenser:
+		cancel event
+on place:
+	if event-block is dispenser:
+		cancel event
+on click:
+    if event-block is any shulker box:
+        cancel event
+on place:
+    if event-block is any shulker box:
+        cancel event
+on click:
+    if event-block is trapped chest:
+        cancel event
+on place:
+    if event-block is trapped chest:
+        cancel event
+on click:
+    if event-block is dropper:
+        cancel event
+on place:
+    if event-block is dropper:
+        cancel event
+on rightclick:
+    if event-block is barrel:
+        cancel event
+on  right click:
+    if event-block is chest:
+        cancel event
+on  place:
+    if event-block is chest:
+        cancel event
+on rightclick:
+    if event-block is enderman spawn egg:
+        cancel event
+on place:
+    if event-block is piston:
+        cancel event
+on place:
+    if event-block is item frame:
+        cancel event
+on place:
+    if event-block is beehive:
+        cancel event
+on place:
+    if event-block is cod bucket:
+        cancel event
+on right click:
+    if event-block is soul campfire: 
+        cancel event
+on place:
+    if event-block is soul campfire: 
+        cancel event
+on right click:
+    if event-block is any anvil: 
+        cancel event
+on flow:
+	cancel event
+#on rightclick:
+ #   if event-block is
+#       cancel event
+on rightclick:
+	if event-block is stonecutter:
+		cancel event
+on rightclick:
+	if event-block is furnace:
+		cancel event
+on rightclick:
+	if event-block is grindstone:
+		cancel event
+on rightclick:
+	if event-block is campfire:
+		cancel event
+on rightclick:
+	if event-block is enchanting table:
+		cancel event
+on rightclick:
+	if event-block is end portal frame:
+		cancel event
+on rightclick:
+	if event-block is smoker:
+		cancel event
+on rightclick:
+	if event-block is smithing table:
+		cancel event
+		

@@ -1,0 +1,5 @@
+command /aboutmvp:
+	permission: aboutmvp.use
+	trigger:
+		send "&7[MVP] &9 MVP rank gives you access to /colors, /hat, /nick, /afk, Player Vaults 1-5, and Projectile Partials. You can buy MVP by typing /buy or by clicking <link:https://store.ecoboxmc.net/package/4538391>&aHere<reset>." to player 
+		

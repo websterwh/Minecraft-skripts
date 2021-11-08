@@ -1,0 +1,36 @@
+options:
+    prefix: &2&lEcoBox &8&l» 
+    maincolor: &f
+    secondarycolor: &7
+command /sell:
+    trigger:
+        if player's inventory contains diamond:
+            set {_amount} to amount of diamond in player's inventory
+            set {_cost} to 7*{_amount}
+            remove {_amount} of diamond from player's inventory
+            add {_cost} to {economy::balance::%player's uuid%}
+            send "{@prefix} {@secondarycolor}Sold {@maincolor}%{_amount}% {@secondarycolor}of diamonds for {@maincolor}$%{_cost}%{@secondarycolor}!"
+        if player's inventory contains emerald:
+            set {_amount} to amount of emerald in player's inventory
+            set {_cost} to 7*{_amount}
+            remove {_amount} of emerald from player's inventory
+            add {_cost} to {economy::balance::%player's uuid%}
+            send "{@prefix} {@secondarycolor}Sold {@maincolor}%{_amount}% {@secondarycolor}of emeralds for {@maincolor}$%{_cost}%{@secondarycolor}!"
+        if player's inventory contains oak log:
+            set {_amount} to amount of oak log in player's inventory
+            set {_cost} to 5*{_amount}
+            remove {_amount} of oak log from player's inventory
+            add {_cost} to {economy::balance::%player's uuid%}
+            send "{@prefix} {@secondarycolor}Sold {@maincolor}%{_amount}% {@secondarycolor}of oak logs for {@maincolor}$%{_cost}%{@secondarycolor}!"
+        if player's inventory contains cobblestone:
+            set {_amount} to amount of cobblestone in player's inventory
+            set {_cost} to 1*{_amount}
+            remove {_amount} of cobblestone from player's inventory
+            add {_cost} to {economy::balance::%player's uuid%}
+            send "{@prefix} {@secondarycolor}Sold {@maincolor}%{_amount}% {@secondarycolor}of cobblestones for {@maincolor}$%{_cost}%{@secondarycolor}!"
+        if player's inventory contains iron ingot:
+            set {_amount} to amount of iron ingot in player's inventory
+            set {_cost} to 7*{_amount}
+            remove {_amount} of iron ingot from player's inventory
+            add {_cost} to {economy::balance::%player's uuid%}
+            send "{@prefix} {@secondarycolor}Sold {@maincolor}%{_amount}% {@secondarycolor}of iron ingots for {@maincolor}$%{_cost}%{@secondarycolor}!"

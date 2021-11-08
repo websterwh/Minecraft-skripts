@@ -1,0 +1,16 @@
+on death of drowned:
+    clear the drops
+    set {_drowned} to random integer between 1 and 100
+    if {_drowned} <= 35:
+        drop rotten flesh named "&2&lFlesh"
+    else if {_drowned} <= 75:
+        drop diamond named  "&b&lPosiodens jewel"
+    else:
+        drop stick named "&b&lHilt of water"
+
+on spawn of a drowned:
+    broadcast "&l&bPosioden has been spawned"
+
+
+on death of drowned:
+    broadcast "&l&bPosioden has been killed"

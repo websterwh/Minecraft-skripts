@@ -5,7 +5,7 @@ on right click:
 			stop trigger
 		if {aotecooldown.%player's uuid%} < 8:
 			push player forward at speed 2
-			wait 10 ticks
+			wait 5 ticks
 			set velocity of player to new Vector 0, 0, 0
 			set {aotecooldown.%player's uuid%} to 8
 

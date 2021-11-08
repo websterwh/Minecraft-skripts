@@ -1,0 +1,19 @@
+# Coal
+#Diamond
+#Redstone
+#Emerald
+#Lapis Lazuli
+#Nether Quartz
+#Melon
+#Clay 
+#Seeds
+#Nether Wart 
+#Glowstone 
+
+on break:
+
+	set {fortune::amount::%player's uuid%} to a random number between 1 and 4
+	set {fortune::amount::%player's uuid%} to {fortune::amount::%player's uuid%} pased as a integer
+	
+on break of coal:
+	give {fortune::amount::%player's uuid%} of coal to player

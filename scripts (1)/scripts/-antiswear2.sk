@@ -1,0 +1,8 @@
+on chat:
+    if player has permission "op":
+        if message contains "nigger" or "nigga" or "faggot" or "fag" or "niggah" or "retard" or "ngga" or "fag" or "n!gga" or "coon" or "nigg" or "n!gga" or "nigg@" or "n!gg@" or "NIGGA" or "nigg@" or "n i g g a" or "n i g g e r" or "nig" or "gger" or "ni" or "ger" or "pog" or "pogg" or "poog" or "poggg" or "p o g" or "p0g" :
+            send "&7[&eChat&7] &rYou Have Bypassed Chat" to player
+                stop
+                    if player does not have permission "op" :
+                        if message contains "nigger" or "nigga" or "faggot" or "fag" or "niggah" or "retard" or "ngga" or "fag" or "n!gga" or "coon" or "nigg" or "n!gga" or "nigg@" or "n!gg@" or "NIGGA" or "nigg@" or "n i g g a" or "n i g g e r" or "nig" or "gger" or "ni" or "ger" or "pog" or "pogg" or "poog" or "poggg" or "p o g" or "p0g" :
+                            cancel event

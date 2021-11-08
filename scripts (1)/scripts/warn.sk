@@ -1,0 +1,7 @@
+command /warn <player> <text>:
+    permission: warn.use
+    permission message: &7You may not use this command.
+    trigger:
+        send "&7You have been warned due to &c%arg-2%" to argument 1 
+        send "&7You have warned the player &c%arg-1% &7for &c%arg-2%&7!"
+        broadcast "&c%arg-1% &7has been warned by &c%player% &7due to &c%arg-2%"

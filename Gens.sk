@@ -1,0 +1,694 @@
+#-------------------------------------------------------------------------------------------------------
+
+every 15 seconds:
+	loop all players in world "Plots":
+		loop all blocks in radius 10 around loop-player:
+			if loop-block is white concrete:
+				drop a paper named "&7Common &7Banknote" at loop-block's position
+
+on right click with paper:
+	if the name of player's held item contains "&7Common &7Banknote":
+		execute console command "eco give %player% 5"
+		remove paper from the player's tool
+	else:
+		cancel event
+			
+		
+#-------------------------------------------------------------------------------------------------------
+
+every 15 seconds:
+	loop all players in world "Plots":
+		loop all blocks in radius 10 around loop-player:
+			if loop-block is light blue concrete:
+				drop a paper named "&bUncommon &bBanknote" at loop-block's position
+
+on right click with paper:
+	if the name of player's held item contains "&bUncommon &bBanknote":
+		execute console command "eco give %player% 25"
+		remove paper from the player's tool
+	else:
+		cancel event
+
+#----------------------------------------------
+
+
+every 15 seconds:
+	loop all players in world "Plots":
+		loop all blocks in radius 10 around loop-player:
+			if loop-block is cyan concrete:
+				drop a paper named "&3Rare &3Banknote" at loop-block's position
+
+on right click with paper:
+	if the name of player's held item contains "&3Rare &3Banknote":
+		execute console command "eco give %player% 50"
+		remove paper from the player's tool
+	else:
+		cancel event
+		
+#-------------------------------------------------------------------------------------------------------
+
+every 15 seconds:
+	loop all players in world "Plots":
+		loop all blocks in radius 10 around loop-player:
+			if loop-block is blue concrete:
+				drop a paper named "&9Very &9Rare &9Banknote" at loop-block's position
+
+on right click with paper:
+	if the name of player's held item contains "&9Very &9Rare &9Banknote":
+		execute console command "eco give %player% 75"
+		remove paper from the player's tool
+	else:
+		cancel event
+		
+#-------------------------------------------------------------------------------------------------------
+
+every 15 seconds:
+	loop all players in world "Plots":
+		loop all blocks in radius 10 around loop-player:
+			if loop-block is purple concrete:
+				drop a paper named "&5Epic &5Banknote" at loop-block's position
+
+on right click with paper:
+	if the name of player's held item contains "&5Epic &5Banknote":
+		execute console command "eco give %player% 175"
+		remove paper from the player's tool
+	else:
+		cancel event
+		
+#-------------------------------------------------------------------------------------------------------
+
+every 15 seconds:
+	loop all players in world "Plots":
+		loop all blocks in radius 10 around loop-player:
+			if loop-block is magenta concrete:
+				drop a paper named "&eLegendary &eBanknote" at loop-block's position
+
+on right click with paper:
+	if the name of player's held item contains "&eLegendary &eBanknote":
+		execute console command "eco give %player% 350"
+		remove paper from the player's tool
+	else:
+		cancel event
+		
+#-------------------------------------------------------------------------------------------------------
+
+every 15 seconds:
+	loop all players in world "Plots":
+		loop all blocks in radius 10 around loop-player:
+			if loop-block is pink concrete:
+				drop a paper named "&dDemi-God &dBanknote" at loop-block's position
+
+on right click with paper:
+	if the name of player's held item contains "&dDemi-God &dBanknote":
+		execute console command "eco give %player% 600"
+		remove paper from the player's tool
+	else:
+		cancel event
+		
+#-------------------------------------------------------------------------------------------------------
+
+every 15 seconds:
+	loop all players in world "Plots":
+		loop all blocks in radius 10 around loop-player:
+			if loop-block is red concrete:
+				drop a paper named "&cGodly &cBanknote" at loop-block's position
+
+on right click with paper:
+	if the name of player's held item contains "&cGodly &cBanknote":
+		execute console command "eco give %player% 1000"
+		remove paper from the player's tool
+	else:
+		cancel event
+		
+#-------------------------------------------------------------------------------------------------------
+
+every 15 seconds:
+	loop all players in world "Plots":
+		loop all blocks in radius 10 around loop-player:
+			if loop-block is orange concrete:
+				drop a paper named "&6Crazy &6Banknote" at loop-block's position
+
+on right click with paper:
+	if the name of player's held item contains "&6Crazy &6Banknote":
+		execute console command "eco give %player% 1850"
+		remove paper from the player's tool
+	else:
+		cancel event
+		
+#-------------------------------------------------------------------------------------------------------
+
+every 15 seconds:
+	loop all players in world "Plots":
+		loop all blocks in radius 10 around loop-player:
+			if loop-block is yellow concrete:
+				drop a paper named "&eHeavenly &eBanknote" at loop-block's position
+
+on right click with paper:
+	if the name of player's held item contains "&eHeavenly &eBanknote":
+		execute console command "eco give %player% 3000"
+		remove paper from the player's tool
+	else:
+		cancel event
+		
+#-------------------------------------------------------------------------------------------------------
+
+every 15 seconds:
+	loop all players in world "Plots":
+		loop all blocks in radius 10 around loop-player:
+			if loop-block is lime concrete:
+				drop a paper named "&aEternal &aBanknote" at loop-block's position
+
+on right click with paper:
+	if the name of player's held item contains "&aEternal &aBanknote":
+		execute console command "eco give %player% 5750"
+		remove paper from the player's tool
+	else:
+		cancel event
+		
+#-------------------------------------------------------------------------------------------------------
+
+every 15 seconds:
+	loop all players in world "Plots":
+		loop all blocks in radius 10 around loop-player:
+			if loop-block is green concrete:
+				drop a paper named "&2Divine &2Banknote" at loop-block's position
+
+on right click with paper:
+	if the name of player's held item contains "&2Divine &2Banknote":
+		execute console command "eco give %player% 10000"
+		remove paper from the player's tool
+	else:
+		cancel event
+		
+#-------------------------------------------------------------------------------------------------------
+
+on craft of white concrete powder:
+	cancel event
+
+on craft of light blue concrete powder:
+	cancel event
+
+on craft of cyan concrete powder:
+	cancel event
+
+on craft of blue concrete powder:
+	cancel event
+
+on craft of purple concrete powder:
+	cancel event
+
+on craft of magenta concrete powder:
+	cancel event
+
+on craft of pink concrete powder:
+	cancel event
+
+on craft of red concrete powder:
+	cancel event
+
+#-----------------------------------------------
+
+command /start:
+	trigger:
+		if "%world%" contains "Plots":
+			send "&7[&c&lError&7] &cYour only allowed to use this command once!"
+			if {cooldown.%player%} is set:
+				stop
+			if {cooldown.%player%} isn't set:
+				set {cooldown.%player%} to false
+			if {cooldown.%player%} is false:
+				set {cooldown.%player%} to true
+				send "&7[&c&lError&7] &cYou may only use this command once!"
+				give player white concrete named "&f&lCommon Generator"
+				execute console command "lp user %player% permission unset start.gens"
+
+command /?:
+	trigger:
+		if "%world%" contains "Plots":
+			send "&e-----------------------------------------------------"
+			send "&7[&f1&7] &fDo /Shop to buy items and gens!"
+			send "&7[&f2&7] &fRight click your generator to upgrade it!"
+			send "&7[&f3&7] &fBaltop 1 at the end of the season gets $10 Buycraft!"
+			send "&7[&f4&7] &fNO BOOSTING!!!"
+			send "&7[&f5&7] &fDo /help to review these!"
+			send "&e-----------------------------------------------------"
+
+#-----------------------------------------------
+
+command /shop:
+	trigger:
+		open chest with 6 rows named "&d&lShop" to player
+		format slot 0 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 1 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 2 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 3 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 4 of player with White Concrete named "&e&lGenerators &f&lAnd &a&lFarming" to be unstealable
+		format slot 5 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 6 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 7 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 8 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+#<--------------------------------------------------------------------------------------------------------------------------------------------------->
+		format slot 9 of player with 4 Oak saplings named "&2&lOak Saplings" with lore "&7[&cCost&7] &a$1,000" to run [make player execute command "g1"]
+		format slot 10 of player with 4 Spruce saplings named "&2&lSpruce Saplings" with lore "&7[&cCost&7] &a$1,000"  to run [make player execute command "g2"]
+		format slot 11 of player with 4 Jungle Saplings named "&2&lJungle Saplings" with lore "&7[&cCost&7] &a$1,000"  to run [make player execute command "g3"]
+		format slot 12 of player with White Concrete named "&f&lCommon Generator" with lore "&7[&cCost&7] &a$250"  to run [make player execute command "g4"]
+		format slot 13 of player with water bucket named "&b&lWater" with lore "&7[&cCost&7] &a$2,500"  to run [make player execute command "g5"]
+		format slot 14 of player with hopper named "&7&lHopper" with lore "&7[&cCost&7] &a$10,000"  to run [make player execute command "g6"]
+		format slot 15 of player with 4 Birch Saplings named "&2&lBirch Saplings" with lore "&7[&cCost&7] &a$1,000"  to run [make player execute command "g7"]
+		format slot 16 of player with 4 Acacia Saplings named "&2&lAcacia Saplings" with lore "&7[&cCost&7] &a$1,000"  to run [make player execute command "g8"]
+		format slot 17 of player with 4 dark oak saplings named "&2&lDark Oak Saplings" with lore "&7[&cCost&7] &a$1,000"  to run [make player execute command "g9"]
+#<--------------------------------------------------------------------------------------------------------------------------------------------------->
+		format slot 18 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 19 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 20 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 21 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 22 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 23 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 24 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 25 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 26 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+#<--------------------------------------------------------------------------------------------------------------------------------------------------->
+		format slot 27 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 28 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 29 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 30 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 31 of player with Oak Plank named "&f&lItems" to be unstealable
+		format slot 32 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 33 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 34 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 35 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+#<--------------------------------------------------------------------------------------------------------------------------------------------------->
+		format slot 36 of player with 16 Oak Logs named "&6&lOak Logs" with lore "&7[&cCost&7] &a$100"  to run [make player execute command "g10"]
+		format slot 37 of player with 64 Oak Planks named "&6&lOak Planks " with lore "&7[&cCost&7] &a$100" to run [make player execute command "g11"]
+		format slot 38 of player with 8 redstone named "&c&lRedstone" with lore "&7[&cCost&7] &a$50,000" to run [make player execute command "g12"]
+		format slot 39 of player with redstone repeater named "&c&lRedstone Repeater" with lore "&7[&cCost&7] &a$10,000" to run [make player execute command "13"]
+		format slot 40 of player with redstone comparator named "&c&lRedstone Comparator" with lore "&7[&cCost&7] &a$15,000" to run [make player execute command "g14"]
+		format slot 41 of player with Observer named "&c&lObserver" with lore "&7[&cCost&7] &a$100,000" to run [make player execute command "g15"]
+		format slot 42 of player with redstone torch named "&c&lRedstone Torch" with lore "&7[&cCost&7] &a$5,000" to run [make player execute command "g16"]
+		format slot 43 of player with Piston named "&c&lPiston" with lore "&7[&cCost&7] &a$1,000,000" to run [make player execute command "g17"]
+		format slot 44 of player with sticky Piston named "&a&lSticky Piston" with lore "&7[&cCost&7] &a$1,250,000" to run [make player execute command "g18"]
+#<--------------------------------------------------------------------------------------------------------------------------------------------------->
+		format slot 45 of player with Barrier named "&4&lBack" to close
+		format slot 46 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 47 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 48 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 49 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 50 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 51 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 52 of player with Gray Stained Glass Pane named "&f&l " to be unstealable
+		format slot 53 of player with sunflower named "&a&l%player's balance%" with lore "&dBalance" to be unstealable
+
+#<--------------------------------------------------------------------------------------------------------------------------------------------------->
+
+command /g1:
+	trigger:
+		if "%world%" contains "Plots":
+			if player's balance is less than 1000:
+				send "&7[&c&lError&7] &cInsufficient Funds."
+			else:
+				remove 1000 from player's balance
+				give player 4 oak saplings
+
+command /g2:
+	trigger:
+		if "%world%" contains "Plots":
+			if player's balance is less than 1000:
+				send "&7[&c&lError&7] &cInsufficient Funds."
+			else:
+				remove 1000 from player's balance
+				give player 4 spruce saplings
+
+command /g3:
+	trigger:
+		if "%world%" contains "Plots":
+			if player's balance is less than 1000:
+				send "&7[&c&lError&7] &cInsufficient Funds."
+			else:
+				remove 1000 from player's balance
+				give player 4 jungle saplings
+
+command /g4:
+	trigger:
+		if "%world%" contains "Plots":
+			if player's balance is less than 250:
+				send "&7[&c&lError&7] &cInsufficient Funds."
+			else:
+				remove 250 from player's balance
+				give player white concrete named "&fCommon Generator"
+
+command /g5:
+	trigger:
+		if "%world%" contains "Plots":
+			if player's balance is less than 2500:
+				send "&7[&c&lError&7] &cInsufficient Funds."
+			else:
+				remove 2500 from player's balance
+				give player water bucket
+
+command /g6:
+	trigger:
+		if "%world%" contains "Plots":
+			if player's balance is less than 10000:
+				send "&7[&c&lError&7] &cInsufficient Funds."
+			else:
+				remove 10000 from player's balance
+				give player hopper
+
+command /g7:
+	trigger:
+		if "%world%" contains "Plots":
+			if player's balance is less than 1000:
+				send "&7[&c&lError&7] &cInsufficient Funds."
+			else:
+				remove 1000 from player's balance
+				give player 4 birch saplings
+
+command /g8:
+	trigger:
+		if "%world%" contains "Plots":
+			if player's balance is less than 1000:
+				send "&7[&c&lError&7] &cInsufficient Funds."
+			else:
+				remove 1000 from player's balance
+				give player 4 acacia saplings
+
+command /g9:
+	trigger:
+		if "%world%" contains "Plots":
+			if player's balance is less than 1000:
+				send "&7[&c&lError&7] &cInsufficient Funds."
+			else:
+				remove 1000 from player's balance
+				give player 4 dark oak saplings
+
+command /g10:
+	trigger:
+		if "%world%" contains "Plots":
+			if player's balance is less than 100:
+				send "&7[&c&lError&7] &cInsufficient Funds."
+			else:
+				remove 100 from player's balance
+				give player 16 oak logs
+
+
+command /g11:
+	trigger:
+		if "%world%" contains "Plots":
+			if player's balance is less than 100:
+				send "&7[&c&lError&7] &cInsufficient Funds."
+			else:
+				remove 100 from player's balance
+				give player 64 oak planks
+
+
+command /g12:
+	trigger:
+		if "%world%" contains "Plots":
+			if player's balance is less than 50000:
+				send "&7[&c&lError&7] &cInsufficient Funds."
+			else:
+				remove 50000 from player's balance
+				give player 8 redstone dust
+
+
+command /g13:
+	trigger:
+		if "%world%" contains "Plots":
+			if player's balance is less than 10000:
+				send "&7[&c&lError&7] &cInsufficient Funds."
+			else:
+				remove 10000 from player's balance
+				give player redstone repeater
+
+
+command /g14:
+	trigger:
+		if "%world%" contains "Plots":
+			if player's balance is less than 15000:
+				send "&7[&c&lError&7] &cInsufficient Funds."
+			else:
+				remove 15000 from player's balance
+				give player redstone comparator
+
+
+command /g15:
+	trigger:
+		if "%world%" contains "Plots":
+			if player's balance is less than 100000:
+				send "&7[&c&lError&7] &cInsufficient Funds."
+			else:
+				remove 100000 from player's balance
+				give player observer
+
+
+command /g16:
+	trigger:
+		if "%world%" contains "Plots":
+			if player's balance is less than 5000:
+				send "&7[&c&lError&7] &cInsufficient Funds."
+			else:
+				remove 5000 from player's balance
+				give player redstone torch
+
+
+command /g17:
+	trigger:
+		if "%world%" contains "Plots":
+			if player's balance is less than 1000000:
+				send "&7[&c&lError&7] &cInsufficient Funds."
+			else:
+				remove 1000000 from player's balance
+				give player piston
+
+command /g18:
+	trigger:
+		if "%world%" contains "Plots":
+			if player's balance is less than 1250000:
+				send "&7[&c&lError&7] &cInsufficient Funds."
+			else:
+				remove 1250000 from player's balance
+				give player sticky piston
+
+
+
+
+
+
+
+
+
+#[----------------------------------------------------------------------------------------------------------------]
+
+on right click on white concrete:
+	if "%world%" contains "Plots":
+		wait 1 tick
+		if player's balance is more or equal to 500:
+			subtract 500 from player's balance
+			set block to light blue concrete
+			send action bar "&d&lUpgraded Generator!" to player
+		else:
+			send "&cError: &eInsufficient funds to upgrade Gen! &eYou need &a$500 &eand you have &a%player's balance%&e!"
+
+on break of white concrete:
+	if "%world%" contains "Plots":
+		cancel event
+		set block to air
+		drop white concrete named "&f&lCommon &f&lGenerator"
+
+#[----------------------------------------------------------------------------------------------------------------]
+
+on right click on light blue concrete:
+	if "%world%" contains "Plots":
+		wait 1 tick
+		if player's balance is more or equal to 1000:
+			subtract 1000 from player's balance
+			set block to cyan concrete
+			send action bar "&d&lUpgraded Generator!" to player
+		else:
+			send "&cError: &eInsufficient funds to upgrade Gen! &eYou need &a$1000 &eand you have &a%player's balance%&e!"
+
+on break of light blue concrete:
+	if "%world%" contains "Plots":
+		cancel event
+		set block to air
+		drop light blue concrete named "&b&lUncommon &b&lGenerator"
+
+#[----------------------------------------------------------------------------------------------------------------]
+
+on right click on cyan concrete:
+	if "%world%" contains "Plots":
+		wait 1 tick
+		if player's balance is more or equal to 2500:
+			subtract 2500 from player's balance
+			set block to blue concrete
+			send action bar "&d&lUpgraded Generator!" to player
+		else:
+			send "&cError: &eInsufficient funds to upgrade Gen! &eYou need &a$2500 &eand you have &a%player's balance%&e!"
+
+on break of cyan concrete:
+	if "%world%" contains "Plots":
+		cancel event
+		set block to air
+		drop cyan concrete named "&3&lRare &3&lGenerator"
+
+#[----------------------------------------------------------------------------------------------------------------]
+
+on right click on blue concrete:
+	if "%world%" contains "Plots":
+		wait 1 tick
+		if player's balance is more or equal to 7500:
+			subtract 7500 from player's balance
+			set block to purple concrete
+			send action bar "&d&lUpgraded Generator!" to player
+		else:
+			send "&cError: &eInsufficient funds to upgrade Gen! &eYou need &a$7500 &eand you have &a%player's balance%&e!"
+
+on break of blue concrete:
+	if "%world%" contains "Plots":
+		cancel event
+		set block to air
+		drop blue concrete named "&9&lVery &9&lRare &9&lGenerator"
+
+#[----------------------------------------------------------------------------------------------------------------]
+
+on right click on purple concrete:
+	if "%world%" contains "Plots":
+		wait 1 tick
+		if player's balance is more or equal to 20000:
+			subtract 20000 from player's balance
+			set block to magenta concrete
+			send action bar "&d&lUpgraded Generator!" to player
+		else:
+			send "&cError: &eInsufficient funds to upgrade Gen! &eYou need &a$20000 &eand you have &a%player's balance%&e!"
+
+on break of purple concrete:
+	if "%world%" contains "Plots":
+		cancel event
+		set block to air
+		drop purple concrete named "&5&lEpic &5&lGenerator"
+
+#[----------------------------------------------------------------------------------------------------------------]
+
+on right click on magenta concrete:
+	if "%world%" contains "Plots":
+		wait 1 tick
+		if player's balance is more or equal to 50000:
+			subtract 50000 from player's balance
+			set block to pink concrete
+			send action bar "&d&lUpgraded Generator!" to player
+		else:
+			send "&cError: &eInsufficient funds to upgrade Gen! &eYou need &a$50000 &eand you have &a%player's balance%&e!"
+
+on break of magenta concrete:
+	if "%world%" contains "Plots":
+		cancel event
+		set block to air
+		drop magenta concrete named "&d&lLegendary &d&lGenerator"
+
+#[----------------------------------------------------------------------------------------------------------------]
+
+on right click on pink concrete:
+	if "%world%" contains "Plots":
+		wait 1 tick
+		if player's balance is more or equal to 125000:
+			subtract 125000 from player's balance
+			set block to red concrete
+			send action bar "&d&lUpgraded Generator!" to player
+		else:
+			send "&cError: &eInsufficient funds to upgrade Gen! &eYou need &a$125000 &eand you have &a%player's balance%&e!"
+
+on break of pink concrete:
+	if "%world%" contains "Plots":
+		cancel event
+		set block to air
+		drop pink concrete named "&d&lDemi-God &d&lGenerator"
+
+#[----------------------------------------------------------------------------------------------------------------]
+
+on right click on red concrete:
+	if "%world%" contains "Plots":
+		wait 1 tick
+		if player's balance is more or equal to 300000:
+			subtract 300000 from player's balance
+			set block to orange concrete
+			send action bar "&d&lUpgraded Generator!" to player
+		else:
+			send "&cError: &eInsufficient funds to upgrade Gen! &eYou need &a$300000 &eand you have &a%player's balance%&e!"
+
+on break of red concrete:
+	if "%world%" contains "Plots":
+		cancel event
+		set block to air
+		drop red concrete named "&c&lGodly &c&lGenerator"
+
+#[----------------------------------------------------------------------------------------------------------------]
+
+on right click on orange concrete:
+	if "%world%" contains "Plots":
+		wait 1 tick
+		if player's balance is more or equal to 750000:
+			subtract 750000 from player's balance
+			set block to yellow concrete
+			send action bar "&d&lUpgraded Generator!" to player
+		else:
+			send "&cError: &eInsufficient funds to upgrade Gen! &eYou need &a$300000 &eand you have &a%player's balance%&e!"
+
+on break of orange concrete:
+	if "%world%" contains "Plots":
+		cancel event
+		set block to air
+		drop red concrete named "&6&lCrazy &6&lGenerator"
+
+#[----------------------------------------------------------------------------------------------------------------]
+
+on right click on yellow concrete:
+	if "%world%" contains "Plots":
+		wait 1 tick
+		if player's balance is more or equal to 1750000:
+			subtract 1750000 from player's balance
+			set block to light green concrete
+			send action bar "&d&lUpgraded Generator!" to player
+		else:
+			send "&cError: &eInsufficient funds to upgrade Gen! &eYou need &a$750000 &eand you have &a%player's balance%&e!"
+
+on break of yellow concrete:
+	if "%world%" contains "Plots":
+		cancel event
+		set block to air
+		drop yellow concrete named "&e&lHeavenly &e&lGenerator"
+
+#[----------------------------------------------------------------------------------------------------------------]
+
+on right click on lime concrete:
+	if "%world%" contains "Plots":
+		wait 1 tick
+		if player's balance is more or equal to 4000000:
+			subtract 1750000 from player's balance
+			set block to green concrete
+			send action bar "&d&lUpgraded Generator!" to player
+		else:
+			send "&cError: &eInsufficient funds to upgrade Gen! &eYou need &a$1750000 &eand you have &a%player's balance%&e!"
+
+on break of lime concrete:
+	if "%world%" contains "Plots":
+		cancel event
+		set block to air
+		drop lime concrete named "&a&lEternal &a&lGenerator"
+
+#[----------------------------------------------------------------------------------------------------------------]
+
+#on right click on green concrete:
+	if "%world%" contains "Plots":
+		wait 1 tick
+		if player's balance is more or equal to 7500000:
+			subtract 7500000 from player's balance
+			set block to green concrete
+			send action bar "&d&lUpgraded Generator!" to player
+		else:
+			send "&cError: &eInsufficient funds to upgrade Gen! &eYou need &a$7500000 &eand you have &a%player's balance%&e!"
+
+on break of green concrete:
+	if "%world%" contains "Plots":
+		cancel event
+		set block to air
+		drop lime concrete named "&2&lDivine &2&lGenerator"

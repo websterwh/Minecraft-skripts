@@ -1,0 +1,21 @@
+command /rules:
+	trigger:
+		open virtual chest with 5 rows named "&cRules" to player
+		format gui slot 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 26, 27, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, and 44  of player with gray stained glass pane named "&7"
+		format gui slot 10 of player with paper named "&cNo Naked Killing"
+		format gui slot 11 of player with paper named "&cNo Hacking"
+		format gui slot 12 of player with paper named "&cNo Spamming/Caps"
+		format gui slot 13 of player with paper named "&cNo Spam Killing"
+		format gui slot 14 of player with paper named "&cNo Racism/NSFW/Homophobia"
+		format gui slot 15 of player with paper named "&cNo Death Threats"
+		format gui slot 16 of player with paper named "&cNo Scamming"
+		format gui slot 19 of player with paper named "&cNo Advertising"
+		format gui slot 20 of player with paper named "&cNo Harassing Staff"
+		format gui slot 21 of player with paper named "&cNo Impersonating Staff"
+		format gui slot 22 of player with paper named "&cNo Politics"
+		format gui slot 23 of player with paper named "&cNo Discrimination"
+		format gui slot 24 of player with paper named "&cNo Faking Naked"
+		format gui slot 25 of player with paper named "&cNo Being Annoying"
+		format gui slot 28 of player with paper named "&cDon't Abuse Glitches"
+		format gui slot 29 of player with paper named "&cDon't Ask Staff for Items"
+		

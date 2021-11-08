@@ -1,0 +1,182 @@
+command /stats [<offline player>]:
+	trigger:
+		if arg 1 is offline player:
+			send "&a&m        &aStats&a&m        "
+			send "&a%arg 1%"
+			send "&aBalance: &a$&f%{economy::balance::%arg 1's uuid%}%"
+			send "&aKDR: &f%{kdr.%arg 1's uuid%}%"
+			send "&aKills: &f%{kills.%arg 1's uuid%}%"
+			send "&aDeaths: &f%{deaths.%arg 1's uuid%}%"
+			send "&a&m                      "
+		if arg 1 is not set:
+			send "&c/stats <player name>"
+command /leaderboard:
+	permission: op
+	trigger:
+		set {test.leader.%player's uuid%} to 0
+		set {leaderboard.kdr.place.10} to 0
+		set {leaderboard.kdr.place.9} to 0
+		set {leaderboard.kdr.place.8} to 0
+		set {leaderboard.kdr.place.7} to 0
+		set {leaderboard.kdr.place.6} to 0
+		set {leaderboard.kdr.place.5} to 0
+		set {leaderboard.kdr.place.4} to 0
+		set {leaderboard.kdr.place.3} to 0
+		set {leaderboard.kdr.place.2} to 0
+		set {leaderboard.kdr.place.1} to 0
+		send "&6&m          &6Leaderboard&6&m          "
+		loop {allplayer} times:
+			add 1 to {test.leader.%player's uuid%}
+			if {kdr.%{player.uuid.%{test.leader.%player's uuid%}%}%} is not set:
+				set {kdr.%{player.uuid.%{test.leader.%player's uuid%}%}%} to 0
+			if {leaderboard.kdr.place.1} = 0:
+				set {leaderboard.kdr.place.1} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.kdr.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {kdr.%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {kdr.%{player.uuid.%{leaderboard.kdr.place.1}%}%}:
+					set {leaderboard.kdr.place.10} to {leaderboard.kdr.place.9}
+					set {leaderboard.kdr.place.9} to {leaderboard.kdr.place.8}
+					set {leaderboard.kdr.place.8} to {leaderboard.kdr.place.7}
+					set {leaderboard.kdr.place.7} to {leaderboard.kdr.place.6}
+					set {leaderboard.kdr.place.6} to {leaderboard.kdr.place.5}
+					set {leaderboard.kdr.place.5} to {leaderboard.kdr.place.4}
+					set {leaderboard.kdr.place.4} to {leaderboard.kdr.place.3}
+					set {leaderboard.kdr.place.3} to {leaderboard.kdr.place.2}
+					set {leaderboard.kdr.place.2} to {leaderboard.kdr.place.1}
+					set {leaderboard.kdr.place.1} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.kdr.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {leaderboard.kdr.place.2} = 0:
+					set {leaderboard.kdr.place.2} to {test.leader.%player's uuid%}
+				if {player.uuid.%{leaderboard.kdr.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {kdr.%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {kdr.%{player.uuid.%{leaderboard.kdr.place.2}%}%}:
+						set {leaderboard.kdr.place.10} to {leaderboard.kdr.place.9}
+						set {leaderboard.kdr.place.9} to {leaderboard.kdr.place.8}
+						set {leaderboard.kdr.place.8} to {leaderboard.kdr.place.7}
+						set {leaderboard.kdr.place.7} to {leaderboard.kdr.place.6}
+						set {leaderboard.kdr.place.6} to {leaderboard.kdr.place.5}
+						set {leaderboard.kdr.place.5} to {leaderboard.kdr.place.4}
+						set {leaderboard.kdr.place.4} to {leaderboard.kdr.place.3}
+						set {leaderboard.kdr.place.3} to {leaderboard.kdr.place.2}
+						set {leaderboard.kdr.place.2} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.kdr.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.kdr.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {leaderboard.kdr.place.3} = 0:
+						set {leaderboard.kdr.place.3} to {test.leader.%player's uuid%}
+					if {player.uuid.%{leaderboard.kdr.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {kdr.%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {kdr.%{player.uuid.%{leaderboard.kdr.place.3}%}%}:
+							set {leaderboard.kdr.place.10} to {leaderboard.kdr.place.9}
+							set {leaderboard.kdr.place.9} to {leaderboard.kdr.place.8}
+							set {leaderboard.kdr.place.8} to {leaderboard.kdr.place.7}
+							set {leaderboard.kdr.place.7} to {leaderboard.kdr.place.6}
+							set {leaderboard.kdr.place.6} to {leaderboard.kdr.place.5}
+							set {leaderboard.kdr.place.5} to {leaderboard.kdr.place.4}
+							set {leaderboard.kdr.place.4} to {leaderboard.kdr.place.3}
+							set {leaderboard.kdr.place.3} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.kdr.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.kdr.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.kdr.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {leaderboard.kdr.place.4} = 0:
+							set {leaderboard.kdr.place.4} to {test.leader.%player's uuid%}
+						if {player.uuid.%{leaderboard.kdr.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {kdr.%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {kdr.%{player.uuid.%{leaderboard.kdr.place.4}%}%}:
+								set {leaderboard.kdr.place.10} to {leaderboard.kdr.place.9}
+								set {leaderboard.kdr.place.9} to {leaderboard.kdr.place.8}
+								set {leaderboard.kdr.place.8} to {leaderboard.kdr.place.7}
+								set {leaderboard.kdr.place.7} to {leaderboard.kdr.place.6}
+								set {leaderboard.kdr.place.6} to {leaderboard.kdr.place.5}
+								set {leaderboard.kdr.place.5} to {leaderboard.kdr.place.4}
+								set {leaderboard.kdr.place.4} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.kdr.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.kdr.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.kdr.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {player.uuid.%{leaderboard.kdr.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {leaderboard.kdr.place.5} = 0:
+								set {leaderboard.kdr.place.5} to {test.leader.%player's uuid%}
+							if {player.uuid.%{leaderboard.kdr.place.5}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+								if {kdr.%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {kdr.%{player.uuid.%{leaderboard.kdr.place.5}%}%}:
+									set {leaderboard.kdr.place.10} to {leaderboard.kdr.place.9}
+									set {leaderboard.kdr.place.9} to {leaderboard.kdr.place.8}
+									set {leaderboard.kdr.place.8} to {leaderboard.kdr.place.7}
+									set {leaderboard.kdr.place.7} to {leaderboard.kdr.place.6}
+									set {leaderboard.kdr.place.6} to {leaderboard.kdr.place.5}
+									set {leaderboard.kdr.place.5} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.kdr.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.kdr.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.kdr.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {player.uuid.%{leaderboard.kdr.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {player.uuid.%{leaderboard.kdr.place.5}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+								if {leaderboard.kdr.place.6} = 0:
+									set {leaderboard.kdr.place.6} to {test.leader.%player's uuid%}
+								if {player.uuid.%{leaderboard.kdr.place.6}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+									if {kdr.%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {kdr.%{player.uuid.%{leaderboard.kdr.place.6}%}%}:
+										set {leaderboard.kdr.place.10} to {leaderboard.kdr.place.9}
+										set {leaderboard.kdr.place.9} to {leaderboard.kdr.place.8}
+										set {leaderboard.kdr.place.8} to {leaderboard.kdr.place.7}
+										set {leaderboard.kdr.place.7} to {leaderboard.kdr.place.6}
+										set {leaderboard.kdr.place.6} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.kdr.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.kdr.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.kdr.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {player.uuid.%{leaderboard.kdr.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {player.uuid.%{leaderboard.kdr.place.5}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+								if {player.uuid.%{leaderboard.kdr.place.6}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+									if {leaderboard.kdr.place.7} = 0:
+										set {leaderboard.kdr.place.7} to {test.leader.%player's uuid%}
+									if {player.uuid.%{leaderboard.kdr.place.7}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+										if {kdr.%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {kdr.%{player.uuid.%{leaderboard.kdr.place.7}%}%}:
+											set {leaderboard.kdr.place.10} to {leaderboard.kdr.place.9}
+											set {leaderboard.kdr.place.9} to {leaderboard.kdr.place.8}
+											set {leaderboard.kdr.place.8} to {leaderboard.kdr.place.7}
+											set {leaderboard.kdr.place.7} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.kdr.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.kdr.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.kdr.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {player.uuid.%{leaderboard.kdr.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {player.uuid.%{leaderboard.kdr.place.5}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+								if {player.uuid.%{leaderboard.kdr.place.6}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+									if {player.uuid.%{leaderboard.kdr.place.7}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+										if {leaderboard.kdr.place.8} = 0:
+											set {leaderboard.kdr.place.8} to {test.leader.%player's uuid%}
+										if {player.uuid.%{leaderboard.kdr.place.8}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+											if {kdr.%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {kdr.%{player.uuid.%{leaderboard.kdr.place.8}%}%}:
+												set {leaderboard.kdr.place.10} to {leaderboard.kdr.place.9}
+												set {leaderboard.kdr.place.9} to {leaderboard.kdr.place.8}
+												set {leaderboard.kdr.place.8} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.kdr.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.kdr.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.kdr.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {player.uuid.%{leaderboard.kdr.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {player.uuid.%{leaderboard.kdr.place.5}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+								if {player.uuid.%{leaderboard.kdr.place.6}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+									if {player.uuid.%{leaderboard.kdr.place.7}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+										if {player.uuid.%{leaderboard.kdr.place.8}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+											if {leaderboard.kdr.place.9} = 0:
+												set {leaderboard.kdr.place.9} to {test.leader.%player's uuid%}
+											if {player.uuid.%{leaderboard.kdr.place.9}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+												if {kdr.%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {kdr.%{player.uuid.%{leaderboard.kdr.place.9}%}%}:
+													set {leaderboard.kdr.place.10} to {leaderboard.kdr.place.9}
+													set {leaderboard.kdr.place.9} to {test.leader.%player's uuid%}
+			if {player.uuid.%{leaderboard.kdr.place.1}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+				if {player.uuid.%{leaderboard.kdr.place.2}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+					if {player.uuid.%{leaderboard.kdr.place.3}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+						if {player.uuid.%{leaderboard.kdr.place.4}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+							if {player.uuid.%{leaderboard.kdr.place.5}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+								if {player.uuid.%{leaderboard.kdr.place.6}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+									if {player.uuid.%{leaderboard.kdr.place.7}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+										if {player.uuid.%{leaderboard.kdr.place.8}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+											if {player.uuid.%{leaderboard.kdr.place.9}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+												if {leaderboard.kdr.place.10} = 0:
+													set {leaderboard.kdr.place.10} to {test.leader.%player's uuid%}
+												if {player.uuid.%{leaderboard.kdr.place.10}%} != {player.uuid.%{test.leader.%player's uuid%}%}:
+													if {kdr.%{player.uuid.%{test.leader.%player's uuid%}%}%} >= {kdr.%{player.uuid.%{leaderboard.kdr.place.10}%}%}:
+														set {leaderboard.kdr.place.10} to {test.leader.%player's uuid%}
+		send "&a##1 &c%{player.player.%{leaderboard.kdr.place.1}%}% &aKDR: &f%{kdr.%{player.uuid.%{leaderboard.kdr.place.1}%}%}% &aKills: &f%{kills.%{player.uuid.%{leaderboard.kdr.place.1}%}%}% &aDeaths: &f%{deaths.%{player.uuid.%{leaderboard.kdr.place.1}%}%}%"
+		send "&a##2 &c%{player.player.%{leaderboard.kdr.place.2}%}% &aKDR: &f%{kdr.%{player.uuid.%{leaderboard.kdr.place.2}%}%}% &aKills: &f%{kills.%{player.uuid.%{leaderboard.kdr.place.2}%}%}% &aDeaths: &f%{deaths.%{player.uuid.%{leaderboard.kdr.place.2}%}%}%"
+		send "&a##3 &c%{player.player.%{leaderboard.kdr.place.3}%}% &aKDR: &f%{kdr.%{player.uuid.%{leaderboard.kdr.place.3}%}%}% &aKills: &f%{kills.%{player.uuid.%{leaderboard.kdr.place.3}%}%}% &aDeaths: &f%{deaths.%{player.uuid.%{leaderboard.kdr.place.3}%}%}%"
+		send "&a##4 &c%{player.player.%{leaderboard.kdr.place.4}%}% &aKDR: &f%{kdr.%{player.uuid.%{leaderboard.kdr.place.4}%}%}% &aKills: &f%{kills.%{player.uuid.%{leaderboard.kdr.place.4}%}%}% &aDeaths: &f%{deaths.%{player.uuid.%{leaderboard.kdr.place.4}%}%}%"
+		send "&a##5 &c%{player.player.%{leaderboard.kdr.place.5}%}% &aKDR: &f%{kdr.%{player.uuid.%{leaderboard.kdr.place.5}%}%}% &aKills: &f%{kills.%{player.uuid.%{leaderboard.kdr.place.5}%}%}% &aDeaths: &f%{deaths.%{player.uuid.%{leaderboard.kdr.place.5}%}%}%"
+		send "&a##6 &c%{player.player.%{leaderboard.kdr.place.6}%}% &aKDR: &f%{kdr.%{player.uuid.%{leaderboard.kdr.place.6}%}%}% &aKills: &f%{kills.%{player.uuid.%{leaderboard.kdr.place.6}%}%}% &aDeaths: &f%{deaths.%{player.uuid.%{leaderboard.kdr.place.6}%}%}%"
+		send "&a##7 &c%{player.player.%{leaderboard.kdr.place.7}%}% &aKDR: &f%{kdr.%{player.uuid.%{leaderboard.kdr.place.7}%}%}% &aKills: &f%{kills.%{player.uuid.%{leaderboard.kdr.place.7}%}%}% &aDeaths: &f%{deaths.%{player.uuid.%{leaderboard.kdr.place.7}%}%}%"
+		send "&a##8 &c%{player.player.%{leaderboard.kdr.place.8}%}% &aKDR: &f%{kdr.%{player.uuid.%{leaderboard.kdr.place.8}%}%}% &aKills: &f%{kills.%{player.uuid.%{leaderboard.kdr.place.8}%}%}% &aDeaths: &f%{deaths.%{player.uuid.%{leaderboard.kdr.place.8}%}%}%"
+		send "&a##9 &c%{player.player.%{leaderboard.kdr.place.9}%}% &aKDR: &f%{kdr.%{player.uuid.%{leaderboard.kdr.place.9}%}%}% &aKills: &f%{kills.%{player.uuid.%{leaderboard.kdr.place.9}%}%}% &aDeaths: &f%{deaths.%{player.uuid.%{leaderboard.kdr.place.9}%}%}%"
+		send "&a##10 &c%{player.player.%{leaderboard.kdr.place.10}%}% &aKDR: &f%{kdr.%{player.uuid.%{leaderboard.kdr.place.10}%}%}% &aKills: &f%{kills.%{player.uuid.%{leaderboard.kdr.place.10}%}%}% &aDeaths: &f%{deaths.%{player.uuid.%{leaderboard.kdr.place.10}%}%}%"
+		send "&6&m                                 "

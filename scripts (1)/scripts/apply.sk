@@ -1,0 +1,4 @@
+command /apply:
+	permission: apply.use
+	trigger:
+		send formatted "&b&lAPPLY &8- <link:https://forms.gle/cKRhFwyCRQxf4EbL9>&bClick me to apply!" to player

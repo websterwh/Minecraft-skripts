@@ -1,0 +1,20 @@
+command /cashout [<int>]:
+	trigger:
+		if arg 1 is not set:
+			send "&c/cashout <amount>"
+		if arg 1 is an integer:
+			if {economy::balance::%player's uuid%} >= arg 1:
+				remove arg 1 from {economy::balance::%player's uuid%}
+				give player arg 1 of glowing paper named "&a$1"
+command /cashin:
+	trigger:
+		set {money.all.%player's uuid%} to amount of glowing paper named "&a$1" in player's inventory
+		send "&aCashed in $%{money.all.%player's uuid%}%"
+		remove all glowing paper named "&a$1" from player
+		add {money.all.%player's uuid%} to {economy::balance::%player's uuid%}
+on rightclick:
+	if player is holding glowing paper named "&a$1":
+		set {money.all.%player's uuid%} to amount of glowing paper named "&a$1" in player's inventory
+		send "&aCashed in $%{money.all.%player's uuid%}%"
+		remove all glowing paper named "&a$1" from player
+		add {money.all.%player's uuid%} to {economy::balance::%player's uuid%}

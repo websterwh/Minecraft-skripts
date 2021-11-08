@@ -1,0 +1,232 @@
+every 1 seconds:
+	loop all players:
+		if {click.%loop-player's uuid%} >= 15:
+			loop all players:
+				if loop-player-2 has permission "staff":
+					set {cheat.%loop-player-1's uuid%.teleport} to true
+					send "&8[&cCheat Detect&8] &c%loop-player-1% &e%{click.%loop-player-1's uuid%}%&ecps &8%loop-player-1's ping%&8ms &8%tps from the last 1 minute%&8tps" to loop-player-2
+		set {click.%loop-player's uuid%} to 0
+on leftclick:
+	if event-block is not set:
+		add 1 to {click.%player's uuid%}
+on drop:
+	remove 1 from {click.%player's uuid%}
+on leftclick:
+	if {detect.ka.%player's uuid%} is not set:
+		set {detect.ka.%player's uuid%} to "@"
+	if {detect.ka.%player's uuid%} != "@":
+		set {detect.ka.%player's uuid%} to "@"
+on leftclick:
+	set {detect.swong.%player's uuid%} to true
+every 1 ticks:
+	loop all players:
+		if target of loop-player is a player:
+			set {lookat.%loop-player's uuid%} to "@"
+			set {lookat.%loop-player's uuid%} to player
+on damage:
+	if attacker is a player:
+		if target of attacker is not victim:
+			if {lookat.%attacker's uuid%} is not victim:
+				loop all players:
+					if loop-player has permission "staff":
+						set {cheat.%attacker's uuid%.teleport} to true
+						send "&8[&cCheat Detect&8] &c%attacker% &eKA &8%loop-player-1's ping%&8ms &8%tps from the last 1 minute%&8tps" to loop-player
+on damage:
+	if projectile exist:
+		set {detect.swong.%victim's uuid%} to false
+	if attacker is a player:
+		if projectile exist:
+			stop trigger
+		else:
+			if {detect.swong.%attacker's uuid%} is true:
+				set {detect.ka.%attacker's uuid%} to "%victim%"
+				if distance between attacker and victim > 6:
+					loop all players:
+						if loop-player has permission "staff":
+							set {cheat.%attacker's uuid%.teleport} to true
+							send "&8[&cCheat Detect&8] &c%attacker% &eReach-%distance between attacker and victim%&e &8%loop-player-1's ping%&8ms &8%tps from the last 1 minute%&8tps" to loop-player
+				set {detect.swong.%attacker's uuid%} to false
+every 0.1 seconds:
+	loop all players:
+		if {alert.fly.%loop-player's uuid%} is not set:
+			set {alert.fly.%loop-player's uuid%} to false
+		if {detect.jumpdown.%loop-player's uuid%} is not set:
+			set {detect.jumpdown.%loop-player's uuid%} to 0
+		if {detect.jumpdown.%loop-player's uuid%} > 0:
+			remove 0.1 from {detect.jumpdown.%loop-player's uuid%}
+		if {detect.cooldown.%loop-player's uuid%} is not set:
+			set {detect.cooldown.%loop-player's uuid%} to 0
+		if {detect.cooldown.%loop-player's uuid%} > 0:
+			remove 0.1 from {detect.cooldown.%loop-player's uuid%}
+		if loop-player's flight mode is true:
+			set {detect.block.%loop-player's uuid%} to true
+			set {detect.cooldown.%loop-player's uuid%} to 1
+		if loop-player is wearing a elytra:
+			set {detect.block.%loop-player's uuid%} to true
+			set {detect.cooldown.%loop-player's uuid%} to 5
+		if loop-player is holding a stick:
+			set {detect.block.%loop-player's uuid%} to true
+			set {detect.cooldown.%loop-player's uuid%} to 5
+		if loop-player offhand is a stick:
+			set {detect.block.%loop-player's uuid%} to true
+			set {detect.cooldown.%loop-player's uuid%} to 5
+		if {detect.cooldown.%loop-player's uuid%} <= 0:
+			if loop-player's flight mode is false:
+				set {detect.block.%loop-player's uuid%} to false
+				loop all blocks in radius 2.5 around loop-player:
+					if loop-block is not air:
+						set {detect.block.%loop-player's uuid%} to true
+						set {detect.jumpact.%loop-player's uuid%} to false
+				if {detect.block.%loop-player's uuid%} is false:
+					if {detect.jumpdown.%loop-player's uuid%} <= 0:
+						if {detect.jumpact.%loop-player's uuid%} is not set:
+							set {detect.jumpact.%loop-player's uuid%} to false
+						if {detect.jumpact.%loop-player's uuid%} is false:
+							set {detect.jumpact.%loop-player's uuid%} to true
+							set {detect.jumpdown.%loop-player's uuid%} to 1
+						if {detect.jumpdown.%loop-player's uuid%} <= 0:
+							if {detect.jumpact.%loop-player's uuid%} is true:
+								if y-coords of loop-player >= {detect.loc.%loop-player's uuid%.y}:
+									set {alert.fly.%loop-player's uuid%} to true
+			set {detect.loc.%loop-player's uuid%.y} to y-coords of loop-player
+every 1 seconds:
+	loop all players:
+		if {alert.fly.%loop-player's uuid%} is true:
+			loop all players:
+				if loop-player-2 has permission "staff":
+					set {cheat.%loop-player-1's uuid%.teleport} to true
+					send "&8[&cCheat Detect&8] &c%loop-player-1% &efly-hacking &8%loop-player-1's ping%&8ms &8%tps from the last 1 minute%&8tps" to loop-player-2
+			set {alert.fly.%loop-player's uuid%} to false
+every 0.1 seconds:
+	loop all players:
+		if {switch.%loop-player's uuid%} > 0:
+			remove 0.1 from {switch.%loop-player's uuid%}
+on off hand switch:
+	if {switch.%player's uuid%} is not set:
+		set {switch.%player's uuid%} to 0
+	if {switch.%player's uuid%} > 0:
+		cancel event
+	if {switch.%player's uuid%} <= 0:
+		set {switch.%player's uuid%} to 0.2
+every 1 seconds:
+	loop all players:
+		if {staff.%loop-player's uuid%} is not set:
+			set {staff.%loop-player's uuid%} to false
+		if loop-player does not have permission "staff":
+			if {staff.%loop-player's uuid%} is true:
+				set {staff.%loop-player's uuid%} to false
+				send "&8[&cStaff Mode Disabled&8]" to loop-player
+				set {staff.%loop-player's uuid%.teleport} to false
+				clear loop-player's inventory
+				set gamemode of loop-player to survival
+		if loop-player has permission "staff":
+			if {staff.%loop-player's uuid%} is true:
+				loop all players:
+					if {cheat.%loop-player-2's uuid%.teleport} is true:
+						if {staff.%loop-player-1's uuid%.teleport} is true:
+							if {staff.%loop-player-1's uuid%.hacker} != "%loop-player-2%":
+								set {staff.%loop-player-1's uuid%.previous} to {staff.%loop-player-1's uuid%.hacker}
+							send "&8[&bLocked On Hacker %loop-player-2%&8]" to loop-player-1
+							teleport loop-player-1 to loop-player-2
+							set {staff.%loop-player-1's uuid%.hacker} to loop-player-2
+							set {staff.%loop-player-1's uuid%.teleport} to false
+	loop all players:
+		if {cheat.%loop-player's uuid%.teleport} is true:
+			set {cheat.%loop-player's uuid%.teleport} to false
+every 0.1 seconds:
+	loop all players:
+		if loop-player has permission "staff":
+			if {staff.%loop-player's uuid%} is true:
+				if {staff.%loop-player's uuid%.teleport} is false:
+					if distance between {staff.%loop-player's uuid%.hacker} and loop-player > 15:
+						teleport loop-player to {staff.%loop-player's uuid%.hacker}
+on quit:
+	if {staff.%player's uuid%} is true:
+		set {staff.%player's uuid%} to false
+		set {staff.%player's uuid%.teleport} to false
+		set gamemode of player to survival
+on kick:
+	if {staff.%player's uuid%} is true:
+		set {staff.%player's uuid%} to false
+		set {staff.%player's uuid%.teleport} to false
+		set gamemode of player to survival
+on place:
+	if {staff.%player's uuid%} is true:
+		cancel event
+on break:
+	if {staff.%player's uuid%} is true:
+		cancel event
+on inventory click:
+	if {staff.%player's uuid%} is true:
+		cancel event
+on drop:
+	if {staff.%player's uuid%} is true:
+		cancel event
+on pickup:
+	if {staff.%player's uuid%} is true:
+		cancel event
+on damage:
+	if {staff.%attacker's uuid%} is true:
+		cancel event
+		if attacker is holding player head named "&8[&bPlayers&8]":
+			loop all players:
+				if loop-player = attacker:
+					if {staff.%loop-player's uuid%.hacker} != "%victim%":
+						set {staff.%loop-player's uuid%.previous} to {staff.%loop-player's uuid%.hacker}
+					send "&8[&bLocked On %victim%&8]" to loop-player
+					set {staff.%loop-player's uuid%.hacker} to victim
+					set {staff.%loop-player's uuid%.teleport} to false
+					stop trigger
+on rightclick:
+	if {staff.%player's uuid%} is true:
+		if player is holding player head named "&8[&bPlayers&8]":
+			send "&cStill Working on"
+			stop trigger
+on click:
+	if {staff.%player's uuid%} is true:
+		if player is holding red dye named "&8[&cStaff Mode Disabled&8]":
+			set {staff.%player's uuid%} to false
+			send "&8[&cStaff Mode Disabled&8]"
+			set {staff.%player's uuid%.teleport} to false
+			clear player's inventory
+			set gamemode of player to survival
+			stop trigger
+		if player is holding yellow dye named "&8[&ePrevious Player&8]":
+			send "&8[&bLocked On %{staff.%player's uuid%.previous}%&8]" to player
+			set {staff.%player's uuid%.hacker} to {staff.%player's uuid%.previous}
+			set {staff.%player's uuid%.teleport} to false
+			stop trigger
+		if player is holding lime dye named "&8[&aNext Hacker&8]":
+			if {staff.%player's uuid%.teleport} is false:
+				set {staff.%player's uuid%.teleport} to true
+				send "&8[&eSending to Next Hacker...&8]"
+			stop trigger
+		if player is holding barrier named "&8[&4Ban Player&8]":
+			send "&cStill Working on"
+			stop trigger
+command /staff [<text>]:
+	permission: staff
+	trigger:
+		if arg 1 is "help":
+			send "&c/staff"
+			send "&c/staff help"
+		if arg 1 is not set:
+			if {staff.%player's uuid%} is false:
+				set {staff.%player's uuid%} to true
+				send "&8[&aStaff Mode Enabled&8]"
+				set {staff.%player's uuid%.teleport} to true
+				set gamemode of player to creative
+				clear player's inventory
+				set slot 0 of player to red dye named "&8[&cStaff Mode Disabled&8]"
+				set slot 3 of player to yellow dye named "&8[&ePrevious Player&8]"
+				set slot 4 of player to player head named "&8[&bPlayers&8]"
+				set slot 5 of player to lime dye named "&8[&aNext Hacker&8]"
+				set slot 8 of player to barrier named "&8[&4Ban Player&8]"
+				stop trigger
+			if {staff.%player's uuid%} is true:
+				set {staff.%player's uuid%} to false
+				send "&8[&cStaff Mode Disabled&8]"
+				set {staff.%player's uuid%.teleport} to false
+				clear player's inventory
+				set gamemode of player to survival
+				stop trigger

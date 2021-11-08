@@ -1,0 +1,7 @@
+command /discord:
+	trigger:
+		send "&6Click <link:https://discord.gg/b38BuJyQsT> &aHere &6to join discord" to player
+
+command /ad:
+	trigger:
+		send "&6 </ad Ecobox &8[&2Skripted economy&8] &8[&aBoxmining server&8] &8[&dGreat map!&8]>" to player

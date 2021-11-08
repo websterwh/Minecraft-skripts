@@ -1,0 +1,5 @@
+command /aboutvip:
+	permission: aboutvip.use
+	trigger:
+		send "&7[VIP] &2rank gives you access to /nick, /afk and Player Vaults 1-2 You can buy VIP by typing /buy or by clicking <link:https://store.ecoboxmc.net/package/4515407>&aHere<reset>" to player 
+		

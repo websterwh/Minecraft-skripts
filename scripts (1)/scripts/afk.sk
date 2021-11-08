@@ -1,0 +1,5 @@
+command /Williscool:
+	permission: williscool.use
+	trigger:
+		send "You can't kill Will" to player
+		kill player

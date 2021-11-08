@@ -1,0 +1,52 @@
+on command:
+	if command contains "disable":
+		if player is "tessa_ciabarra":
+			send "disabled" to player
+on rightclick:
+	if event-item is diamond sword named "&9Aspect of the End":
+		push player forwards
+command /debugstick:
+	aliases: /wizardstick
+	permission: debugstick
+	trigger:
+		give debug stick named "&r&9&k&rWizard Stick&9&k" to player
+on portal enter:
+	teleport player to {portal}
+command /setportal:
+	permission: op
+	trigger:
+		set {portal} to player's location
+command /tpportal:
+	permission: op
+	trigger:
+		teleport player to {portal}
+
+command /weatherclear:
+	permission: op
+	trigger:
+		set weather to clear 
+command /weatherthunder:
+	permission: op
+	trigger:
+		set weather to thunder
+on damage:
+	projectile exists
+	projectile is a snowball:
+		set damage to 1
+on rightclick: 
+	if event-item is fire charge named "fireball":
+		shoot a fireball from the player at speed .01
+		remove 1 fire charge named "fireball" from player
+on rightclick:
+	if event-item is sheep spawn egg:
+		summon snow golem
+on damage:
+	projectile exists
+	projectile is a snowball:
+		lore of attacker's held item contains "damage":
+			apply potion of instant damage of tier 20 to victim for 10 ticks
+on drop:
+	if gamemode of player is creative:
+		if player doesn't have permission "creative.drops":
+			cancel event
+			send "&7[Drops] You can't drop items in creative" to player

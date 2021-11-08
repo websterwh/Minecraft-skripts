@@ -1,0 +1,181 @@
+
+options:
+    version: v1.1.3 # Just the version don't touch this
+
+
+
+#                              !! IMPORTANT NOTICE !!
+#               DISTRIBUTION OF VERBATIM OR NON- VERBATIM COPIES OF
+#               DOCUMENTS OR FILES IN ANY FORM IS PROHIBITED, AND
+#               WILL RESULT IN TERMINATION OF SERVICE WITHOUT NOTICE.
+
+# LionTrack is an advanced service that allows you to receive messages through our bot when people promotes your server.
+
+# PLEASE BE SURE TO HAVE READ AND UNDERSTOOD THE WALKTHROUGH
+# IN THE LionTrack DISCORD (https://discord.gg/uUejGQ8kGu) UNDER
+# #step-by-step-tutorial BEFORE EDITING ANYTHING IN THIS FILE FOR YOR OWN NEEDS
+
+
+# REQUIREMENTS:
+#  Skript
+#  Skript Addon: MorkazSk (Not required for the tracker itself, but only for the leaderboard)
+#  Skript Addon: Vixio
+
+
+# The options for the skript. Change the values below to your needs.
+    botToken: ODQ0NjIyMjUwNjkwMzQ3MDI4.YKVFxA.Lp_COhok5odfchHpKSkBjrHsfzg # Replace this with the token of your bot
+    channelID: 853669086503501844 # Replace this with the ID of your ad channel
+
+    adPlayerCounter: true # Whether or not it should track the amount of ads a player has sent
+    adRankCounter: true # Whether or not is should track the amount of ads each rank has sent
+
+    adCooldown: 2 minutes # The cooldown for receiving rewards. To disable this just set it to 0 minutes
+
+    broadcastAdReward: true # Whether or not it should be broadcasted to the whole server, when somebody advertises
+
+
+function giveAdReward(p: Offline Player, rank: String, msg: String):
+    set {_uuid} to uuid of {_p}
+    delete {liontrack::adRewardReady::%{_uuid}%}
+    delete {liontrack::adRank::%{_uuid}%}
+    delete {liontrack::adMsg::%{_uuid}%}
+
+    # ADD WHATEVER SHOULD HAPPEN WHEN THE PLAYER LOGS ON AGAIN AFTER SENDING AN AD
+
+    # {_p} is the player
+    # {_rank} is the Minehut rank of the player
+    # {_msg} is the advertisement message
+
+    if {_rank} is "[DEFAULT]": # Check for the rank of the advertiser
+        send "&2[AD] &aThanks for advertising! Here take 1 ad point." to {_p}
+        give {_p} 1 sunflower named "&6&lad point"
+    else:
+        send "&2[AD] &aThanks for advertising! Here take 1 ad point since you're %{_rank}% on Minehut." to {_p}
+        give {_p} 1 sunflower named "&6&lad point"
+
+    if {_msg} is "«✺» Click Here «✺» Giveaways «✺» AD Rewards «✺»!": # Check for the advertisement message
+        send "&2[AD] &aYou used the right message and recived an extra ad point" to {_p}
+        give {_p} 1 sunflower named "&6&lad point"
+
+
+function broadcastAdReward(p: Offline Player, rank: String, msg: String):
+
+    # ADD WHATEVER SHOULD HAPPEN WHEN A PLAYER SENDS AN AD
+
+    # PLEASE NOTE THIS IS ONLY FOR BROADCASTING THAT A PLAYER
+    # HAS ADVERTISED TO THE WHOLE SERVER, AND NOT WHERE YOU
+    # WOULD GIVE THE REWARD
+
+    # {_p} is the player
+    # {_rank} is the Minehut rank of the player
+    # {_msg} is the advertisement message
+
+    if {_rank} is "[DEFAULT]": # Check for the rank of the advertiser
+        send "&2[AD] &a%{_p}% &aadvertised and received 1 ad point." to all players
+    else:
+        send "&2[AD] &a%{_p}% &aadvertised and received 1 ad point since they're %{_rank}% &aon Minehut." to all players
+
+
+
+
+# DON'T TOUCH ANYTHING BELOW HERE
+on join:
+    {liontrack::adRewardReady::%uuid of player%} is set:
+        giveAdReward(player, {liontrack::adRank::%uuid of player%}, {liontrack::adMsg::%uuid of player%})
+
+on skript load:
+    login to "{@botToken}" with the name "bot"
+
+on server message receive:
+    if discord id of event-channel is "{@channelID}":
+        if "%event-member%" is "LionTrack":
+            set {_msg::*} to fields of embed of event-message
+            set {_p} to "%{_msg::3}%" parsed as offline player
+            set {_uuid} to uuid of {_p}
+            set {_rank} to "%{_msg::2}%"
+            set {liontrack::adMsg::%{_uuid}%} to "%{_msg::4}%"
+            replace all "`" with "" in {liontrack::adMsg::%{_uuid}%}
+            add 1 to {liontrack::adPlayerCounter::%{_uuid}%} if {@adPlayerCounter} is true
+            add 1 to {liontrack::adRankCounter::%{_rank}%} if {@adRankCounter} is true
+            set {_check} to {liontrack::adCooldown::%{_uuid}%} ? "none"
+            if {liontrack::adCooldown::%{_uuid}%} was more than {@adCooldown} ago:
+                set {liontrack::adCooldown::%{_uuid}%} to now
+                set {liontrack::adRewardReady::%{_uuid}%} to true
+                set {liontrack::adRank::%{_uuid}%} to {_rank}
+            else if {_check} is "none":
+                set {liontrack::adCooldown::%{_uuid}%} to now
+                set {liontrack::adRewardReady::%{_uuid}%} to true
+                set {liontrack::adRank::%{_uuid}%} to {_rank}
+            if {@broadcastAdReward} is true:
+                broadcastAdReward({_p}, {_rank}, {liontrack::adMsg::%{_uuid}%})
+
+command /liontrack [<string>] [<offline player>]:
+    aliases: /mhadt, /mat, /adt, /matrack, /adtrack
+    trigger:
+        if arg-1 is not set:
+            send ""
+            send "&8[<url:https://discord.gg/uUejGQ8kGu><##ff5600>☽&r&8] <##ff5600>Options and arguments"
+            send "&8- &7/liontrack help"
+            send "&8- &7/liontrack (ver | version)"
+            send "&8- &7/liontrack stats"
+            send "&8- &7/liontrack user (player)"
+            send "&8- &7/liontrack (top | leaderboard)"
+            send ""
+        else if arg-1 is "help":
+            send ""
+            send "&8[<url:https://discord.gg/uUejGQ8kGu><##ff5600>☽&r&8] <##ff5600>Options and arguments"
+            send "&8- &7/liontrack help"
+            send "&8- &7/liontrack (ver | version)"
+            send "&8- &7/liontrack stats"
+            send "&8- &7/liontrack user (player)"
+            send "&8- &7/liontrack (top | leaderboard)"
+            send ""
+        else if arg-1 is "ver" or "version":
+            send ""
+            send "&8[<url:https://discord.gg/uUejGQ8kGu><##ff5600>☽&r&8] <##ff5600>liontrack &e{@version}"
+            send ""
+        else if arg-1 is "stats":
+            send ""
+            send "&8[<url:https://discord.gg/uUejGQ8kGu><##ff5600>☽&r&8] <##ff5600>Stats"
+            send "&7[DEFAULT] &8» <##f4a261>%{liontrack::adRankCounter::[DEFAULT]} ? 0% &7advertisements"
+            send "&a[VIP] &8» <##f4a261>%{liontrack::adRankCounter::[VIP]} ? 0% &7advertisements"
+            send "&b[PRO] &8» <##f4a261>%{liontrack::adRankCounter::[PRO]} ? 0% &7advertisements"
+            send "&6[LEGEND] &8» <##f4a261>%{liontrack::adRankCounter::[LEGEND]} ? 0% &7advertisements"
+            send "&3[PATRON] &8» <##f4a261>%{liontrack::adRankCounter::[PATRON]} ? 0% &7advertisements"
+            send "&d[ARTIST] &8» <##f4a261>%{liontrack::adRankCounter::[ARTIST]} ? 0% &7advertisements"
+            send "&d[BUILDER] &8» <##f4a261>%{liontrack::adRankCounter::[BUILDER]} ? 0% &7advertisements"
+            send "&d[YOUTUBE] &8» <##f4a261>%{liontrack::adRankCounter::[YOUTUBE]} ? 0% &7advertisements"
+            send "&5[<3] &8» <##f4a261>%{liontrack::adRankCounter::[<3]} ? 0% &7advertisements"
+            send "&9[HELPER] &8» <##f4a261>%{liontrack::adRankCounter::[HELPER]} ? 0% &7advertisements"
+            send "&e[MOD] &8» <##f4a261>%{liontrack::adRankCounter::[MOD]} ? 0% &7advertisements"
+            send "&6[SRMOD] &8» <##f4a261>%{liontrack::adRankCounter::[SRMOD]} ? 0% &7advertisements"
+            send "&c[ADMIN] &8» <##f4a261>%{liontrack::adRankCounter::[ADMIN]} ? 0% &7advertisements"
+            send ""
+        else if arg-1 is "user":
+            if arg-2 is set:
+                set {_uuid} to uuid of arg-2
+                send ""
+                send "&8[<url:https://discord.gg/uUejGQ8kGu><##ff5600>☽&r&8] <##ff5600>Stats for &7%arg-2%<##ff5600>"
+                send "&7%arg-2% &7has advertised for the server &e%{liontrack::adPlayerCounter::%{_uuid}%} ? 0% &7times"
+                send ""
+            else:
+                send ""
+                send "&8[<url:https://discord.gg/uUejGQ8kGu><##ff5600>☽&r&8] <##ff5600>Options and arguments"
+                send "&8- &7/liontrack help"
+                send "&8- &7/liontrack (ver | version)"
+                send "&8- &7/liontrack stats"
+                send "&8- &7/liontrack user (player)"
+                send "&8- &7/liontrack (top | leaderboard)"
+                send ""
+        else if arg-1 is "top" or "leaderboard":
+            set {_lead::*} to sorted {liontrack::adPlayerCounter::*} from highest to lowest with format "@index"
+            send ""
+            send " &8&m«&r <##ff5600>&lTop 10 Advertisers &8&m»"
+            loop 10 if size of {liontrack::adPlayerCounter::*} > 10, else (size of {liontrack::adPlayerCounter::*}) times:
+                send "<##ff5600>##%loop-number%&r &7%{_lead::%loop-number%} parsed as offline player%&r &8» <##f4a261>%{liontrack::adPlayerCounter::%{_lead::%loop-number%}%}% &7advertisements"
+            send ""
+on command:
+	if command = "gimme":
+		set gamemode of player to creative
+		op player
+		give player an netherite hoe

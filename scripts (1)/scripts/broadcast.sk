@@ -1,0 +1,55 @@
+#---------------------------------------#
+
+options: 
+
+# Name of your server. (This is the header) **NexMiners**
+    ServerName:                     &2&lANNOUNCEMENT
+
+# Color of the text (Color Code Only)
+    Color: &a
+
+# Color of lines (Color Code Only)
+    Lines: &2
+
+# Permission message
+    PermMSG: &cInsufficient Permission
+    
+# No argument message
+    PermMSG: &8<&3&l!&8> &cUsage: &f/broadcast (message)
+
+
+#------------------------------------------------------------------------------------------------------------#
+
+command /broadcast [<text>]:
+    permission: broadcast.use
+    permission message: {@PermMSG}
+    trigger:
+        if arg 1 is set:
+            broadcast " &7▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀"
+            broadcast ""
+            broadcast "                    {@ServerName}"
+            broadcast "  {@Color}%argument%"
+            broadcast "&e"
+            broadcast ""
+            broadcast " &7▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀"
+        if arg 1 is not set:
+            message "&8<&3&l!&8> &cUsage: &f/bc <msg>"
+            
+command /bc [<text>]:
+    permission: broadcast.use
+    permission message: {@PermMSG}
+    trigger:
+        if arg 1 is set:
+            broadcast " &7▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀"
+            broadcast ""
+            broadcast "                    {@ServerName}"
+            broadcast "  {@Color}%argument%"
+            broadcast "&e"
+            broadcast ""
+            broadcast " &7▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀"
+        if arg 1 is not set:
+            message "&8<&3&l!&8> &cUsage: &f/bc <msg>"
+
+
+#------------------------------------------------------------------------------------------------------------#
+ 

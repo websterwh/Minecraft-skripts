@@ -1,0 +1,34 @@
+options:
+    prefix: &2&lSC
+    textColour1: &a
+    textColour2: &a
+    nameColour: &a
+
+command /sc [<text>]:
+    permission: staffchat.use
+    permission message: §cYou do not have permission to use this command.
+    trigger:
+        if arg 1 is not set:
+            if {staffchat::%player's uuid%} is set:
+                delete {staffchat::%player's uuid%}
+                send "{@prefix}{@textColour1} Disabled staff chat mode"
+            else:
+                set {staffchat::%player's uuid%} to true
+                send "{@prefix}{@textColour1} Enabled staff chat mode"
+        else:
+            staffChatMsg(player, arg 1)
+
+on chat:
+    if {staffchat::%player's uuid%} is set:
+        cancel event
+        staffChatMsg(player, message)
+    else if first character of message = "@":
+        subtext of message from characters 2 to 2 != " " or ""
+        player has permission "staffchat.use"
+        cancel event
+        staffChatMsg(player, subtext of message from characters 2 to (length of message))
+
+function staffChatMsg(p: player, m: text):
+    loop all players:
+        loop-player has permission "staffchat.see"
+        send "{@prefix}{@nameColour} %{_p}%{@textColour2}: %{_m}%" to loop-player

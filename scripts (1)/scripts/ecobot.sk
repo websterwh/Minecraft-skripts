@@ -1,0 +1,7 @@
+command /startbot: 
+	permission: *
+	trigger:
+		login to
+		send "&7[&2EcoBot&7] &rStarting Bot" to player
+on skript load:
+        login to 

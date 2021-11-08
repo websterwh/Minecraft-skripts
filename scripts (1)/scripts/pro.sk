@@ -1,0 +1,235 @@
+on command:
+	if command contains "box":
+		message "&4commands unavailable"
+		cancel event
+command /me:
+	trigger:
+		message "&4commands unavailable"
+command /pl:
+	trigger:
+		message "&4commands unavailable"
+command /tm:
+	trigger:
+		message "&4commands unavailable"
+on command:
+	if command contains "npc":
+		if player != "William0001":
+			if player != "Stavotopia":
+				cancel event
+				message "&4commands unavailable"
+	if command contains "give":
+		if player != "Stavotopia":
+			if player != "William0001":
+				cancel event
+				message "&4commands unavailable"
+	if command contains "schem":
+		if player != "Stavotopia":
+			if player != "William0001":
+				cancel event
+					message "&4commands unavailable"
+	if command contains ":":
+		cancel event
+		message "&4commands unavailable"
+	if command contains ":me":
+		cancel event
+		message "&4commands unavailable"
+	if command contains ":tm":
+		cancel event
+		message "&4commands unavailable"
+	if command contains "teammsg":
+		cancel event
+		message "&4commands unavailable"
+
+	
+	if command contains ":msg":
+		cancel event
+		message "&4commands unavailable"
+	if command contains "tell":
+		cancel event
+		message "&4commands unavailable"
+	if command contains "gamerule":
+		if player != "William0001":
+			if player != "Stavotopia":
+				cancel event
+				message "&4commands unavailable"
+	if command contains "say":
+		cancel event
+		message "&4commands unavailable"
+	if command contains "plugins":
+		if player != "Stavotopia":
+			if player != "William0001":
+				cancel event
+				message "&4commands unavailable"
+	if command contains "deop":
+		if player != "William0001":
+			if player != "Stavotopia":
+				cancel event
+				message "&4commands unavailable"
+command /op [<offline player>]:
+	permission: server.op
+	trigger:
+		if player is not a player:
+			if arg 1 is an offline player:
+				op arg 1
+				loop all players:
+					if loop-player has permission "server.op":
+						send "%arg 1% has been given op" to loop-player
+				send "%arg 1% has been given op"
+		if player = "Stavotopia":
+			if arg 1 is an offline player:
+				op arg 1
+				loop all players:
+					if loop-player has permission "server.op":
+						send "%arg 1% has been given op" to loop-player
+command /bukkit:help:
+	trigger:
+		message "&4commands unavailable"
+command /bukkit:about:
+	trigger:
+		message "&4commands unavailable"
+command /bukkit:?:
+	trigger:
+		message "&4commands unavailable"
+command /bukkit:ver:
+	trigger:
+		message "&4commands unavailable"
+command /bukkit:version:
+	trigger:
+		message "&4commands unavailable"
+command /?:
+	trigger:
+		message "&4commands unavailable"
+command /ver:
+	trigger:
+		message "&4commands unavailable"
+command /version:
+	trigger:
+		message "&4commands unavailable"
+on drop:
+	set {drop.amount.%player%} to 0
+	loop all dropped items:
+		add 1 to {drop.amount.%player%}
+	if {drop.amount.%player%} >= 300:
+		if {drop.player.cooldown.%player's uuid%} is false:
+			send "&c&lThere are to many items on ground" to player
+			set {drop.player.cooldown.%player's uuid%} to true
+		cancel event
+command /store:
+	trigger:
+		send "&6&lYou can purchase a rank on the <link:https://store.ecoboxmc.net/>&b&lStore<reset>"
+on join:
+	loop 100 times:
+		send ""
+	set join message to "&8[&a+&8] %player%"
+	wait 1 ticks
+	send "&6&m                                                    "
+	send "&e&l         <tooltip:EcoBox.minehut.gg>EcoBox.minehut.gg<reset>"
+	send "&e&l          <link:http://ecoboxmc.net>&d&lDiscord<reset> &f&l- <link:https://store.ecoboxmc.net/>&b&lStore<reset>"
+	send "&e&l               <command:/rules>&c&lRules<reset>"
+	send "&6&m                                                    "
+	teleport player to {set.spawn}
+	if {allplayer} is not set:
+		set {allplayer} to 0
+	if {player.act.%player's uuid%} is not set:
+		set {player.act.%player's uuid%} to false
+	if {player.act.%player's uuid%} is false:
+		set {player.act.%player's uuid%} to true
+		add 1 to {allplayer}
+		set {player.num.%player's uuid%} to {allplayer}
+		set {player.uuid.%{allplayer}%} to player's uuid
+		set {player.player.%{allplayer}%} to player
+		set {player.ip.%{allplayer}%} to player's ip
+	if {player.act.%player's uuid%} is true:
+		set {player.player.%{player.num.%player's uuid%}%} to player
+		if {player.ip.%{player.num.%player's uuid%}%} is not set:
+			if {player.ipcount.%{player.num.%player's uuid%}%} is not set:
+				set {player.ipcount.%{player.num.%player's uuid%}%} to 0
+			set {player.ip.%{player.num.%player's uuid%}%} to player's ip
+		if {player.ip.%{player.num.%player's uuid%}%} is set:
+			if {player.ip.%{player.num.%player's uuid%}%} != player's ip:
+				if {player.ipcount.%{player.num.%player's uuid%}%} is not set:
+					set {player.ipcount.%{player.num.%player's uuid%}%} to 0
+				add 1 to {player.ipcount.%{player.num.%player's uuid%}%}
+				set {player.ip.%{player.num.%player's uuid%}%.%{player.ipcount.%{player.num.%player's uuid%}%}%} to {player.ip.%{player.num.%player's uuid%}%}
+				set {player.ip.%{player.num.%player's uuid%}%} to player's ip
+on first join:
+	loop 100 times:
+		send ""
+	set join message to "&6Welcome %player%&6 to EcoBox"
+	wait 1 ticks
+	send "&6&m                                                    "
+	send "&e&l         <tooltip:EcoBox.minehut.gg>EcoBox.minehut.gg<reset>"
+	send "&e&l          <link:http://ecoboxmc.net>&d&lDiscord<reset> &f&l- <link:https://store.ecoboxmc.net/>&b&lStore<reset>"
+	send "&e&l               <command:/rules>&c&lRules<reset>"
+	send "&6&m                                                    "
+	teleport player to {set.spawn}
+	if {allplayer} is not set:
+		set {allplayer} to 0
+	if {player.act.%player's uuid%} is not set:
+		set {player.act.%player's uuid%} to false
+	if {player.act.%player's uuid%} is false:
+		set {player.act.%player's uuid%} to true
+		add 1 to {allplayer}
+		set {player.num.%player's uuid%} to {allplayer}
+		set {player.uuid.%{allplayer}%} to player's uuid
+		set {player.player.%{allplayer}%} to player
+		set {player.ip.%{allplayer}%} to player's ip
+	if {player.act.%player's uuid%} is true:
+		set {player.player.%{player.num.%player's uuid%}%} to player
+		if {player.ip.%{player.num.%player's uuid%}%} is not set:
+			if {player.ipcount.%{player.num.%player's uuid%}%} is not set:
+				set {player.ipcount.%{player.num.%player's uuid%}%} to 0
+			set {player.ip.%{player.num.%player's uuid%}%} to player's ip
+		if {player.ip.%{player.num.%player's uuid%}%} is set:
+			if {player.ip.%{player.num.%player's uuid%}%} != player's ip:
+				if {player.ipcount.%{player.num.%player's uuid%}%} is not set:
+					set {player.ipcount.%{player.num.%player's uuid%}%} to 0
+				add 1 to {player.ipcount.%{player.num.%player's uuid%}%}
+				set {player.ip.%{player.num.%player's uuid%}%.%{player.ipcount.%{player.num.%player's uuid%}%}%} to {player.ip.%{player.num.%player's uuid%}%}
+				set {player.ip.%{player.num.%player's uuid%}%} to player's ip
+on quit:
+	set quit message to "&8[&c-&8] %player%"
+on kick:
+	set kick message to "&8[&c-&8] %player%"
+command /list [<text>]:
+	permission: server.op
+	trigger:
+		if arg 1 is not set:
+			set {loop} to 0
+			loop {allplayer} times:
+				add 1 to {loop}
+				if {loop} = 4:
+					add 1 to {loop}
+				if {loop} = 7:
+					add 1 to {loop}
+				if {loop} > {allplayer}:
+					stop trigger
+				message "&c%{loop}%  &c%{player.player.%{loop}%}% <link:https://tools.keycdn.com/geo?host=>&e%{player.ip.%{loop}%}%<reset> &d%{player.ipcount.%{loop}%}%   &8%{player.uuid.%{loop}%}%"
+on explosion:
+	cancel event
+every 1 seconds:
+	add 1 to {drop.cooldown}
+	if {drop.cooldown} = 590:
+		broadcast "&7All Dropped Items will be Deleted in &e10 seconds"
+	if {drop.cooldown} = 595:
+		broadcast "&7All Dropped Items will be Deleted in &e5 seconds"
+	if {drop.cooldown} >= 600:
+		loop all dropped items:
+			delete loop-value
+			add 1 to {drop.delete}
+		broadcast "&7Deleted &e%{drop.delete}% &7Dropped Items"
+		set {drop.delete} to 0
+		set {drop.cooldown} to 0
+	loop all dropped items:
+		add 1 to {drop.delete}
+	if {drop.delete} >= 250:
+		if {drop.cooldown} < 589:
+			set {drop.cooldown} to 589
+	set {drop.delete} to 0
+on rightclick on crafting table:
+	cancel event
+on command:
+	if command contains "disable":
+		if player != "William0001":
+			if player != "Stavotopia":
+				cancel event

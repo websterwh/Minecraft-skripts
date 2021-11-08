@@ -1,0 +1,16 @@
+on drop:
+	if {drops::%player's uuid%} is false:
+		cancel event
+		message "&7[&cDrops] &f/drop on to enable drops"
+	if {drops::%player's uuid%} is true:
+		stop trigger
+
+command drop <text>:
+	trigger:
+		if arg-1 is "on":
+			set {drops::%player's uuid%} to false
+		if arg-1 is "off":
+			set {drops::%player's uuid%} to true
+		if arg-1 is not set:
+			message "&7[&cDrops] &f/drop on to enable drops"
+			message "&7[&cDrops] &f/drop off to disable drops"

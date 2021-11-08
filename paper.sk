@@ -1,0 +1,33 @@
+on right click:
+	if event-item is {/obi}:
+		remove held item from player
+		console command "/pr addplayerperm %player% obi"
+		message "&7[Server] &fYou unlocked the command /obi"
+		message "&7[Server] &fType /obi to teleport to the Obisdion area"
+		
+		
+on right click:
+	if event-item is {/nether}:
+		remove held item from player
+		console command "/pr addplayerperm %player% nether"
+		message "&7[Server] &fYou unlocked the command /nether"
+		message "&7[Server] &fType /Nether to teleport to the Nether"
+
+		
+command ticket <text>:
+	permission: op
+	trigger:
+		if arg-1 is "obi":
+			give player {/obi}
+		if arg-1 is "nether":
+			give player {/nether}
+			
+command setticket <text>:
+	permission: op
+	trigger:
+		if arg-1 is "obi":
+			set {/obi} to player's held item
+		if arg-1 is "nether":
+			set {/nether} to player's held item
+			
+#For Support Contact me on Discord at ωilliam#5384	

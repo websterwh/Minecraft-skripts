@@ -1,0 +1,11 @@
+every 0.1 seconds:
+    loop all players:
+        if {switch.%loop-player's uuid%} > 0:
+            remove 0.1 from {switch.%loop-player's uuid%}
+on off hand switch:
+    if {switch.%player's uuid%} is not set:
+        set {switch.%player's uuid%} to 0
+    if {switch.%player's uuid%} > 0:
+        cancel event
+    if {switch.%player's uuid%} <= 0:
+        set {switch.%player's uuid%} to 0.5

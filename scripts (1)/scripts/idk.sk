@@ -1,0 +1,21 @@
+command /idk:
+	trigger:
+		if player != "savoryninja1":
+			if player != "William0001":
+				if player != "PersInXD":
+					stop trigger
+		open chest with 1 rows named "&6SHHHHHHHH" to player
+		set {idk.loop.%player's uuid%} to 0
+		loop 9 times:
+			if {idk.item.%player's uuid%.%{idk.loop.%player's uuid%}%} is not set:
+				set {idk.item.%player's uuid%.%{idk.loop.%player's uuid%}%} to air
+			set slot {idk.loop.%player's uuid%} of player's current inventory to {idk.item.%player's uuid%.%{idk.loop.%player's uuid%}%}
+			add 1 to {idk.loop.%player's uuid%}
+on inventory close:
+	if name of player's current inventory is "&6SHHHHHHHH":
+		set {idk.loop.%player's uuid%} to 0
+		loop 9 times:
+			set {idk.item.%player's uuid%.%{idk.loop.%player's uuid%}%} to slot {idk.loop.%player's uuid%} of player's current inventory
+			add 1 to {idk.loop.%player's uuid%}
+
+

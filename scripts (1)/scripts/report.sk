@@ -1,0 +1,55 @@
+# REPORT SYSTEM #
+# MADE BY REXE - DONT STEAL CREDIT #
+command /report <player> [<text>]:
+    cooldown: 30 seconds
+    cooldown message: <##922B21>&lREPORTS <##641E16>&l- <##E74C3C>You are on cooldown! &7[&7&lETA: &7%remaining time%&7]
+    usage: <##922B21>&lREPORT <##34495E>&l- <##E74C3C>/report <player> <reason>
+    trigger:
+        if arg-1 isn't set:
+            cancel cooldown
+            send "<##922B21>&lREPORTS <##641E16>&l- <##E74C3C>You must specify a player!" to player
+            stop
+        else if arg-1 is set:
+            if arg-2 isn't set:
+                cancel cooldown
+                send "<##922B21>&lREPORTS <##641E16>&l- <##E74C3C>You must specify a reason to report <##922B21>%arg-1%&7!" to player
+                stop
+            else if arg-2 is set:
+                set {_player} to arg-1
+                set {_reason} to arg-2
+                send formatted "<tooltip:<##E74C3C>This report has been sent to all online staff members!><##922B21>&lREPORTS <##641E16>&l- <##E74C3C>Thank you for reporting <##922B21>%{_player}%<##E74C3C>!" to player
+                loop all players:
+                    if loop-player has permission "reports.see":
+                        send "" to loop-player
+                        send formatted "<tooltip:&7&lREPORTER:%nl%&7- <##F5B7B1>%player%><##922B21>&lREPORTS <##641E16>&l- <##922B21>%{_player}% <##FDEDEC>has been reported for <##922B21>%{_reason}%<##FDEDEC>!" to loop-player
+                        send "" to loop-player
+                        add 1 to {reported.%arg-1's uuid%}
+
+command /reports <offline player>:
+    permission: reports.see
+    permission message: <##922B21>REPORTS <##34495E>&l- <##E74C3C>You do not have the required permissions to run this command!
+    trigger:
+        if {reported.%arg-1's uuid%} isn't set:
+            set {reported.%arg-1's uuid%} to 0
+        if arg-1 isn't set:
+            send "<##922B21>&lREPORTS <##641E16>&l- <##E74C3C>You need to specify a player!" to player
+            stop
+        else if arg-1 is set:
+            send "<##922B21>&lREPORTS <##641E16>&l- <##922B21>%arg-1% <##E74C3C>has been reported <##F5B7B1>%{reported.%arg-1's uuid%}% <##E74C3C>times!" to player
+
+command /resetreport <offline player>:
+    aliases: resetreports
+    permission: reports.see
+    permission message: <##922B21>REPORTS <##34495E>&l- <##E74C3C>You do not have the required permissions to run this command!
+    trigger:
+        if arg-1 isn't set:
+            send "<##922B21>&lREPORTS <##641E16>&l- <##E74C3C>You need to specify a player!" to player
+            stop
+        else if arg-1 is set:
+            if {reported.%arg-1's uuid%} < 1:
+                send "<##922B21>&lREPORTS <##641E16>&l- <##E74C3C>You do not have any reports!" to player
+                stop
+            else if {reported.%arg-1's uuid%} >= 1:
+                send "<##922B21>&lREPORTS <##641E16>&l- <##E74C3C>You've reset <##922B21>%arg-1%<##E74C3C>'s report count of <##922B21>%{reported.%arg-1's uuid%}%<##E74C3C>!" to player
+                wait 5 ticks
+                set {reported.%arg-1's uuid%} to 0

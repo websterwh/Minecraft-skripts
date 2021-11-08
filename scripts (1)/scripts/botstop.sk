@@ -1,0 +1,39 @@
+on join:
+	wait 1 ticks
+	if {join.time.all} is not set:
+		set {join.time.all} to 0
+	if {join.time.all} <= 0:
+		set {join.time.all} to 1
+		stop trigger
+	if {join.time.all} > 0:
+		kick player due to "&cTo many Join requests please wait and try to join again"
+		stop trigger
+every 0.1 seconds:
+	if {join.time.all} > 0:
+		remove 0.1 from {join.time.all}
+every 0.2 seconds:
+	loop all players:
+		if {message.time.%loop-player's uuid%} > 0:
+			remove 0.2 from {message.time.%loop-player's uuid%}
+on chat:
+	if player does not have permission "vip":
+		if {message.time.%player's uuid%} is not set:
+			set {message.time.%player's uuid%} to 0
+		if {message.time.%player's uuid%} > 0:
+			cancel event
+			send "&cWait at least 3 seconds before sending a message"
+			add 2 to {message.time.%player's uuid%}
+			stop trigger
+		if {message.time.%player's uuid%} <= 0:
+			set {message.time.%player's uuid%} to 3
+	if {last.message.%player's uuid%} = message:
+		cancel event
+		send "&cYou can not send the same message twice"
+		stop trigger
+	set {last.message.%player's uuid%} to message
+	if message contains "join":
+		send "&cInvalid Message"
+		cancel event
+	if message contains "j o i n":
+		send "&cInvalid Message"
+		cancel event

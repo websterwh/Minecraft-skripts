@@ -1,0 +1,22 @@
+command /spawn:
+	trigger:
+		if {combat.log.%player's uuid%} > 0:
+			send "&c&lYou are  in Combat Log"
+			stop trigger
+			set players gamemode to survival
+		teleport player to {set.spawn}
+		send "&aSPAWN &8- &7teleporting to &aSpawn!" to player
+		
+
+on join:
+	teleport player to {set.spawn}
+
+
+
+
+command /setbox:
+	permission: set.spawn
+	trigger:
+		set {boxloc} to player's location
+
+

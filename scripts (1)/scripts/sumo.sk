@@ -1,0 +1,8 @@
+command /sumo:
+	trigger:
+		send "what is this?" to player
+		wait 1 second 
+		send "i am not sure" to player
+		wait 10 ticks
+		send "maybe a death sentence" to player
+		kill player

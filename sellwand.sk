@@ -1,0 +1,3072 @@
+options:
+    P: &a&lVain&2&lFarms
+    toolname: &7&lSellwand&r   
+    cactus: 8
+    pumpkin: 5
+    sc: 4
+    melon: 5
+    wheat: 3
+    carrot: 0
+    potato: 0
+    dirt: 0
+   
+command /sellwand [<player>] [<integer>]:
+    permission: sw.admin
+    aliases: /sw
+    trigger:
+        give 1 stick named "&e&l%arg-2%x {@toolname}" with lore "&7Right-click a chest/hopper to sell!" to arg-1
+        send "{@P} given {@toolname} to %arg-1%"
+on left click on chest with stick:
+    if name of player's tool is "&e&l1x {@toolname}":
+        cancel event
+        if clicked chest contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 1
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+ 
+        if clicked chest contains kelp:
+            set {_i} to kelp
+            set {_ic} to number of all kelp in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@kelp} * {_ic} * 1
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 1
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 1
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 1
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 1
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked chest contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 1
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 1
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 1
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+           
+           
+    if name of player's tool is "&e&l2x {@toolname}":
+        cancel event
+        if clicked chest contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 2
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 2
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 2
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 2
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 2
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked chest contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 2
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 2
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 2
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+    if name of player's tool is "&e&l3x {@toolname}":
+        cancel event
+        if clicked chest contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 3
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 3
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 3
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 3
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 3
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked chest contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 3
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 3
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 3
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+           
+    if name of player's tool is "&e&l4x {@toolname}":
+        cancel event
+        if clicked chest contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 4
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 4
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 4
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 4
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 4
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked chest contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 4
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 4
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 4
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+           
+    if name of player's tool is "&e&l5x {@toolname}":
+        cancel event
+        if clicked chest contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 5
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 5
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 5
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 5
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 5
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked chest contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 5
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 5
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 5
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+    if name of player's tool is "&e&l6x {@toolname}":
+        cancel event
+        if clicked chest contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 6
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 6
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 6
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 6
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 6
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked chest contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 6
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 6
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 6
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+           
+    if name of player's tool is "&e&l7x {@toolname}":
+        cancel event
+        if clicked chest contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 7
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 7
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 7
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 7
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 7
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked chest contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 7
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 7
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 7
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+           
+    if name of player's tool is "&e&l8x {@toolname}":
+        cancel event
+        if clicked chest contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 8
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 8
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 8
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 8
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 8
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked chest contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 8
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 8
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 8
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+           
+    if name of player's tool is "&e&l9x {@toolname}":
+        cancel event
+        if clicked chest contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 9
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 9
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 9
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 9
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 9
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 9
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked chest contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 9
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 9
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+           
+    if name of player's tool is "&e&l10x {@toolname}":
+        cancel event
+        if clicked chest contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 10
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 10
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 10
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 10
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 10
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked chest contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 10
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@melon} * {_ic} * 10
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked chest contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked chest
+            remove {_ic} of {_i} from clicked chest's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 10
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+           
+           
+on left click on hopper with stick:
+    if name of player's tool is "&e&l1x {@toolname}":
+        cancel event
+        if clicked hopper contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 1
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+ 
+        if clicked hopper contains kelp:
+            set {_i} to kelp
+            set {_ic} to number of all kelp in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@kelp} * {_ic} * 1
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 1
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 1
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 1
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 1
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked hopper contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 1
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 1
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 1
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+           
+           
+    if name of player's tool is "&e&l2x {@toolname}":
+        cancel event
+        if clicked hopper contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 2
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 2
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 2
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 2
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 2
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked hopper contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 2
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 2
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 2
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+    if name of player's tool is "&e&l3x {@toolname}":
+        cancel event
+        if clicked hopper contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 3
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 3
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 3
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 3
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 3
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked hopper contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 3
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 3
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 3
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+           
+    if name of player's tool is "&e&l4x {@toolname}":
+        cancel event
+        if clicked hopper contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 4
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 4
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 4
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 4
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 4
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked hopper contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 4
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 4
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 4
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+           
+    if name of player's tool is "&e&l5x {@toolname}":
+        cancel event
+        if clicked hopper contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 5
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 5
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 5
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 5
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 5
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked hopper contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 5
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 5
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 5
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+    if name of player's tool is "&e&l6x {@toolname}":
+        cancel event
+        if clicked hopper contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 6
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 6
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 6
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 6
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 6
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked hopper contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 6
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 6
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 6
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+           
+    if name of player's tool is "&e&l7x {@toolname}":
+        cancel event
+        if clicked hopper contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 7
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 7
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 7
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 7
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 7
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked hopper contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 7
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 7
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 7
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+           
+    if name of player's tool is "&e&l8x {@toolname}":
+        cancel event
+        if clicked hopper contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 8
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 8
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 8
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 8
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 8
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked hopper contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 8
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 8
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 8
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+           
+    if name of player's tool is "&e&l9x {@toolname}":
+        cancel event
+        if clicked hopper contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 9
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 9
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 9
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 9
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 9
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 9
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked hopper contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 9
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 9
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+           
+    if name of player's tool is "&e&l10x {@toolname}":
+        cancel event
+        if clicked hopper contains cactus:
+            set {_i} to cactus
+            set {_ic} to number of all cactus in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@cactus} * {_ic} * 10
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains pumpkin:
+            set {_i} to pumpkin
+            set {_ic} to number of all pumpkin in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@pumpkin} * {_ic} * 10
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains sugar cane:
+            set {_i} to sugar cane
+            set {_ic} to number of all sugar cane in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@sc} * {_ic} * 10
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains wheat:
+            set {_i} to wheat
+            set {_ic} to number of all wheat in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@wheat} * {_ic} * 10
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains carrot:
+            set {_i} to carrot
+            set {_ic} to number of all carrot in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 10
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+       
+        if clicked hopper contains potato:
+            set {_i} to potato
+            set {_ic} to number of all potato in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@carrot} * {_ic} * 10
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains melon slice:
+            set {_i} to melon slice
+            set {_ic} to number of all melon slice in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@melon} * {_ic} * 10
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+           
+        if clicked hopper contains dirt:
+            set {_i} to dirt
+            set {_ic} to number of all dirt in clicked hopper
+            remove {_ic} of {_i} from clicked hopper's inventory
+            set {_me} to 0
+            set {_me} to {@dirt} * {_ic} * 10
+            send "{@P}&7 You earned $&6%{_me}%"
+            add {_me} to player's balance
+
+RAW Paste Data
+options:
+	P: &a&lVain&2&lFarms
+	toolname: &7&lSellwand&r	
+	cactus: 12
+	pumpkin: 50
+	sc: 12
+	melon: 5
+	wheat: 7
+	carrot: 8
+	potato: 8
+	dirt: 1
+	
+command /sellwand [<player>] [<integer>]:
+	permission: sw.admin
+	aliases: /sw
+	trigger:
+		give 1 stick named "&e&l%arg-2%x {@toolname}" with lore "&7Right-click a hopper to sell!" to arg-1
+		send "{@P} given {@toolname} to %arg-1%"
+on left click on chest with stick:
+	if name of player's tool is "&e&l1x {@toolname}":
+		cancel event
+		if clicked chest contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 1
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+
+		if clicked chest contains kelp:
+			set {_i} to kelp
+			set {_ic} to number of all kelp in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@kelp} * {_ic} * 1
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 1
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 1
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 1
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 1
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked chest contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 1
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 1
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 1
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+			
+			
+	if name of player's tool is "&e&l2x {@toolname}":
+		cancel event
+		if clicked chest contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 2
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 2
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 2
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 2
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 2
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked chest contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 2
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 2
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 2
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+	if name of player's tool is "&e&l3x {@toolname}":
+		cancel event
+		if clicked chest contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 3
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 3
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 3
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 3
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 3
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked chest contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 3
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 3
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 3
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+			
+	if name of player's tool is "&e&l4x {@toolname}":
+		cancel event
+		if clicked chest contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 4
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 4
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 4
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 4
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 4
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked chest contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 4
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 4
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 4
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+			
+	if name of player's tool is "&e&l5x {@toolname}":
+		cancel event
+		if clicked chest contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 5
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 5
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 5
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 5
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 5
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked chest contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 5
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 5
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 5
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+	if name of player's tool is "&e&l6x {@toolname}":
+		cancel event
+		if clicked chest contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 6
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 6
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 6
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 6
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 6
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked chest contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 6
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 6
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 6
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+			
+	if name of player's tool is "&e&l7x {@toolname}":
+		cancel event
+		if clicked chest contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 7
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 7
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 7
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 7
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 7
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked chest contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 7
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 7
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 7
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+			
+	if name of player's tool is "&e&l8x {@toolname}":
+		cancel event
+		if clicked chest contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 8
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 8
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 8
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 8
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 8
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked chest contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 8
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 8
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 8
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+			
+	if name of player's tool is "&e&l9x {@toolname}":
+		cancel event
+		if clicked chest contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 9
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 9
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 9
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 9
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 9
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 9
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked chest contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 9
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 9
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+			
+	if name of player's tool is "&e&l10x {@toolname}":
+		cancel event
+		if clicked chest contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 10
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 10
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 10
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 10
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 10
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked chest contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 10
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@melon} * {_ic} * 10
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked chest contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked chest
+			remove {_ic} of {_i} from clicked chest's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 10
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+			
+			
+on left click on hopper with stick:
+	if name of player's tool is "&e&l1x {@toolname}":
+		cancel event
+		if clicked hopper contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 1
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+
+		if clicked hopper contains kelp:
+			set {_i} to kelp
+			set {_ic} to number of all kelp in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@kelp} * {_ic} * 1
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 1
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 1
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 1
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 1
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked hopper contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 1
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 1
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 1
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+			
+			
+	if name of player's tool is "&e&l2x {@toolname}":
+		cancel event
+		if clicked hopper contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 2
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 2
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 2
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 2
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 2
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked hopper contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 2
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 2
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 2
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+	if name of player's tool is "&e&l3x {@toolname}":
+		cancel event
+		if clicked hopper contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 3
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 3
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 3
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 3
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 3
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked hopper contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 3
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 3
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 3
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+			
+	if name of player's tool is "&e&l4x {@toolname}":
+		cancel event
+		if clicked hopper contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 4
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 4
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 4
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 4
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 4
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked hopper contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 4
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 4
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 4
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+			
+	if name of player's tool is "&e&l5x {@toolname}":
+		cancel event
+		if clicked hopper contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 5
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 5
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 5
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 5
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 5
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked hopper contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 5
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 5
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 5
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+	if name of player's tool is "&e&l6x {@toolname}":
+		cancel event
+		if clicked hopper contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 6
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 6
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 6
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 6
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 6
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked hopper contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 6
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 6
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 6
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+			
+	if name of player's tool is "&e&l7x {@toolname}":
+		cancel event
+		if clicked hopper contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 7
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 7
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 7
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 7
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 7
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked hopper contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 7
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 7
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 7
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+			
+	if name of player's tool is "&e&l8x {@toolname}":
+		cancel event
+		if clicked hopper contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 8
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 8
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 8
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 8
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 8
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked hopper contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 8
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 8
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 8
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+			
+	if name of player's tool is "&e&l9x {@toolname}":
+		cancel event
+		if clicked hopper contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 9
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 9
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 9
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 9
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 9
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 9
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked hopper contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 9
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 9
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+			
+	if name of player's tool is "&e&l10x {@toolname}":
+		cancel event
+		if clicked hopper contains cactus:
+			set {_i} to cactus
+			set {_ic} to number of all cactus in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@cactus} * {_ic} * 10
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains pumpkin:
+			set {_i} to pumpkin
+			set {_ic} to number of all pumpkin in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@pumpkin} * {_ic} * 10
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains sugar cane:
+			set {_i} to sugar cane
+			set {_ic} to number of all sugar cane in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@sc} * {_ic} * 10
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains wheat:
+			set {_i} to wheat
+			set {_ic} to number of all wheat in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@wheat} * {_ic} * 10
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains carrot:
+			set {_i} to carrot
+			set {_ic} to number of all carrot in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 10
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+		
+		if clicked hopper contains potato:
+			set {_i} to potato
+			set {_ic} to number of all potato in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@carrot} * {_ic} * 10
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains melon slice:
+			set {_i} to melon slice
+			set {_ic} to number of all melon slice in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@melon} * {_ic} * 10
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance
+			
+		if clicked hopper contains dirt:
+			set {_i} to dirt
+			set {_ic} to number of all dirt in clicked hopper
+			remove {_ic} of {_i} from clicked hopper's inventory
+			set {_me} to 0
+			set {_me} to {@dirt} * {_ic} * 10
+			send "{@P}&7 You earned $&6%{_me}%"
+			add {_me} to player's balance

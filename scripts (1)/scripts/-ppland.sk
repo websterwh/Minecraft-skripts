@@ -1,0 +1,11 @@
+command /setppland:
+	permission: setppland.use
+	trigger:
+		set {ppland} to player's location
+		send "Set ppland to: %{ppland}%" to player
+		
+command /ppland:
+	permission: ppland.use
+	trigger:
+		teleport player to {ppland} 
+		send "Welcome to ppland!!" to player

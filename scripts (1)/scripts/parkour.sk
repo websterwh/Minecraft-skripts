@@ -1,0 +1,63 @@
+command /parkour [<text>]:
+	trigger:
+		if arg 1 is set:
+			if player has permission "parkour.all":
+				if arg 1 is "on":
+					set {parkouruse} to true
+					send "&aParkour Enabled"
+				if arg 1 is "off":
+					set {parkouruse} to false
+					send "&cParkour Disabled"
+		if arg 1 is not set:
+			if {combat.log.%player's uuid%} > 0:
+				send "&c&lYou are  in Combat Log"
+				stop trigger
+			if {parkouruse} is not set:
+				set {parkouruse} to false
+			if {parkouruse} is true:
+				teleport player to {set.parkour}
+			if {parkouruse} is false:
+				send "&cParkour is not Enabled"
+on walk on water:
+	if {parkouruse} is true:
+		if x-coords of player <= x-coords of {set.parkour.loc1}:
+			if x-coords of player >= x-coords of {set.parkour.loc2}:
+				if z-coords of player <= z-coords of {set.parkour.loc1}:
+					if z-coords of player >= z-coords of {set.parkour.loc2}:
+						teleport player to {set.parkour}
+on walk on lava:
+	if {parkouruse} is true:
+		if x-coords of player <= x-coords of {set.parkour.loc1}:
+			if x-coords of player >= x-coords of {set.parkour.loc2}:
+				if z-coords of player <= z-coords of {set.parkour.loc1}:
+					if z-coords of player >= z-coords of {set.parkour.loc2}:
+						teleport player to {set.parkour}
+every 1 seconds:
+	loop all players:
+		if loop-player does not have permission "parkour.all":
+			if {parkouruse} is false:
+				if x-coords of loop-player <= x-coords of {set.parkour.loc1}:
+					if x-coords of loop-player >= x-coords of {set.parkour.loc2}:
+						if z-coords of loop-player <= z-coords of {set.parkour.loc1}:
+							if z-coords of loop-player >= z-coords of {set.parkour.loc2}:
+								teleport loop-player to {set.spawn}
+every 0.1 seconds:
+	loop all players:
+		if x-coords of loop-player <= x-coords of {set.parkour.loc1}:
+			if x-coords of loop-player >= x-coords of {set.parkour.loc2}:
+				if z-coords of loop-player <= z-coords of {set.parkour.loc1}:
+					if z-coords of loop-player >= z-coords of {set.parkour.loc2}:
+						set gliding of loop-player to off
+on gliding state change:
+	if x-coords of player <= x-coords of {set.parkour.loc1}:
+		if x-coords of player >= x-coords of {set.parkour.loc2}:
+			if z-coords of player <= z-coords of {set.parkour.loc1}:
+				if z-coords of player >= z-coords of {set.parkour.loc2}:
+					teleport player to player
+on rightclick with fireworks:
+	if x-coords of player <= x-coords of {set.parkour.loc1}:
+		if x-coords of player >= x-coords of {set.parkour.loc2}:
+			if z-coords of player <= z-coords of {set.parkour.loc1}:
+				if z-coords of player >= z-coords of {set.parkour.loc2}:
+					cancel event
+					stop trigger

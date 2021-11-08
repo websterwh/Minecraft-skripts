@@ -1,0 +1,220 @@
+on load:
+	wait 5 seconds
+	loop all entities:
+		if loop-entity is not a player:
+			set {test.npc.all.kill} to 0
+			loop {npc.all} times:
+				add 1 to {test.npc.all.kill}
+				if loop-entity = {npc.name.%{test.npc.all.kill}%}:
+					kill loop-entity
+			if loop-entity is not a dropped item:
+				kill loop-entity
+	wait 1 ticks
+	set {test.npc.all.respawn} to 0
+	loop {npc.all} times:
+		add 1 to {test.npc.all.respawn}
+		set {npc.spawn} to true
+		spawn {npc.type.%{test.npc.all.respawn}%} at {npc.loc.%{test.npc.all.respawn}%}
+		wait 1 ticks
+command /npc [<text>] [<text>] [<text>]:
+	permission: server.op
+	trigger:
+		if arg 1 is "create":
+			if arg 2 is set:
+				add 1 to {npc.all}
+				if arg 3 is not set:
+					set {npc.spawn} to true
+					set {npc.text.%{npc.all}%} to arg 2
+					set {npc.type.%{npc.all}%} to "villager" parsed as entity type
+					set {npc.loc.%{npc.all}%} to location of player
+					spawn {npc.type.%{npc.all}%} at {npc.loc.%{npc.all}%}
+					send "npc %{npc.all}% created named %{npc.text.%{npc.all}%}% at %{npc.loc.%{npc.all}%}%"
+				if arg 3 is set:
+					set {npc.spawn} to true
+					set {npc.text.%{npc.all}%} to arg 2
+					set {npc.type.%{npc.all}%} to "villager" parsed as entity type
+					set {npc.type.%{npc.all}%} to arg 3 parsed as entity type
+					set {npc.loc.%{npc.all}%} to location of player
+					spawn {npc.type.%{npc.all}%} at {npc.loc.%{npc.all}%}
+					send "npc %{npc.all}% created named %{npc.text.%{npc.all}%}% at %{npc.loc.%{npc.all}%}%"
+		if arg 1 is "rename":
+			if arg 2 is set:
+				if arg 3 is set:
+					set {npc.text.%arg 2 parsed as integer%} to colored arg 3
+		if arg 1 is "type":
+			if arg 2 is set:
+				if arg 3 is set:
+					loop all entities:
+						if loop-entity is not a player:
+							if loop-entity = {npc.name.%arg 2 parsed as integer%}:
+								kill loop-entity
+					set {npc.spawn} to true
+					set {npc.type.%arg 2 parsed as integer%} to arg 3 parsed as entity type
+					spawn {npc.type.%arg 2 parsed as integer%} at {npc.loc.%arg 2 parsed as integer%}
+		if arg 1 is "silent":
+			if arg 2 is set:
+				if arg 3 is "true":
+					loop all entities:
+						if loop-entity is not a player:
+							if loop-entity = {npc.name.%arg 2 parsed as integer%}:
+								add "{Silent:1b}" to nbt of loop-entity
+				if arg 3 is "false":
+					loop all entities:
+						if loop-entity is not a player:
+							if loop-entity = {npc.name.%arg 2 parsed as integer%}:
+								add "{Silent:0b}" to nbt of loop-entity
+		if arg 1 is "tphere":
+			if arg 2 is set:
+				loop all entities:
+					if loop-entity is not a player:
+						if loop-entity = {npc.name.%arg 2 parsed as integer%}:
+							kill loop-entity
+				wait 1 ticks
+				set {npc.spawn} to true
+				set {npc.loc.%arg 2 parsed as integer%} to location of player
+				spawn {npc.type.%arg 2 parsed as integer%} at {npc.loc.%arg 2 parsed as integer%}
+		if arg 1 is "tp":
+			if arg 2 is set:
+				teleport player to {npc.loc.%arg 2 parsed as integer%}
+		if arg 1 is "all":
+			if arg 2 is set:
+				set {npc.head.act.%arg 2 parsed as integer%} to true
+				set {npc.chest.act.%arg 2 parsed as integer%} to true
+				set {npc.leg.act.%arg 2 parsed as integer%} to true
+				set {npc.feet.act.%arg 2 parsed as integer%} to true
+				set {npc.mainhand.act.%arg 2 parsed as integer%} to true
+				set {npc.offhand.act.%arg 2 parsed as integer%} to true
+		if arg 1 is "head":
+			if arg 2 is set:
+				set {npc.head.act.%arg 2 parsed as integer%} to true
+		if arg 1 is "chest":
+			if arg 2 is set:
+				set {npc.chest.act.%arg 2 parsed as integer%} to true
+		if arg 1 is "leg":
+			if arg 2 is set:
+				set {npc.leg.act.%arg 2 parsed as integer%} to true
+		if arg 1 is "feet":
+			if arg 2 is set:
+				set {npc.feet.act.%arg 2 parsed as integer%} to true
+		if arg 1 is "mainhand":
+			if arg 2 is set:
+				set {npc.mainhand.act.%arg 2 parsed as integer%} to true
+		if arg 1 is "offhand":
+			if arg 2 is set:
+				set {npc.offhand.act.%arg 2 parsed as integer%} to true
+		if arg 1 is "cmd":
+			if arg 2 is set:
+				if arg 3 is set:
+					set {npc.cmd.%arg 2 parsed as integer%} to arg 3
+on click:
+	if event-entity is set:
+		if event-entity is not a player:
+			set {test.npc.%player's uuid%} to 0
+			loop {npc.all} times:
+				add 1 to {test.npc.%player's uuid%}
+				if location of event-entity = {npc.loc.%{test.npc.%player's uuid%}%}:
+					cancel event
+					wait 1 ticks
+					close player's inventory
+					make player execute command "%{npc.cmd.%{test.npc.%player's uuid%}%}%"
+					if player has permission "server.op":
+						if {npc.head.act.%{test.npc.%player's uuid%}%} is true:
+							set event-entity's helmet to player's held item
+							set {npc.head.item.%{test.npc.%player's uuid%}%} to player's held item
+							set {npc.head.act.%{test.npc.%player's uuid%}%} to false
+						if {npc.chest.act.%{test.npc.%player's uuid%}%} is true:
+							set event-entity's chestplate to player's held item
+							set {npc.chest.item.%{test.npc.%player's uuid%}%} to player's held item
+							set {npc.chest.act.%{test.npc.%player's uuid%}%} to false
+						if {npc.leg.act.%{test.npc.%player's uuid%}%} is true:
+							set event-entity's leggings to player's held item
+							set {npc.leg.item.%{test.npc.%player's uuid%}%} to player's held item
+							set {npc.leg.act.%{test.npc.%player's uuid%}%} to false
+						if {npc.feet.act.%{test.npc.%player's uuid%}%} is true:
+							set event-entity's boots to player's held item
+							set {npc.feet.item.%{test.npc.%player's uuid%}%} to player's held item
+							set {npc.feet.act.%{test.npc.%player's uuid%}%} to false
+						if {npc.mainhand.act.%{test.npc.%player's uuid%}%} is true:
+							set {npc.mainhand.item.%{test.npc.%player's uuid%}%} to "%player's held item%"
+							replace all " " with "_" in {npc.mainhand.item.%{test.npc.%player's uuid%}%}
+							add "{HandItems:[{Count:1,id:""%{npc.mainhand.item.%{test.npc.%player's uuid%}%}%""},{Count:1,id:""%{npc.offhand.item.%{test.npc.%player's uuid%}%}%""}]}" to nbt of event-entity
+							set {npc.mainhand.act.%{test.npc.%player's uuid%}%} to false
+						if {npc.offhand.act.%{test.npc.%player's uuid%}%} is true:
+							set {npc.offhand.item.%{test.npc.%player's uuid%}%} to "%player's held item%"
+							replace all " " with "_" in {npc.offhand.item.%{test.npc.%player's uuid%}%}
+							add "{HandItems:[{Count:1,id:""%{npc.mainhand.item.%{test.npc.%player's uuid%}%}%""},{Count:1,id:""%{npc.offhand.item.%{test.npc.%player's uuid%}%}%""}]}" to nbt of event-entity
+							set {npc.offhand.act.%{test.npc.%player's uuid%}%} to false
+on spawn:
+	if {npc.spawn} is false:
+		if event-entity is not a player:
+			if event-entity is not a dropped item:
+				if event-entity is not a firework:
+					if event-entity is not a drowned:
+						if event-entity is not a arrow:
+							if event-entity is not a painting:
+								if event-entity is not a light blue concrete:
+									if event-entity is not a blue concrete:
+										if event-entity is not a yellow concrete:
+											if event-entity is not a trident:
+												if event-entity is not a fishing hook:
+													if event-entity is not a sheep:
+														cancel event
+	
+	if {npc.spawn} is true:
+		if event-entity is not a player:
+			set {test.npc.all.spawn} to 0
+			loop {npc.all} times:
+				add 1 to {test.npc.all.spawn}
+				if location of event-entity = {npc.loc.%{test.npc.all.spawn}%}:
+					set {npc.name.%{test.npc.all.spawn}%} to event-entity
+					set {npc.spawn} to false
+					add "{NoAI:1b}" to nbt of event-entity
+					add "{Silent:1b}" to nbt of event-entity
+					if {npc.mainhand.item.%{test.npc.all.spawn}%} is not set:
+						set {npc.mainhand.item.%{test.npc.all.spawn}%} to air
+					if {npc.offhand.item.%{test.npc.all.spawn}%} is not set:
+						set {npc.offhand.item.%{test.npc.all.spawn}%} to air
+					wait 1 ticks
+					add "{HandItems:[{Count:1,id:""%{npc.mainhand.item.%{test.npc.all.spawn}%}%""},{Count:1,id:""%{npc.offhand.item.%{test.npc.all.spawn}%}%""}]}" to nbt of event-entity
+					add "{CustomNameVisible:1b}" to nbt of event-entity
+					if {npc.head.item.%{test.npc.all.spawn}%} is not set:
+						set {npc.head.item.%{test.npc.all.spawn}%} to air
+					if {npc.chest.item.%{test.npc.all.spawn}%} is not set:
+						set {npc.chest.item.%{test.npc.all.spawn}%} to air
+					if {npc.leg.item.%{test.npc.all.spawn}%} is not set:
+						set {npc.leg.item.%{test.npc.all.spawn}%} to air
+					if {npc.feet.item.%{test.npc.all.spawn}%} is not set:
+						set {npc.feet.item.%{test.npc.all.spawn}%} to air
+					set event-entity's helmet to {npc.head.item.%{test.npc.all.spawn}%}
+					set event-entity's chestplate to {npc.chest.item.%{test.npc.all.spawn}%}
+					set event-entity's leggings to {npc.leg.item.%{test.npc.all.spawn}%}
+					set event-entity's boots to {npc.feet.item.%{test.npc.all.spawn}%}
+on death:
+	if victim is not a player:
+		if {npc.name.1} = victim:
+			cancel event
+			clear drops
+on damage:
+	if attacker is not a player:
+		set {test.npc.%victim's uuid%} to 0
+		loop {npc.all} times:
+			add 1 to {test.npc.%victim's uuid%}
+			if {npc.name.%{test.npc.%victim's uuid%}%} = attacker:
+				cancel event
+	if victim is not a player:
+		set {test.npc.%attacker's uuid%} to 0
+		loop {npc.all} times:
+			add 1 to {test.npc.%attacker's uuid%}
+			if {npc.name.%{test.npc.%attacker's uuid%}%} = victim:
+				if location of victim = {npc.loc.%{test.npc.%attacker's uuid%}%}:
+					cancel event
+					make attacker execute command "%{npc.cmd.%{test.npc.%attacker's uuid%}%}%"
+every 1 seconds:
+	loop all entities:
+		if loop-entity is not a player:
+			set {test.npc.all.sec} to 0
+			loop {npc.all} times:
+				add 1 to {test.npc.all.sec}
+				if loop-entity = {npc.name.%{test.npc.all.sec}%}:
+					teleport loop-entity to {npc.loc.%{test.npc.all.sec}%}
+					set name of loop-entity to "%{npc.text.%{test.npc.all.sec}%}%"

@@ -1,0 +1,87 @@
+on first join:
+    add 1 to {joins}
+
+every 3 seconds:
+	loop all players:
+		wipe loop-player's sidebar
+		set name of sidebar of loop-player to "&2&lECOBOX &8• &fSeason 1"
+		set score " " in sidebar of loop-player to 16
+		set score "&2&lPlayer" in sidebar of loop-player to 15
+		set score " &8• &aNickname: &f%loop-player%" in sidebar of loop-player to 14
+		set score " &8• &aBalance: $&f%{economy::balance::%loop-player's uuid%}%" in sidebar of loop-player to 13
+		if {kills.%loop-player's uuid%} is not set:
+			set {kills.%loop-player's uuid%} to 0
+		if {deaths.%loop-player's uuid%} is not set:
+			set {deaths.%loop-player's uuid%} to 0
+		if {deaths.%loop-player's uuid%} > 0:
+			set {kdr.%loop-player's uuid%} to ({kills.%loop-player's uuid%}/{deaths.%loop-player's uuid%})
+		if {deaths.%loop-player's uuid%} = 0:
+			set {kdr.%loop-player's uuid%} to ({kills.%loop-player's uuid%})
+		set score " &8• &aKills: &f%{kills.%loop-player's uuid%}%" in sidebar of loop-player to 12
+		set score " &8• &aDeaths: &f%{deaths.%loop-player's uuid%}%" in sidebar of loop-player to 11
+		set score " &8• &aKDR: &f%{kdr.%loop-player's uuid%}%" in sidebar of loop-player to 10
+		set score " &e " in sidebar of loop-player to 9
+		set score "&2&lServer" in sidebar of loop-player to 8
+		set score " &8• &aTPS: &f%tps from the last 1 minute%" in sidebar of loop-player to 7
+		if {joins} is not set:
+			set {joins} to 0
+		set score " &8• &aUnique Joins: &f%{joins}%" in sidebar of loop-player to 6
+		set score " &8• &aOnline: &f%amount of players%&8/&f75" in sidebar of loop-player to 5
+		set score " &a " in sidebar of loop-player to 4
+		if {combat.log.%loop-player's uuid%} > 0:
+			set score "&c&lCombat Log" in sidebar of loop-player to 3
+			set score " &8• &cSeconds: &e%{combat.log.%loop-player's uuid%}%" in sidebar of loop-player to 2
+			set score " &a   " in sidebar of loop-player to 1
+
+on death:
+	if attacker is a player:
+		set {combat.log.%victim's uuid%} to 0
+		send "&c%attacker%&8 killed you" to victim
+		send "&8You killed &c%victim%" to attacker
+	if attacker is not a player:
+		send "&8You killed &cyourself" to victim
+		send "&c%victim% &8killed himself" to {last.attacker.%victim's uuid%}
+	loop all players:
+		if loop-player != attacker:
+			if loop-player != victim:
+				if loop-player has permission "kills":
+					if attacker is a player:
+						send "&c%attacker% &8⚔ &c%victim%" to loop-player
+					if attacker is not a player:
+						send "&c%victim% &8⚔ &c%victim%" to loop-player
+	add 1 to {kills.%attacker's uuid%}
+	add 1 to {deaths.%victim's uuid%}
+	wait 3 ticks
+	teleport victim to {set.spawn}
+on damage:
+	if victim is a player:
+		if attacker is a player:
+			set {combat.log.%attacker's uuid%} to 8
+			set {combat.log.%victim's uuid%} to 8
+			set {last.attacker.%attacker's uuid%} to victim
+			set {last.attacker.%victim's uuid%} to attacker
+every 0.1 seconds:
+	loop all players:
+		if {combat.log.%loop-player's uuid%} is not set:
+			set {combat.log.%loop-player's uuid%} to 0
+		if {combat.log.%loop-player's uuid%} > 0:
+			remove 0.1 from {combat.log.%loop-player's uuid%}
+on quit:
+	if {combat.log.%player's uuid%} > 0:
+		add 1 to {kills.%{last.attacker.%player's uuid%}%}
+		add 1 to {deaths.%player's uuid%}
+on kick:
+	if {combat.log.%player's uuid%} > 0:
+		add 1 to {kills.%{last.attacker.%player's uuid%}%}
+		add 1 to {deaths.%player's uuid%}
+every 0.1 seconds:
+    loop all players:
+        if {combat.log.%loop-player's uuid%} > 0:
+            set gliding of loop-player to off
+on gliding state change:	
+	if {combat.log.%player's uuid%} > 0:
+		teleport player to player 
+on rightclick with fireworks:
+	if {combat.log.%player's uuid%} > 0:
+		cancel event
+		teleport player to player

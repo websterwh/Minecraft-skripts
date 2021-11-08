@@ -1,0 +1,54 @@
+command /reverse [<int>]:
+	permission: op
+	trigger:
+		if arg 1 is an integer:
+			set the 1st line of the player's held item's lore to "&c-%arg 1% Reversal"
+on damage:
+	if the 1st line of the attacker's held item's lore contains "Reversal":
+		set {reverse.%attacker%::*} to the 1st line of the attacker's held item's lore split at " "
+		set {reverse.%attacker%::1::*} to {reverse.%attacker%::1} split at "-"
+		set {reverse.%attacker%::1::2} to {reverse.%attacker%::1::2} parsed as integer
+		damage attacker by {reverse.%attacker%::1::2} hearts
+command /storeblock:
+	permission: op
+	trigger:
+		stop trigger
+		set {storeh} to player's held item's nbt
+		set {storeh::*} to {storeh} split at "SkullOwner"
+		set {storeh} to {storeh::2}
+on rightclick:
+	if event-block is set:
+		set {woodb::2} to ""
+		set {woodb::*} to event-block's nbt split at "SkullOwner"
+		if "%{woodb::2}%" = "%{wood}%":
+			add 1 oak log to player
+			set event-block to air
+		set {woodb::2} to ""
+		set {lantb::2} to ""
+		set {lantb::*} to event-block's nbt split at "SkullOwner"
+		if "%{lantb::2}%" = "%{lant}%":
+			add 1 sea lantern to player
+			set event-block to air
+		set {lantb::2} to ""
+	if player's held item's nbt = {beerh}:
+		remove {beer} from player
+		apply potion of nausea 255 to player for 15 seconds
+on click:
+	if event-block is set:
+		set {discordhb::2} to ""
+		set {discordhb::*} to event-block's nbt split at "SkullOwner"
+		if "%{discordhb::2}%" = "%{discordh}%":
+			cancel event
+			send "&6Click <link:https://discord.ecoboxmc.net/>&aHere &6to join discord" to player
+		if "%{discordhb::2}%" = "%{storeh}%":
+			cancel event
+			make player execute command "store"
+		set {discordhb::2} to ""
+	if event-block is dark oak door:
+		if player is holding glowing name tag named "&l&dStrip Club Ticket":
+			cancel event
+			teleport player to {set.strip.in}
+	if event-block is crimson door:
+		if player is holding glowing name tag named "&l&dStrip Club Ticket":
+			cancel event
+			teleport player to {set.strip.out}

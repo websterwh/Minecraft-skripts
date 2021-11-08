@@ -1,0 +1,25 @@
+on right click:
+	if held item is paper of mending named "&3VIP":
+		if player is sneaking:
+			console command "pr rankadd %player% VIP"
+			message "&7[Server] &fYou redeemed rank VIP"
+			remove 1 paper of mending named "&3VIP" from player
+
+			
+			
+on right click:
+	if held item is paper of mending named "&b&1special":
+		if player is sneaking:
+			console command "pr rankadd %player% special"
+			message "&7[Server] &fYou redeemed rank special"
+			remove 1 paper of mending named "&3VIP" from player
+	
+on right click:
+	if held item is paper of mending named "&b&1special":
+		if player is sneaking:
+			console command "pr rankadd %player% VIP+"
+			message "&7[Server] &fYou redeemed rank VIP+"
+			remove 1 paper of mending named "&b&1special" from player
+		
+		
+#For Support Contact me on Discord at ωilliam#5384

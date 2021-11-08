@@ -1,0 +1,6 @@
+command /event:
+	trigger:
+		teleport the player to location -189, 122, 990
+
+on step on barrier:
+	teleport player to spawn

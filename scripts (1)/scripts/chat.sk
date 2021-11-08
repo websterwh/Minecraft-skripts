@@ -1,0 +1,89 @@
+
+options:
+	symbol: &7» # SYMBOL THAT GOES BETWEEN THE PLAYERS SUFFIX AND MESSAGE
+	default: &7%player% # DEFAULT NICKNAME
+	nickperm: nick.use # PERMISSION TO GIVE TO PEOPLE FOR NICKNAME USE
+
+on chat:
+	if event isn't cancelled:
+		if {color.%player's uuid%} is not set:
+			set {color.%player's uuid%} to colored "&7"
+		if {nickname::%player's uuid%} is not set:
+			set {nickname::%player's uuid%} to "&7%player%"
+		set the chat format to "%player's prefix%%player's display name%%player's suffix% {@symbol} %{color.%player's uuid%}%%message%"
+
+on join:
+	if {color.%player's uuid%} is not set:
+		set {color.%player's uuid%} to colored "&7"
+# COMMANDS
+command /colors:
+	permission: mvp
+	trigger:
+		open virtual chest with 5 rows named "&c&lC&6&lo&e&ll&a&lo&1&lr&5&ls" to player
+		format gui slot 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 26, 27, 28, 29, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, and 44 of player with gray stained glass pane named "&7"
+		format gui slot 10 of player with white wool named "&fWhite" to run:
+			set {color.%player's uuid%} to colored "&f"
+			send "&aChat color set to &fWhite"
+			close player's inventory
+		format gui slot 11 of player with red wool named "&4Dark Red" to run:
+			set {color.%player's uuid%} to colored "&4"
+			send "&aChat color set to &4Dark Red"
+			close player's inventory
+		format gui slot 12 of player with orange wool named "&6Gold" to run:
+			set {color.%player's uuid%} to colored "&6"
+			send "&aChat color set to &6Gold"
+			close player's inventory
+		format gui slot 13 of player with yellow wool named "&eYellow" to run:
+			set {color.%player's uuid%} to colored "&e"
+			send "&aChat color set to &eYellow"
+			close player's inventory
+		format gui slot 14 of player with lime wool named "&aGreen" to run:
+			set {color.%player's uuid%} to colored "&a"
+			send "&aChat color set to &aGreen"
+			close player's inventory
+		format gui slot 15 of player with blue wool named "&1Dark Blue" to run:
+			set {color.%player's uuid%} to colored "&1"
+			send "&aChat color set to &1Dark Blue"
+			close player's inventory
+		format gui slot 16 of player with purple wool named "&5Dark Purple" to run:
+			set {color.%player's uuid%} to colored "&5"
+			send "&aChat color set to &5Dark Purple"
+			close player's inventory
+		format gui slot 19 of player with light gray wool named "&7Gray" to run:
+			set {color.%player's uuid%} to colored "&7"
+			send "&aChat color set to &7Gray"
+			close player's inventory
+		format gui slot 20 of player with pink wool named "&cRed" to run:
+			set {color.%player's uuid%} to colored "&c"
+			send "&aChat color set to &cRed"
+			close player's inventory
+		format gui slot 21 of player with gray wool named "&8Dark Gray" to run:
+			set {color.%player's uuid%} to colored "&8"
+			send "&aChat color set to &8Dark Gray"
+			close player's inventory
+		format gui slot 22 of player with black wool named "&0Black" to run:
+			set {color.%player's uuid%} to colored "&0"
+			send "&aChat color set to &0Black"
+			close player's inventory
+		format gui slot 23 of player with green wool named "&2Dark Green" to run:
+			set {color.%player's uuid%} to colored "&2"
+			send "&aChat color set to &2Dark Green"
+			close player's inventory
+		format gui slot 24 of player with blue wool named "&9Blue" to run:
+			set {color.%player's uuid%} to colored "&9"
+			send "&aChat color set to &9Blue"
+			close player's inventory
+		format gui slot 25 of player with magenta wool named "&dLight Purple" to run:
+			set {color.%player's uuid%} to colored "&d"
+			send "&aChat color set to &dLight Purple"
+			close player's inventory
+		format gui slot 30 of player with cyan wool named "&3Dark Aqua" to run:
+			set {color.%player's uuid%} to colored "&3"
+			send "&aChat color set to &3Dark Aqua"
+			close player's inventory
+		format gui slot 31 of player with barrier named "&4&lClose" to close
+		format gui slot 32 of player with light blue wool named "&bAqua" to run:
+			set {color.%player's uuid%} to colored "&b"
+			send "&aChat color set to &bAqua"
+			close player's inventory
+

@@ -1,0 +1,7 @@
+command /purchased [<text>] [<offline player>]:
+	permission: op
+	trigger:
+		if player is not a player:
+			if arg 1 is set:
+				if arg 2 is an offline player:
+					broadcast "&6&lThank You %arg 2% for purchasing &4&l%arg 1%"

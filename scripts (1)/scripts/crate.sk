@@ -1,0 +1,48 @@
+command /crate [<text>] [<text>] [<text>]:
+	permission: server.op
+	trigger:
+		if arg 1 is not set:
+			send "&c&m            &cCrates&c&m            "
+			send "&c/crate help"
+			send "&c/crate list"
+			send "&c/crate create <name>"
+			send "&c/crate rename <name>"
+			send "&c/crate colorname <name> <colored name>"
+			send "&c/crate give <name>"
+			send "&c/crate inventory <name>"
+			send "&c/crate delete <name>"
+			send "&c&m                                "
+		if arg 1 is "help":
+			send "&c&m            &cCrates&c&m            "
+			send "&c/crate help"
+			send "&c/crate list"
+			send "&c/crate create <name>"
+			send "&c/crate rename <name>"
+			send "&c/crate colorname <name> <colored name>"
+			send "&c/crate give <name>"
+			send "&c/crate inventory <name>"
+			send "&c/crate delete <name>"
+			send "&c&m                                "
+		if arg 1 is "list":
+			send "&a&m            &aCrates&a&m            "
+			set {test.crate.%player's uuid%} to 0
+			loop {crateall} times:
+				add 1 to {test.crate.%player's uuid%}
+				send "&a%{test.crate.%player's uuid%}% %{crate.name.%{test.crate.%player's uuid%}%}% %{crate.colorname.%{test.crate.%player's uuid%}%}% %{crate.loc.%{test.crate.%player's uuid%}%}%"
+			send "&a&m                                "
+		if arg 1 is "create":#number name colorname location itemslot itemtype
+			if arg 2 is set:
+				if {crateall} is not set:
+					set {crateall} to 0
+				set {test.crate.%player's uuid%} to 0
+				loop {crateall} times:
+					add 1 to {test.crate.%player's uuid%}
+					if {crate.name.%{test.crate.%player's uuid%}%} = arg 2:
+						send "&cA crate with that already exists"
+						stop trigger
+				add 1 to {crateall}
+				set {crate.name.%{crateall}%} to arg 2
+				send "&aSuccessfully made crate called &e%{crate.name.%{crateall}%}%"
+		if arg 1 is "rename":
+			if arg 2 is set:
+				
